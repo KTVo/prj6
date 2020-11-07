@@ -7,6 +7,7 @@ class ClientRegister extends React.Component {
 
         this.state =
             {
+                username: '',
                 email: '',
                 password: '',
                 repassword: '',
@@ -34,6 +35,48 @@ class ClientRegister extends React.Component {
     {
 
         const data = this.state;
+
+
+
+            if(this.props.data.userMode === 'Doctor') {
+                const requestOptions = {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({"npi": this.state.npi,"username": this.state.username,"phy_name":this.state.name,
+                        "phy_bio":this.state.bio,"phy_addr":"0","phy_qual":this.state.qual,
+                        "email":this.state.email,"password": this.state.password})
+                    /*
+                    npi -
+                    username
+                    name
+                    bio
+                    address
+                    qualifications
+                    review count
+                    email
+                    password
+                    */
+
+
+                };
+
+                fetch("http://52.247.220.137:80/physician", requestOptions)
+                    .then(response => console.log(response.text()))
+            }
+            else
+            {
+                const requestOptions = {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({"username": this.state.email, "password": this.state.password})
+                };
+
+                fetch("http://52.247.220.137:80/client/login", requestOptions)
+                    .then(response => console.log(response.text()))
+            }
+
+
+
         alert(`Test Variables
                --------------
                   Email: ${this.state.email} 
@@ -55,6 +98,8 @@ class ClientRegister extends React.Component {
                LastName: ${data.lastName}
                 Picture: ${data.picture}
                     Bio: ${data.bio}`
+
+
         );
 
 
@@ -70,17 +115,44 @@ class ClientRegister extends React.Component {
                     <br />
                 </label>
                 <br />
+
+
+                <label>
+                    Name:
+                    <input
+                        name="name"
+                        type="text"
+                        value={this.state.name}
+                        onChange={this.handleInputChange}
+                        required/>
+                </label>
+                <label>
+                    Username:
+                    <input
+                        name="address"
+                        type="text"
+                        value={this.state.addr}
+                        onChange={this.handleInputChange}
+                        required/>
+                </label>
                 <label>
                     Email:
                     <input
-                        name="email"
+                        Email="email"
                         type="text"
                         value={this.state.email}
                         onChange={this.handleInputChange}
                         required/>
                 </label>
-
-
+                <label>
+                    Password:
+                    <input
+                        name="password"
+                        type="text"
+                        value={this.state.password}
+                        onChange={this.handleInputChange}
+                        required/>
+                </label>
 
                 <br />
                 <label>

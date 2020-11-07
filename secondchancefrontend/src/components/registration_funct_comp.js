@@ -17,7 +17,30 @@ function DropDownMenu(data){
 
         </Form.Control>
 
+
+
     )
+}
+
+function DropDownMenu_Hosp(data){
+    console.log(data);
+    return(
+        <Form.Control name = {"hospital"} value={1} onChange={data.handleInputChange} as={"select"} defaultValue={"1"}>
+
+            {
+                data.dataArr.map(function(item) {
+
+                    return <option value={item.hospital_id}>{item.hospital_name}</option>
+                })
+            }
+
+
+
+        </Form.Control>
+
+
+    )
+
 }
 
 function DrAttritube(data)
@@ -37,7 +60,7 @@ function DrAttritube(data)
 
 
                 <Form.Label>Select Clinic:</Form.Label>
-                <DropDownMenu name={"selectedClinic"} dataArr = {data.dataArr} />
+                <DropDownMenu_Hosp name={"hospital"} dataArr = {data.dataArr} />
 
 
             </div>
@@ -119,7 +142,7 @@ function ShowRegistrationForm(props)
 
 
 
-                <DrAttritube modeID={modeID} dataArr = {props.outerProps.data.hospitalNameArr}/>
+                <DrAttritube modeID={modeID} dataArr = {props.outerProps.hospital}/>
 
 
                 <Form.Label>Bio:</Form.Label>

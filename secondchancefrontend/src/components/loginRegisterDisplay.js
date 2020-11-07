@@ -10,14 +10,25 @@ export class LoginRegisterDisplay extends React.Component {
 
     constructor(props) {
         super(props);
+        fetch("http://52.247.220.137:80/hospitals")
+            .then(response => response.json())
+            .then(json => {
 
-        this.state ={
+                this.state.hospitalNameArr = json
+                this.state.isLoading = false;
+
+
+            });
+        this.state = {
             isLogin: true,
-            choseReturn: false
+            choseReturn: false,
+            isLoading: true,
+            hospitalNameArr: []
         }
+
         this.data = {};
 
-        this.data.hospitalNameArr= ["Cleveland Clinic", "Johns Hopkins Hospital", "Mayo Clinic", "UCLA Medical Center"];
+       //this.data.hospitalNameArr= ["Cleveland Clinic", "Johns Hopkins Hospital", "Mayo Clinic", "UCLA Medical Center"];
 
         this.data.date= {
             month: ["January", "February", "April", "May", "June", "July", "August", "September", "October",
@@ -168,8 +179,19 @@ export class LoginRegisterDisplay extends React.Component {
 
         console.log(this.data)
         this.setCurrentYear();
+        if (this.state.isLoading){
+            console.log("im loading....");
+            return(
+                <ButtonGroup>
+                    <Button onClick={()=>this.SelectLoginRegisterHandle(true, false)}>Login</Button>
+                    <Button onClick={()=>this.SelectLoginRegisterHandle(false, false)}>Register</Button>
+                    <Button onClick={()=>this.SelectLoginRegisterHandle(true, true)}>Switch User Type</Button>
+                </ButtonGroup>
+            )
+        }
         return (
             <div>
+
                 <ButtonGroup>
                     <Button onClick={()=>this.SelectLoginRegisterHandle(true, false)}>Login</Button>
                     <Button onClick={()=>this.SelectLoginRegisterHandle(false, false)}>Register</Button>
@@ -177,13 +199,19 @@ export class LoginRegisterDisplay extends React.Component {
                 </ButtonGroup>
 
 
+
+
+
+
+
+
                 {
                     this.state.choseReturn &&
-                    <RegFunctionalComponent data={this.data} handleSubmit={(e) => this.handleSubmit(e)}/>
+                    <RegFunctionalComponent hospital = {this.state.hospitalNameArr} data={this.data} handleSubmit={(e) => this.handleSubmit(e)}/>
                 }
 
                 {!this.state.choseReturn && !this.state.isLogin &&
-                <RegFunctionalComponent data={this.data} handleSubmit={(e) => this.handleSubmit(e)}/>}
+                <RegFunctionalComponent hospital = {this.state.hospitalNameArr} data={this.data} handleSubmit={(e) => this.handleSubmit(e)}/>}
                 {!this.state.choseReturn &&
                 this.state.isLogin && <Login data={this.data}/>}
 
