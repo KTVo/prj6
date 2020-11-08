@@ -7,7 +7,8 @@ export class ClientTable_OnGoing extends React.Component
 
     constructor(props) {
         super(props);
-
+        console.log("GET DEEZ PROPS");
+        console.log(props);
         this.data={
             is_patient: true
         };
@@ -50,9 +51,10 @@ export class ClientTable_OnGoing extends React.Component
         this.data.requestOptions = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({"pat_id": this.props.userInfo.userID})
+            body: JSON.stringify({"pat_id": this.props.userInfo.pat_id})
         };
         this.data.URL_for_Fetch = "http://52.247.220.137/get_all_patient_records";
+        this.data.userInfo = this.props.userInfo;
     }
 
     render() {

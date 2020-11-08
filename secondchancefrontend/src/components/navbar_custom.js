@@ -94,12 +94,12 @@ export default class NavbarClass extends React.Component
 
                         </nav>
                         <Switch>
-                            <Route exact path={'/'} component={() => <Homepage userInfo = {this.data}/>}></Route>
-                            <Route exact path='/contact' component={() => <Contact userInfo = {this.data}/>}></Route>
-                            <Route exact path={'/edit'} component ={() => <DrEdit userInfo = {this.data}/>}></Route>
+                            <Route exact path={'/'} component={() => <Homepage userInfo = {this.state.userData}/>}></Route>
+                            <Route exact path='/contact' component={() => <Contact userInfo = {this.state.userData}/>}></Route>
+                            <Route exact path={'/edit'} component ={() => <DrEdit userInfo = {this.state.userData}/>}></Route>
                             <Route exact path={'/pricing'} component={() => <Pricing/>}></Route>
-                            <Route exact path={'/clientCaseMgmt'} component={() => <ClientCaseManagement userInfo = {this.data}/>}></Route>
-                            <Route exact path={'/caseCreate'} component={() => <CaseCreation userInfo = {this.data}/>}></Route>
+                            <Route exact path={'/clientCaseMgmt'} component={() => <ClientCaseManagement userInfo = {this.state.userData}/>}></Route>
+                            <Route exact path={'/caseCreate'} component={() => <CaseCreation userInfo = {this.state.userData}/>}></Route>
                         </Switch>
                     </div>
                 </Router>
@@ -133,11 +133,11 @@ export default class NavbarClass extends React.Component
 
                         </nav>
                         <Switch>
-                            <Route exact path={'/'} component={() => <Homepage userInfo = {this.data}/>}></Route>
-                            <Route exact path='/contact' component={() => <Contact userInfo = {this.data}/>}></Route>
-                            <Route exact path={'/edit'} component={() => <DrEdit userInfo = {this.data}/>}></Route>
+                            <Route exact path={'/'} component={() => <Homepage userInfo = {this.state.userData}/>}></Route>
+                            <Route exact path='/contact' component={() => <Contact userInfo = {this.state.userData}/>}></Route>
+                            <Route exact path={'/edit'} component={() => <DrEdit userInfo = {this.state.userData}/>}></Route>
                             <Route exact path={'/pricing'} component={Pricing}></Route>
-                            <Route exact path={'/doctorCaseMgmt'} component={() => <DrCaseManagement userInfo = {this.data}/>}></Route>
+                            <Route exact path={'/doctorCaseMgmt'} component={() => <DrCaseManagement userInfo = {this.state.userData}/>}></Route>
 
 
                         </Switch>
@@ -151,8 +151,7 @@ export default class NavbarClass extends React.Component
 
     NavbarModes()
     {
-        console.log("beyotch");
-        console.log(this.state);
+
         if(this.state.modeID === 'patient')
         {
 
@@ -174,7 +173,6 @@ export default class NavbarClass extends React.Component
     }
     handleUserLoginFromNavBar = (props) =>
     {
-        console.log(props);
         this.setState({
             modeID: props.modeID,
             userID: props.userID,

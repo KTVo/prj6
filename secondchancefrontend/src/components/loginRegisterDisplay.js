@@ -95,14 +95,10 @@ export class LoginRegisterDisplay extends React.Component {
 
     handleSubmit = () => {
         const data = this.iter_over_items();
-        console.log("registration data")
-        console.log(data);
+
 
         const calculatedAge = this.GetAge(data);
 
-        console.log(calculatedAge);
-        console.log("fook ME!");
-        console.log(this.props);
         if(this.props.userMode === 'Physician') {
             const requestOptions = {
                 method: 'POST',
@@ -182,12 +178,6 @@ export class LoginRegisterDisplay extends React.Component {
         }
 
         return to_send;
-    }
-
-
-    LoginHandle()
-    {
-        console.log("I am logging in");
     }
 
     SelectLoginRegisterHandle = (status, switchUserType) =>

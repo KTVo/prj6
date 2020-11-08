@@ -8,9 +8,10 @@ const {SearchBar} = Search;
 
 export class GenerateSortableTable extends React.Component
 {
-
     constructor(props) {
         super(props);
+        console.log("Gene5rate sort table const");
+        console.log(props);
         this.state = {
             parsedJSONObj: [], //this array will have everything parsedJSONObj and will include a url to caseID and cancel buttons
             error: null,
@@ -201,6 +202,9 @@ export class GenerateSortableTable extends React.Component
 
 
     render() {
+        console.log("ASDFASDFASDFASDF");
+        console.log(this.state);
+        console.log(this.props);
         return (
             <div>
                 {this.ConfirmCancelButtonHandle(this.state.record_assessment_id)}

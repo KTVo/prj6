@@ -8,8 +8,9 @@ export class DrCaseManagement extends React.Component
 
     constructor(props) {
         super(props);
-
-        this.data={
+        console.log("PROPS FOR DR CASE MANAGEMENT");
+        console.log(props);
+        this.data = {
             is_patient: false
         };
 
@@ -30,11 +31,11 @@ export class DrCaseManagement extends React.Component
             dataField: 'comment',
             text: 'Original Diagnosis',
             sort: true
-        },{
+        }, {
             dataField: 'assessment',
             text: 'Secondary Diagnosis',
             sort: true
-        },{
+        }, {
             dataField: 'completion_dt',
             text: 'Date Completed',
             sort: true
@@ -63,9 +64,10 @@ export class DrCaseManagement extends React.Component
         this.data.requestOptions = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({"phy_id": this.props.userInfo.userID})
+            body: JSON.stringify({"phy_id": this.props.userInfo.phy_id})
         };
         this.data.URL_for_Fetch = "http://52.247.220.137/get_all_physician_records";
+        this.data.userInfo = this.props.userInfo;
     }
 
     render() {

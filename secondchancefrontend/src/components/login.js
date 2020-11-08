@@ -100,13 +100,8 @@ export class Login extends React.Component
                     userDataBackend.userData = response;
 
                     this.props.handleUserLoginFromNavBar(userDataBackend);
-                } );
-
-            console.log("this is minesssss: ");
-            console.log(this.state.loginInfoFromBackend);
-            console.log(userDataBackend);
-
-
+        })
+                .catch(r => r.text()).then(r => console.log(r));
 
         }
         else
