@@ -111,6 +111,7 @@ export class GenerateSortableTable extends React.Component
             .then(res => res.json())
             .then(
                 (result) => {
+                    console.log("RESULT PATIENT TABLE");
                     console.log(result);
                     let l = result.length;
                     for (let i = 0; i < l; i++) {

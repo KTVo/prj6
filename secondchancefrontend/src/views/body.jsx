@@ -134,7 +134,8 @@ export default class Body extends Component {
           //console.log(people1);
           //console.log(people1[this.data.cntIndexCard]);
             let selectDr = JSON.stringify(this.state.user_data[this.data.cntIndexCard]);
-          sessionStorage.setItem('selectedDoctorIndx', this.data.cntIndexCard);
+            console.log(selectDr);
+          sessionStorage.setItem('selectedDoctorIndx', selectDr);
           this.handleModal();   //Closes the doctor selection modal
 
 
