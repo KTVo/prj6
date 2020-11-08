@@ -6,16 +6,16 @@ import {ClientCaseManagement} from '../components/clientCaseManagement';
 import {DrCaseManagement} from "../components/drCaseManagement";
 
 import {Contact} from '../components/contact';
-import {Login} from '../components/login';
+
 import {DrEdit} from "../components/drEdit";
 import '../css/navbar_design.css';
 import {Homepage} from "./homepage";
 import {Pricing} from './pricingPage';
-import {OpenDrPatientSelect} from "./openDrPatientSelect";
+
 import {CaseCreation} from './caseCreation';
 
 import {DoctorPatientSelect} from './doctorPatientSelect'
-import {DrWritesSecondOpinion} from "./drWritesSecondOpinion";
+
 
 
 export default class NavbarClass extends React.Component
@@ -24,7 +24,7 @@ export default class NavbarClass extends React.Component
     constructor(props) {
         super(props);
         this.data={};
-        this.data.modeID = 'patient';
+        this.data.modeID = 'doctor';
 
         this.data.userID = '1';
         this.record_id = 1;
@@ -128,7 +128,6 @@ export default class NavbarClass extends React.Component
 
                             <Link to={"/doctorCaseMgmt"}>Doctor Case Management</Link>
 
-                            <Link to={"/DrWritesSecondOpinion"}>DrWritesSecondOpinion</Link>
 
                         </nav>
                         <Switch>
@@ -137,7 +136,7 @@ export default class NavbarClass extends React.Component
                             <Route exact path={'/edit'} component={() => <DrEdit userInfo = {this.data}/>}></Route>
                             <Route exact path={'/pricing'} component={Pricing}></Route>
                             <Route exact path={'/doctorCaseMgmt'} component={() => <DrCaseManagement userInfo = {this.data}/>}></Route>
-                            <Route exact path={'/DrWritesSecondOpinion'} component={()=><DrWritesSecondOpinion recordID = {this.record_id}/>} ></Route>
+
 
                         </Switch>
                     </div>

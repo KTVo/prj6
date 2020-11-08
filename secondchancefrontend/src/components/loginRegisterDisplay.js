@@ -28,7 +28,7 @@ export class LoginRegisterDisplay extends React.Component {
 
         this.data = {};
 
-       //this.data.hospitalNameArr= ["Cleveland Clinic", "Johns Hopkins Hospital", "Mayo Clinic", "UCLA Medical Center"];
+        //this.data.hospitalNameArr= ["Cleveland Clinic", "Johns Hopkins Hospital", "Mayo Clinic", "UCLA Medical Center"];
 
         this.data.date= {
             month: ["January", "February", "April", "May", "June", "July", "August", "September", "October",
@@ -155,11 +155,11 @@ export class LoginRegisterDisplay extends React.Component {
             fetch("http://52.247.220.137:80/client", requestOptions)
                 .then(response => response.text())
                 .then(response => {
-                    if (response == "email exists"){
-                        alert("The email already exists");
-                        window.location.reload(false);
+                        if (response == "email exists"){
+                            alert("The email already exists");
+                            window.location.reload(false);
+                        }
                     }
-                }
 
                 );
         }
@@ -239,13 +239,6 @@ export class LoginRegisterDisplay extends React.Component {
                     <Button onClick={()=>this.SelectLoginRegisterHandle(false, false)}>Register</Button>
                     <Button onClick={()=>this.SelectLoginRegisterHandle(true, true)}>Switch User Type</Button>
                 </ButtonGroup>
-
-
-
-
-
-
-
 
                 {
                     this.state.choseReturn &&

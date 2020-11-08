@@ -14,8 +14,8 @@ export class DrEdit extends React.Component
 
         this.state =
             {
-                bio: this.data.oldBio,
-                email: 'KM@gg.com',
+                bio: '',
+                email: '',
                 password: '',
                 repassword: '',
                 firstName: 'Kent',
@@ -33,7 +33,8 @@ export class DrEdit extends React.Component
                 currentHospital: 'Johns Hopkins Hospital',
                 passwordAuthorization: '',
                 showOldBio: false,
-                assignJSON: []
+                assignJSON: [],
+                isLoading: true
             };
 
 
@@ -43,6 +44,28 @@ export class DrEdit extends React.Component
     }
 
     componentDidMount() {
+        console.log("gogogo " + this.props.email);
+        this.setState(
+            {
+                bio: '',
+                email: this.props.email,
+                password: '',
+                repassword: '',
+                firstName: 'Kent',
+                lastName: 'Moore',
+                npi: '6161',
+                picture: '',
+                speciality: 'Lungs',
+                copiedText:''
+            }
+        )
+            this.setState(
+                {
+                    isLoading: false
+                }
+            )
+
+        /*
         console.log("Testing physician_<id> GET");
 
         //Concatinates client_ID to URL for backend
@@ -54,6 +77,8 @@ export class DrEdit extends React.Component
             .then(json=>console.log(this.state.assignJSON))
             .then(()=>{
                 this.data.oldBio = this.state.assignJSON.bio;
+                console.log("loaddddddd");
+                console.log(this.state.assignJSON);
                 this.setState(
                     {
                         bio: this.data.oldBio,
@@ -71,8 +96,18 @@ export class DrEdit extends React.Component
 
                     }
                 )
+                console.log("load3333333dddddd");
+                console.log(this.state.bio);
             });
         console.log("Testing physician_<id> GETlllllllllllllllllllll");
+
+        this.setState(
+            {
+                isLoading: false
+            }
+        )
+
+         */
     }
 
     iter_over_items(){
@@ -160,142 +195,149 @@ export class DrEdit extends React.Component
         console.log("from edit userID = " + this.props.userInfo.userID);
         return (
             <div>
-            <Container>
-                {console.log("kill me")}
-                <Form onSubmit={this.handleSubmit}>
-                    <Form.Label>
-                        Edit Personal Info
-                    </Form.Label>
-                    <br />
-                    <Form.Label>
-                        Email:
-                        <Form.Control as={"input"}
-                            name="email"
-                            type="text"
-                            value={this.state.email}
-                            onChange={this.handleInputChange}
-                                      placeholder={this.state.email}
+                {
+                    !this.state.isLoading &&
+                <Container>
+                    {console.log("kill me")}
+                    <Form onSubmit={this.handleSubmit}>
+                        <Form.Label>
+                            Edit Personal Info
+                        </Form.Label>
+                        <br/>
+                        <Form.Label>
+                            Email:
+                            <Form.Control as={"input"}
+                                          name="email"
+                                          type="text"
+                                          value={this.state.email}
+                                          onChange={this.handleInputChange}
+                                          placeholder={this.state.email}
 
-
-                        />
-                    </Form.Label>
-
-                    <br />
-
-                    <Form.Label>
-                        Change Password:
-                        <Form.Control as={"input"}
-                            name="password"
-                            type="password"
-                            value={this.state.password}
-                            onChange={this.handleInputChange}
-                            placeholder={'******'}
-                            />
-                    </Form.Label>
-
-                    <br />
-
-                    <Form.Label>
-                        Repeat Password:
-                        <Form.Label as={"input"}
-                            name="repassword"
-                            type="password"
-                            value={this.state.repassword}
-                            onChange={this.handleInputChange}
-                            placeholder={'******'}
-                            />
-                    </Form.Label>
-
-                    <br />
-                    <Form.Label>
-                        First Name:
-                        <Form.Control as={"input"}
-                            name="firstName"
-                            type="text"
-                            value={this.state.firstName}
-                            onChange={this.handleInputChange}
 
                             />
-                    </Form.Label>
+                        </Form.Label>
 
-                    <br />
+                        <br/>
 
-                    <Form.Label>
-                        Last Name:
-                        <Form.Control as={"input"}
-                            name="lastName"
-                            type="text"
-                            value={this.state.lastName}
-                            onChange={this.handleInputChange}
+                        <Form.Label>
+                            Change Password:
+                            <Form.Control as={"input"}
+                                          name="password"
+                                          type="password"
+                                          value={this.state.password}
+                                          onChange={this.handleInputChange}
+                                          placeholder={'******'}
+                            />
+                        </Form.Label>
+
+                        <br/>
+
+                        <Form.Label>
+                            Repeat Password:
+                            <Form.Label as={"input"}
+                                        name="repassword"
+                                        type="password"
+                                        value={this.state.repassword}
+                                        onChange={this.handleInputChange}
+                                        placeholder={'******'}
+                            />
+                        </Form.Label>
+
+                        <br/>
+                        <Form.Label>
+                            First Name:
+                            <Form.Control as={"input"}
+                                          name="firstName"
+                                          type="text"
+                                          value={this.state.firstName}
+                                          onChange={this.handleInputChange}
 
                             />
-                    </Form.Label>
+                        </Form.Label>
 
-                    <br />
+                        <br/>
 
-
-                    <Form.Label>
-                        Speciality:
-                        <Form.Control as={"input"}
-                            name="speciality"
-                            type="text"
-                            value={this.state.speciality}
-                            onChange={this.handleInputChange}
+                        <Form.Label>
+                            Last Name:
+                            <Form.Control as={"input"}
+                                          name="lastName"
+                                          type="text"
+                                          value={this.state.lastName}
+                                          onChange={this.handleInputChange}
 
                             />
-                    </Form.Label>
+                        </Form.Label>
 
-                    <br />
-
-
-                    {this.setDefaultHospital()}
+                        <br/>
 
 
-                    <br />
+                        <Form.Label>
+                            Speciality:
+                            <Form.Control as={"input"}
+                                          name="speciality"
+                                          type="text"
+                                          value={this.state.speciality}
+                                          onChange={this.handleInputChange}
 
-                    <Form.Label>Bio:</Form.Label>
-                        <br /><br />
+                            />
+                        </Form.Label>
+
+                        <br/>
 
 
-                        <Button onClick={()=> this.handleShowOldBio(this.state.showOldBio)}
+                        {this.setDefaultHospital()}
+
+
+                        <br/>
+
+                        <Form.Label>Bio:</Form.Label>
+                        <br/><br/>
+
+
+                        <Button onClick={() => this.handleShowOldBio(this.state.showOldBio)}
                                 aria-controls={"oldBioCollapse"}
                                 aria-expanded={this.state.showOldBio}>Show Old Bio</Button>
 
                         <Collapse in={this.state.showOldBio}>
-                            <div id={"oldBioCollapse"} style={{border: "2px solid",
+                            <div id={"oldBioCollapse"} style={{
+                                border: "2px solid",
                                 padding: "20px",
                                 margin: "30px",
                                 width: "300px",
                                 resize: "horizontal",
-                                overflow: "auto"}}>
+                                overflow: "auto"
+                            }}>
                                 <p><u>Old Bio:</u></p>
                                 <p><i>{this.data.oldBio}</i></p>
                             </div>
                         </Collapse>
 
-                        <br />
-                        <br />
+                        <br/>
+                        <br/>
                         <Form.Control as="textarea" name="bio" value={this.state.bio} ref="newText"
-                                  style={{ rows:"10", cols:"10"}} onChange={this.handleInputChange} ></Form.Control>
+                                      style={{rows: "10", cols: "10"}} onChange={this.handleInputChange}></Form.Control>
 
 
-                    <br />
-                    <Form.Label>
-                        <MDBInput as={"input"}
-                            name="passwordAuthorization"
-                                  label={"Enter Password to submit changes:"}
-                            type="password"
-                            value={this.state.passwordAuthorization}
-                            onChange={this.handleInputChange}
-                            style={{width:"100%", padding: "12px 40px",
-                                margin: "auto"}}
+                        <br/>
+                        <Form.Label>
+                            <MDBInput as={"input"}
+                                      name="passwordAuthorization"
+                                      label={"Enter Password to submit changes:"}
+                                      type="password"
+                                      value={this.state.passwordAuthorization}
+                                      onChange={this.handleInputChange}
+                                      style={{
+                                          width: "100%", padding: "12px 40px",
+                                          margin: "auto"
+                                      }}
 
-                            required/>
-                    </Form.Label>
-                    <br />
-                    <Button type="submit" value={this.state.value}>Submit</Button>
-                </Form>
+                                      required/>
+                        </Form.Label>
+                        <br/>
+                        <Button type="submit" value={this.state.value}>Submit</Button>
+                    </Form>
                 </Container>
+                }
             </div>
         );
     }

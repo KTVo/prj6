@@ -30,7 +30,7 @@ export class GenerateSortableTable extends React.Component
     handleModal(status, record_assessment_id)
     {
 
-        console.log("I am the handleModal function")
+        console.log("6969 I am the handleModal function")
         console.log(record_assessment_id);
         this.setState({
             showModal: status,
@@ -44,7 +44,7 @@ export class GenerateSortableTable extends React.Component
         //Closes the modal
         this.handleModal(false, null);
         //Refreshes Page
-        window.location.reload(false);
+        //window.location.reload(false);
 
     }
 
@@ -53,9 +53,8 @@ export class GenerateSortableTable extends React.Component
 
 
         //send to backend this.state.parsedJSONObj.record_id for deletion
-        console.log("MF DELETE");
+        console.log("MF DELETE" + record_assessment_id);
         //Call in fetch to delete case with id
-        console.log("Testing_update_pending_records PUT");
 
         const requestOptions = {
             method: 'PUT',
@@ -66,8 +65,7 @@ export class GenerateSortableTable extends React.Component
 
         fetch("http://52.247.220.137:80/update_pending_records", requestOptions)
             .then(response=>response.text())
-            .then(text => console.log(text))
-            .then(() => window.location.reload(false));
+            .then(text => console.log(text));
         //Close Modal
         this.CloseModalHandle();
         //Refreshes page
@@ -121,8 +119,11 @@ export class GenerateSortableTable extends React.Component
                     for (let i = 0; i < l; i++) {
                         if (result[i].status == "pending" && this.props.is_patient) {
                             result[i].cancelButton = <Button onClick={() => {
+                                console.log(" --- " + result[i].record_assessment_id);
                                 this.handleModal(true, result[i].record_assessment_id)
+
                             }}>Cancel</Button>
+
                         }
                         else if (result[i].status == "pending" && !this.props.is_patient){
                             result[i].cancelButton = <Button onClick={() => {
