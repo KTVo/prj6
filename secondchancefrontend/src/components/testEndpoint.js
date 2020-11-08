@@ -193,6 +193,21 @@ export class TestEndpoint extends React.Component
             .then(response => response.json())
             .then(json => console.log(json));
     }
+    Test_physician_login_Handle()
+    {
+        console.log("Testing physician_login POST");
+
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({username: "bib@aol.com", password: 1})
+        };
+
+        fetch("http://52.247.220.137:80/physician/login", requestOptions)
+            .then(response => response.json())
+            .then(response => console.log(response));
+
+    }
 
     render()
     {
@@ -219,6 +234,7 @@ export class TestEndpoint extends React.Component
                                 <Row>
                                     <Button onClick={this.Test_WTFFF_accept_pending_record_Handle}>WTFFF_accept_pending_record</Button>
                                 </Row>
+
 
                             </Container>
                         </Col>

@@ -101,29 +101,71 @@ export class LoginRegisterDisplay extends React.Component {
         const calculatedAge = this.GetAge(data);
 
         console.log(calculatedAge);
+        console.log("fook ME!");
+        console.log(this.props);
+        if(this.props.userMode === 'Physician') {
+            const requestOptions = {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    "npi": data.npi, "username": data.email, "phy_name": data.firstName + " " + data.lastName,
+                    "phy_bio": data.bio, "phy_addr": "12345", "phy_qual": data.speciality,
+                    "email": data.email, "password": data.password
+                })
+                /*
+                npi -
+                username
+                name
+                bio
+                address
+                qualifications
+                review count
+                email
+                password
+                */
 
-        /*
-                if(this.props.data.userMode === 'Doctor') {
-                    const requestOptions = {
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({"npi":data.npi, "username":data.username, "name": data.firstname+data.lastname,
-                        "bio":, "addr":, "qual":, "reviewCnt":, "email":, "password":, "age": calculatedAge})
-                    };
-                    fetch("http://52.247.220.137:80/physician", requestOptions)
-                        .then(response => console.log(response.text()))
+
+            };
+            console.log(requestOptions);
+
+            fetch("http://52.247.220.137:80/physician", requestOptions)
+                .then(response => console.log(response.text()))
+
+
+
+        }else{
+            const requestOptions = {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({"username": data.email,pat_age: calculatedAge, "pat_sex": "NA",
+                    "pat_medical_history":data.bio, "pat_name": data.firstName + " " + data.lastName, "email": data.email, "password": data.password,})
+                /*
+                username
+                pat_age
+                pat_sex
+                pat_medical_history - bio
+                pat_name
+                email
+                password
+                */
+
+
+            };
+
+            fetch("http://52.247.220.137:80/client", requestOptions)
+                .then(response => response.text())
+                .then(response => {
+                    if (response == "email exists"){
+                        alert("The email already exists");
+                        window.location.reload(false);
+                    }
                 }
-                else
-                {
-                    const requestOptions = {
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({"username":, "name":, "age":, "sex":, "medical_history":, "email":, "password":})
-                    };
-                    fetch("http://52.247.220.137:80/client", requestOptions)
-                        .then(response => console.log(response.text()))
-                }
-        */
+
+                );
+        }
+
+
+
 
     }
 

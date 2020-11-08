@@ -35,24 +35,21 @@ class ClientRegister extends React.Component {
     {
 
         const data = this.state;
-
-
-
-            if(this.props.data.userMode === 'Doctor') {
+        console.log(data);
+        console.log("CLIENT PAGE")
+            //this.props.data.userMode = "Client";
+            if(this.props.data.userMode === 'Patient') {
                 const requestOptions = {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({"npi": this.state.npi,"username": this.state.username,"phy_name":this.state.name,
-                        "phy_bio":this.state.bio,"phy_addr":"0","phy_qual":this.state.qual,
-                        "email":this.state.email,"password": this.state.password})
+                    body: JSON.stringify({"username": data.email,pat_age: data.age, "pat_sex": data.sex,
+                        "pat_medical_history":data.bio, "pat_name":data.name, "email": data.email, "password": data.password})
                     /*
-                    npi -
                     username
-                    name
-                    bio
-                    address
-                    qualifications
-                    review count
+                    pat_age
+                    pat_sex
+                    pat_medical_history - bio
+                    pat_name
                     email
                     password
                     */
@@ -60,9 +57,10 @@ class ClientRegister extends React.Component {
 
                 };
 
-                fetch("http://52.247.220.137:80/physician", requestOptions)
+                fetch("http://52.247.220.137:80/client", requestOptions)
                     .then(response => console.log(response.text()))
             }
+            /*
             else
             {
                 const requestOptions = {
@@ -74,33 +72,9 @@ class ClientRegister extends React.Component {
                 fetch("http://52.247.220.137:80/client/login", requestOptions)
                     .then(response => console.log(response.text()))
             }
+            */
 
 
-
-        alert(`Test Variables
-               --------------
-                  Email: ${this.state.email} 
-               Password: ${this.state.password}
-             Repassword: ${this.state.repassword}
-              FirstName: ${this.state.firstName}
-               LastName: ${this.state.lastName}
-                Picture: ${this.state.picture}
-                    Bio: ${this.state.bio}
-                    
-                    
-                    xxxxxxxxxxxxxxxxxxxxxxxx
-                    
-                    
-                  Email: ${data.email} 
-               Password: ${data.password}
-             Repassword: ${data.repassword}
-              FirstName: ${data.firstName}
-               LastName: ${data.lastName}
-                Picture: ${data.picture}
-                    Bio: ${data.bio}`
-
-
-        );
 
 
         event.preventDefault();
