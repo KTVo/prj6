@@ -19,7 +19,10 @@ export class CaseCreation extends React.Component
             {
                 pat_notes: '',  //Details that patients can add to case
                 patientSelectedCategory: '',
-                people1: []
+                people1: [],
+                patientRecords: [],
+                is_rec_loading: true,
+                record_id: 1
             };
         this.data = {
             pat_email: '',  //For identifying who the case belongs to
@@ -43,6 +46,26 @@ export class CaseCreation extends React.Component
         this.patModeID = '1'; //ID for a patient user
 
         this.GetDrInfoForBackend = this.GetDrInfoForBackend.bind(this);
+    }
+
+    componentDidMount() {
+        const requestMethods = {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json'},
+            body: JSON.stringify( {
+                pat_id: 1 // pat_id
+            })
+        }
+        fetch("http://52.247.220.137/get_all_patient_records", requestMethods)
+            .then((d) => d.json())
+            .then(d => {
+                console.log(d);
+                    this.setState({
+                        patientRecords: d,
+                        is_rec_loading: false
+                    })
+                }
+            )
     }
 
     pageTitleUserDisplay = () =>
@@ -132,8 +155,12 @@ export class CaseCreation extends React.Component
 
 
 
-    drCaseCreationComponents = (event) =>
+    drCaseCreationComponents = () =>
     {
+        /*
+        let pat_id = this.props.userInfo.pat_id
+         */
+
         return(
             <div>
                 <PatientSlidePanel pat_data={this.data}/>
@@ -186,7 +213,20 @@ export class CaseCreation extends React.Component
                                 </Form.Control>
                             </Form.Label>
                         </Col>
+                        <Col>
+                            {this.categoryTitleUserDisplay()}
 
+                            <Form.Label style={{width: "500px", marginLeft:"45%", marginRight:"1px"}}>
+                                <Form.Control name={"record_id"} as={"select"} defaultValue={"1"}
+                                              onChange={this.handleInputChange}>
+                            {!this.state.is_rec_loading && this.state.patientRecords.map(item => {
+                                return(
+                                    <option value={item.record_id}>{item.comment}</option>
+                                )
+                            })}
+                                </Form.Control>
+                            </Form.Label>
+                        </Col>
                         <Col style={{width: "50px"}}>
                             <Caller_SwipeCardAnimation GetDrInfoForBackend = {(p) => {this.GetDrInfoForBackend(p)}}/>
                         </Col>
@@ -229,30 +269,34 @@ export class CaseCreation extends React.Component
 
         let selectedDr = JSON.parse(sessionStorage.getItem('selectedDoctorIndx'));
         let selectedNPI = 0;
+        console.log("SELECTED DOCTOR");
+        console.log(selectedDr)
+        //selectedNPI = this.state.people1[selectedDr];
 
-        console.log(selectedDr*1)
-        selectedNPI = this.state.people1[selectedDr];
-        console.log(selectedNPI)
+        console.log("RECORD ID");
+        console.log(this.state.record_id);
+
         const requestMethods = {
-            method: "PUT",
+            method: "POST",
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify( {
-                record_assessment_id: selectedDr.record_assessment_id,
-                assessment:this.state.pat_notes,
-                status: "Assessed"
+                record_id: this.state.record_id,
+                physician_id: selectedDr.drId,
+                pat_id: 1 // this.props.userInfo.pat_id
 
             })
         }
         //Res PendingRec is response pending records
         // needs to be tested still. sever was down 11/7/20.
         // server should be up by 3pm
-        fetch("52.247.220.137/update_pending_records", requestMethods)
+        fetch("http://52.247.220.137/record_assessment", requestMethods)
             .then(ResPendingRec => ResPendingRec.text())
             .then(s => {
-                if (s === "record updated") {
+                if (s == "record updated") {
                     this.setState({responsestatus: "success"})
                 }
                 else {
+                    console.log("ERROR");
                     this.setState({responsestatus:"error"})
                 }
 

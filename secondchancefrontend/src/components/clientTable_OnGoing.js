@@ -18,7 +18,7 @@ export class ClientTable_OnGoing extends React.Component
         }];
 
         this.data.columns = [{
-            dataField: 'name',
+            dataField: 'phy_name',
             text: 'Doctor',
             sort: true
         }, {

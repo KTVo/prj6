@@ -34,7 +34,8 @@ export default class Body extends Component {
 
     ShowContentsOfBody()
     {
-
+        console.log("ggg");
+        console.log(this.props);
         return(
             <div>
                 <div id="main-container">
@@ -69,7 +70,7 @@ export default class Body extends Component {
     }
     RunModalPhysician()
     {
-        console.log("Forgot about me???????")
+
         return(
             <div>
                 <Button onClick={()=>{this.handleModal()}}>
@@ -112,12 +113,12 @@ export default class Body extends Component {
           //Fixes underbound
           if(this.data.cntIndexCard >= this.data.numElements | this.data.cntIndexCard < 0)
           {
-              this.data.cntIndexCard = 0;
+              this.data.cntIndexCard = 1;
           }
 
           else if(this.data.cntIndexCard < 0)
           {
-              this.data.cntIndexCard = 0;
+              this.data.cntIndexCard = this.data.cntIndexCard-1;
           }
           else if(this.data.hadChosen === false)
           {
@@ -134,7 +135,8 @@ export default class Body extends Component {
           //console.log(people1);
           //console.log(people1[this.data.cntIndexCard]);
             let selectDr = JSON.stringify(this.state.user_data[this.data.cntIndexCard]);
-          sessionStorage.setItem('selectedDoctorIndx', this.data.cntIndexCard);
+            console.log(selectDr);
+          sessionStorage.setItem('selectedDoctorIndx', selectDr);
           this.handleModal();   //Closes the doctor selection modal
 
 

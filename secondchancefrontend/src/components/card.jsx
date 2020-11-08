@@ -3,6 +3,7 @@ import "../assets/card.scss";
 import '../css/makeImgUndraggable.css';
 
 const FrontCard = (props) => {
+  console.log("suckkkk " + props.user.phy_name);
   return (
     <article
       id="front-card"
@@ -11,8 +12,9 @@ const FrontCard = (props) => {
     >
       <div className="img-item">        </div>
       <div className="text-item">
-        <p>{props.user.name}</p>
-        <p>{props.user.rating} out of 5</p>
+
+        <p>{props.user.doctorName}</p>
+        <p>{props.user.location}</p>
         <p>{props.user.specialty}</p>
         <img className={'imgUndraggable'} align={"center"} height={180} width={180} src={props.user.image} alt={"docimg"} />
       </div>

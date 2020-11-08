@@ -1,7 +1,7 @@
 import React from 'react';
-import {Button, Form, Container, Row, Col} from 'react-bootstrap';
-import {MDBInput, MDBContainer, MDBRow} from 'mdbreact';
-import '../css/login.css';
+import {Button, Form, Container, Row, Col, Modal} from 'react-bootstrap';
+import {MDBInput} from 'mdbreact';
+import '../css/modalLarge.css';
 
 
 export class DrWritesSecondOpinion extends React.Component
@@ -12,7 +12,8 @@ export class DrWritesSecondOpinion extends React.Component
         this.state =
             {
                 secondDiagnosisMessage: '',
-                parsedJSON: []
+                parsedJSON: [],
+                show: true
 
             };
 
@@ -46,12 +47,20 @@ export class DrWritesSecondOpinion extends React.Component
             });
     }
 
+    OpenCloseModalHandler()
+    {
+        this.setState(
+            {
+                show: this.props.showAssessmentPageModal
+            }
+        )
+    }
 
     ChooseCorrectCase()
     {
         this.state.parsedJSON.map((value, index) =>
         {
-            if(value.record_id === this.props.passRecordId)
+            if(value.record_id === this.props.recordID)
             {
                 this.correctCase = value;
                 index = this.state.parsedJSON.length;
@@ -90,18 +99,17 @@ export class DrWritesSecondOpinion extends React.Component
 
     showDrEditView = () =>
     {
-//physician_id
-
         return(
             <Container style={{width:"50%", margin:"auto"}}>
                 <Form className={'loginForm'} onSubmit={this.handleSubmit}>
                     {this.SelectTitle()}
                     <br />
 
-                    <Container style={{width: "50%", margin:"auto", padding:"0px"}}>
+                    <Container style={{width: "50%", margin:"auto"}}>
                         <Form.Label>
                             <Row>
                                 <Col  style={{width: "50%", margin:"auto", border: "1px", padding:"25px", borderStyle: "solid", borderColor: "black"}}>
+                                    <h3 style={{padding: "2px"}}>Fill in Second Diagnosis</h3>
                                     <Row style={{padding:"5px"}}>Patient Name: {this.correctCase.pat_name}</Row>
                                     <Row style={{padding:"5px"}}>Patient Sex: {this.correctCase.pat_sex}</Row>
                                     <Row style={{padding:"5px"}}>Patient Age: {this.correctCase.pat_age}</Row>
@@ -151,7 +159,7 @@ export class DrWritesSecondOpinion extends React.Component
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({"record_assessment_id": 1, "assessment": 1, "status": "Complete"})
+            body: JSON.stringify({"record_assessment_id": this.props.recordID, "assessment": this.state.secondDiagnosisMessage, "status": "Complete"})
         };
 
         fetch("http://52.247.220.137:80/update_pending_records", requestOptions)
@@ -164,7 +172,21 @@ export class DrWritesSecondOpinion extends React.Component
         {this.ChooseCorrectCase()}
         return(
             <div>
-                {this.showDrEditView()}
+
+                <Modal show ={this.state.show}  dialogClassName="modal-xl" role="document"
+                    >
+                    <Modal.Header>Case Assessment</Modal.Header>
+                    <Modal.Body>
+
+                        {this.showDrEditView()}
+
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button onClick={this.props.ShowAssessmentPageModalHandle}>
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
             </div>
 
 

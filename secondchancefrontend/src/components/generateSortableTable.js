@@ -2,6 +2,7 @@ import React from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, { Search, columnToggle } from 'react-bootstrap-table2-toolkit';
 import {Button, Container, Modal} from 'react-bootstrap';
+import {DrWritesSecondOpinion} from './drWritesSecondOpinion';
 import 'bootstrap/dist/css/bootstrap.css';
 const {SearchBar} = Search;
 
@@ -14,9 +15,12 @@ export class GenerateSortableTable extends React.Component
             parsedJSONObj: [], //this array will have everything parsedJSONObj and will include a url to caseID and cancel buttons
             error: null,
             showModal: false,
-            record_assessment_id: null
+            record_assessment_id: null,
+            showAssessmentPageModal: false
         };
 
+        this.recordID = null;
+        this.ShowAssessmentPageModalHandle = this.ShowAssessmentPageModalHandle.bind(this);
     }
 
 
@@ -111,6 +115,7 @@ export class GenerateSortableTable extends React.Component
             .then(res => res.json())
             .then(
                 (result) => {
+                    console.log("RESULT PATIENT TABLE");
                     console.log(result);
                     let l = result.length;
                     for (let i = 0; i < l; i++) {
@@ -129,8 +134,23 @@ export class GenerateSortableTable extends React.Component
                                         method: 'PUT',
                                         headers: {'Content-Type': 'application/json'},
                                         body: JSON.stringify({"record_assessment_id": result[i].record_assessment_id})
-                                    }).then(() => alert("accepted!")).then(() => window.reload(false));
+                                    }).then(() => alert("accepted!"))
+                                    .then(() => {
+                                        window.location.reload(false)});
                             }}>Accept</Button>
+                        }
+
+                        else if(result[i].status == "Diagnosing" && !this.props.is_patient) {
+                            console.log("h2llo")
+                            result[i].createAssessmentButton = <Button onClick={() => {
+                                this.recordID = result[i].record_assessment_id;
+                                this.setState(
+                                    {
+                                        showAssessmentPageModal: true
+                                    }
+                                )
+                            }
+                            }>Create Assessment</Button>
                         }
                     }
                     this.setState({
@@ -148,13 +168,20 @@ export class GenerateSortableTable extends React.Component
 
     }
 
+    ShowAssessmentPageModalHandle()
+    {
+        this.setState(
+            {
+                showAssessmentPageModal: !this.state.showAssessmentPageModal
+            }
+        )
+    }
 
 
-    RunME(){
+    AcceptCaseHandle(recordID){
         console.log("GIVE IT TO0");
-        this.state.parsedJSONObj.map((variableName,index) => { console.log(variableName.assessment) });
 
-        //this.InsertData();
+        return(<div><DrWritesSecondOpinion status={true} recordID={this.recordID}/></div>);
     }
 
     appendCancelButtonToArrayHandle(id)
@@ -177,6 +204,9 @@ export class GenerateSortableTable extends React.Component
             <div>
                 {this.ConfirmCancelButtonHandle(this.state.record_assessment_id)}
                 <Container>
+                    { this.state.showAssessmentPageModal && <DrWritesSecondOpinion recordID={this.recordID}
+                                                                                   showAssessmentPageModal={this.state.showAssessmentPageModal}
+                                                                                   ShowAssessmentPageModalHandle = {this.ShowAssessmentPageModalHandle}/> }
                     <ToolkitProvider
                         keyField="id"
                         data={ this.state.parsedJSONObj }

@@ -54,6 +54,10 @@ export class DrCaseManagement extends React.Component
             dataField: 'acceptButton',
             text: 'Accept',
             sort: false
+        }, {
+            dataField: 'createAssessmentButton',
+            text: 'Assessment',
+            sort: false
         }];
 
         this.data.requestOptions = {
