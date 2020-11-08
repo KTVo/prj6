@@ -305,7 +305,7 @@ def route_get_all_pat_records():
 
     sess = models.db.get_session()
     to_ret = []
-    entries = sess.query(models.records, models.Physician, models.Patient)\
+    entries = sess.query(models.Record_Assessments, models.records, models.Physician, models.Patient)\
         .join(models.Record_Assessments, models.Record_Assessments.c.record_id == models.records.c.record_id)\
         .filter(models.Record_Assessments.c.pat_id == pat_id,
                 models.Record_Assessments.c.record_id == models.records.c.record_id,
@@ -390,4 +390,4 @@ def route_get_all_hospitals():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000, debug=False)
+    app.run(host="0.0.0.0", port=80, debug=False)
