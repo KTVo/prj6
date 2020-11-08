@@ -23,28 +23,18 @@ export default class NavbarClass extends React.Component
 
     constructor(props) {
         super(props);
-        this.data={};
 
-        this.data.modeID = 'doctor2';
-
-        this.data.userID = '1';
-        this.record_id = 1;
-
-        this.data.email = '';
-        this.data.hospital_id = '';
-        this.data.npi = '';
-        this.data.phy_addr = '';
-        this.data.phy_bio = '';
-        this.data.phy_id = '';
-        this.data.phy_name = '';
-        this.data.phy_qual = '';
-        this.data.reviewCnt = '';
-        this.data.username = '';
-
+        this.state = {
+            modeID: "",
+            userID: "",
+            userData: ""
+        }
 
         this.handleUserLoginFromNavBar = this.handleUserLoginFromNavBar.bind(this);
 
     }
+
+
 
     NewUserNavBar()
     {
@@ -161,13 +151,14 @@ export default class NavbarClass extends React.Component
 
     NavbarModes()
     {
-        console.log("modeID in navbar_custom.js" + this.data.modeID);
-        if(this.data.modeID === 'patient')
+        console.log("beyotch");
+        console.log(this.state);
+        if(this.state.modeID === 'patient')
         {
 
             return(this.PatientNavBar())
         }
-        else if(this.data.modeID === 'doctor')
+        else if(this.state.modeID === 'physician')
         {
 
             return(this.DoctorNavBar())
@@ -183,30 +174,12 @@ export default class NavbarClass extends React.Component
     }
     handleUserLoginFromNavBar = (props) =>
     {
-        console.log(props + 1);
-        /*
-        if(props.modeID == 'doctor') {
-            this.data.modeID = props.modeID;
-            this.data.userID = props.id;
-            this.data.email = props.email;
-            this.data.hospital_id = props.hospital_id;
-            this.data.npi = props.npi;
-            this.data.phy_addr = props.addr;
-            this.data.phy_bio = props.bio;
-            this.data.phy_name = props.name;
-            this.data.phy_qual = props.qual;
-            this.data.reviewCnt = props.reviewCnt;
-            this.data.username = props.username;
-        }
-        else if(props.modeID == 'doctor')
-        {
-
-        }
-        else
-        {
-            console.log("Unable to confirm User Mode to Login.")
-        }
-*/
+        console.log(props);
+        this.setState({
+            modeID: props.modeID,
+            userID: props.userID,
+            userData: props.userData
+        })
     }
 
 

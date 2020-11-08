@@ -94,26 +94,19 @@ export class Login extends React.Component
             fetch("http://52.247.220.137:80/physician/login", requestOptions)
                 .then(response => response.json())
                 .then(response => {
+                    userDataBackend = {};
+                    userDataBackend.modeID = "physician";
+                    userDataBackend.userID = response.phy_id;
+                    userDataBackend.userData = response;
 
-                    userDataBackend = response
-                    console.log("gggg 64");
-                    console.log(userDataBackend);
-
-
+                    this.props.handleUserLoginFromNavBar(userDataBackend);
                 } );
-
-this.setState(
-    {
-
-        loginInfoFromBackend: userDataBackend
-    }
-)
 
             console.log("this is minesssss: ");
             console.log(this.state.loginInfoFromBackend);
             console.log(userDataBackend);
 
-            this.props.handleUserLoginFromNavBar("Eriiiccccc")
+
 
         }
         else
