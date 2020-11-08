@@ -20,7 +20,8 @@ def api_physician_add():
         return jsonify({"msg": "not json format"})
 
     post_data = request.get_json()
-
+    print("!@#!@#!@#!")
+    print(post_data)
 # Referencing unique keys to ensure uniqueness before inserting
     entry = physician_email(post_data["email"])
     if entry is not None:
@@ -31,7 +32,7 @@ def api_physician_add():
     entry = physician_npi(post_data["npi"])
     if entry is not None:
         return "npi exists"
-
+    print(post_data)
     npi = post_data["npi"]
     username = post_data["username"]
     name = post_data["phy_name"]
@@ -42,8 +43,8 @@ def api_physician_add():
     email = post_data["email"]
     password = post_data["password"]
 
-    stmt = models.Physician.insert().values(username=username, npi=npi, name=name, bio=bio,
-                                            addr=addr, qual=qual, reviewCnt=reviewCnt, email=email, password=password)
+    stmt = models.Physician.insert().values(username=username, npi=npi, phy_name=name, phy_bio=bio,
+                                            phy_addr=addr, phy_qual=qual, reviewCnt=reviewCnt, email=email, password=password)
 
     con = models.db.engine.connect()
     con.execute(stmt)

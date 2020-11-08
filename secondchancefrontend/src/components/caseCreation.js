@@ -292,7 +292,7 @@ export class CaseCreation extends React.Component
         fetch("http://52.247.220.137/record_assessment", requestMethods)
             .then(ResPendingRec => ResPendingRec.text())
             .then(s => {
-                if (s === "record updated") {
+                if (s == "record updated") {
                     this.setState({responsestatus: "success"})
                 }
                 else {

@@ -102,6 +102,7 @@ export class DrWritesSecondOpinion extends React.Component
                         <Form.Label>
                             <Row>
                                 <Col  style={{width: "50%", margin:"auto", border: "1px", padding:"25px", borderStyle: "solid", borderColor: "black"}}>
+                                    <h3 style={{padding: "2px"}}>Fill in Second Diagnosis</h3>
                                     <Row style={{padding:"5px"}}>Patient Name: {this.correctCase.pat_name}</Row>
                                     <Row style={{padding:"5px"}}>Patient Sex: {this.correctCase.pat_sex}</Row>
                                     <Row style={{padding:"5px"}}>Patient Age: {this.correctCase.pat_age}</Row>
@@ -151,7 +152,7 @@ export class DrWritesSecondOpinion extends React.Component
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({"record_assessment_id": 1, "assessment": 1, "status": "Complete"})
+            body: JSON.stringify({"record_assessment_id": 1, "assessment": this.state.secondDiagnosisMessage, "status": "Complete"})
         };
 
         fetch("http://52.247.220.137:80/update_pending_records", requestOptions)

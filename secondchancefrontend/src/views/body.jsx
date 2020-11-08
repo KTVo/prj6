@@ -3,7 +3,6 @@ import HammerArea from "../components/hammer";
 import "../assets/body.scss";
 import {Button, Modal} from "react-bootstrap";
 import Header from "./header";
-//import {people1} from "../components/data/data";
 
 export default class Body extends Component {
   constructor(props) {
@@ -35,7 +34,8 @@ export default class Body extends Component {
 
     ShowContentsOfBody()
     {
-
+        console.log("ggg");
+        console.log(this.props);
         return(
             <div>
                 <div id="main-container">
@@ -70,6 +70,7 @@ export default class Body extends Component {
     }
     RunModalPhysician()
     {
+
         return(
             <div>
                 <Button onClick={()=>{this.handleModal()}}>
@@ -112,12 +113,12 @@ export default class Body extends Component {
           //Fixes underbound
           if(this.data.cntIndexCard >= this.data.numElements | this.data.cntIndexCard < 0)
           {
-              this.data.cntIndexCard = 0;
+              this.data.cntIndexCard = 1;
           }
 
           else if(this.data.cntIndexCard < 0)
           {
-              this.data.cntIndexCard = 0;
+              this.data.cntIndexCard = this.data.cntIndexCard-1;
           }
           else if(this.data.hadChosen === false)
           {

@@ -390,4 +390,4 @@ def route_get_all_hospitals():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000, debug=False)
+    app.run(host="0.0.0.0", port=80, debug=False)

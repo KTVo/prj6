@@ -14,9 +14,6 @@ export class Caller_SwipeCardAnimation extends React.Component
                 cnt: 0
             };
 
-        this.data = {
-            totalNumofDoc: null
-        }
 
     }
 
@@ -42,18 +39,16 @@ export class Caller_SwipeCardAnimation extends React.Component
                     console.log("I am in fetch.....")
                     console.log(result);
                     let l = result.length;
-                    this.data.totalNumofDoc = l;    //get number of doctors for index of cards below
-                    const numOfCardsMade = 1;
                     let peopleArray = [];
                     for (let i = 0; i < l; i++) {
                         peopleArray.push({});
-                        peopleArray[i].doctorName = result[i].name;
+                        peopleArray[i].doctorName = result[i].phy_name;
                         peopleArray[i].age = Math.floor(Math.random()%30+30);
-                        peopleArray[i].location = result[i].addr;
+                        peopleArray[i].location = result[i].phy_addr;
                         peopleArray[i].email = result[i].email;
                         peopleArray[i].rating = "CONSULT BACKEND ABOUT A FLOAT RATING [0.0, 5.0]";
                         peopleArray[i].npi = result[i].npi;
-                        peopleArray[i].specialty = result[i].qual;
+                        peopleArray[i].specialty = result[i].phy_qual;
                         peopleArray[i].drId = result[i].phy_id;
 
                     }
@@ -77,7 +72,8 @@ export class Caller_SwipeCardAnimation extends React.Component
 
     fetchUserData = () => {
         const user_data = this.randomlyOneOfList(this.state.people1);
-        //user_data.avatar = this.state.people1; -> runs without this, not sure if we need it.
+        user_data.avatar = this.state.people1;
+
 
         return user_data;
     };
@@ -95,7 +91,6 @@ export class Caller_SwipeCardAnimation extends React.Component
 
 
     render() {
-
         return(
             <div>
 

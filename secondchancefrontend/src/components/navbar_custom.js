@@ -24,8 +24,6 @@ export default class NavbarClass extends React.Component
     constructor(props) {
         super(props);
         this.data={};
-
-
         this.data.modeID = 'patient';
 
         this.data.userID = '1';

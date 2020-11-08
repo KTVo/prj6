@@ -25,7 +25,7 @@ function DropDownMenu(data){
 function DropDownMenu_Hosp(data){
     console.log(data);
     return(
-        <Form.Control name = {"hospital"} value={1} onChange={data.handleInputChange} as={"select"} defaultValue={"1"}>
+        <Form.Control name = {"hospital"} onChange={data.handleInputChange} as={"select"} defaultValue={"1"}>
 
             {
                 data.dataArr.map(function(item) {
@@ -88,7 +88,8 @@ function GetTitle(data)
 function ShowRegistrationForm(props)
 {
     let modeID = props.outerProps.data.userMode;
-    console.log(modeID);
+    console.log(props);
+
     return(
         <div>
 
