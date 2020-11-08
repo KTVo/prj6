@@ -119,9 +119,11 @@ export class DoctorPatientSelect extends React.Component
         }
         else
         {
+            console.log("Inside doctorPatientSelect.js - props = " )
+            console.log(this.props)
             return(
                 <div>
-                    <LoginRegisterDisplay userMode={this.data.selectedUserMode}/>
+                    <LoginRegisterDisplay handleUserLoginFromNavBar = {this.props.handleUserLoginFromNavBar} userMode={this.data.selectedUserMode}/>
 
                 </div>
             );

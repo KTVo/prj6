@@ -24,13 +24,25 @@ export default class NavbarClass extends React.Component
     constructor(props) {
         super(props);
         this.data={};
-        this.data.modeID = 'doctor';
+
+        this.data.modeID = 'doctor2';
 
         this.data.userID = '1';
         this.record_id = 1;
 
+        this.data.email = '';
+        this.data.hospital_id = '';
+        this.data.npi = '';
+        this.data.phy_addr = '';
+        this.data.phy_bio = '';
+        this.data.phy_id = '';
+        this.data.phy_name = '';
+        this.data.phy_qual = '';
+        this.data.reviewCnt = '';
+        this.data.username = '';
 
 
+        this.handleUserLoginFromNavBar = this.handleUserLoginFromNavBar.bind(this);
 
     }
 
@@ -55,8 +67,8 @@ export default class NavbarClass extends React.Component
 
                         </nav>
                         <Switch>
-                            <Route exact path={'/'} component={() => <Homepage userInfo = {this.data}/>}></Route>
-                            <Route exact path={'/loginSelect'} component={DoctorPatientSelect}></Route>
+                            <Route exact path={'/'} component={() => <Homepage userInfo = {this.data} handleUserLoginFromNavBar = {this.handleUserLoginFromNavBar}/>}></Route>
+                            <Route exact path={'/loginSelect'} component={() => <DoctorPatientSelect handleUserLoginFromNavBar = {this.handleUserLoginFromNavBar}/>}></Route>
                             <Route exact path={'/contact'} component={() => <Contact userInfo = {this.data}/>}></Route>
                             <Route exact path={'/pricing'} component={() => <Pricing/>}></Route>
                         </Switch>
@@ -149,7 +161,7 @@ export default class NavbarClass extends React.Component
 
     NavbarModes()
     {
-        console.log(this.data.modeID);
+        console.log("modeID in navbar_custom.js" + this.data.modeID);
         if(this.data.modeID === 'patient')
         {
 
@@ -169,7 +181,33 @@ export default class NavbarClass extends React.Component
         }
 
     }
+    handleUserLoginFromNavBar = (props) =>
+    {
+        console.log(props + 1);
+        /*
+        if(props.modeID == 'doctor') {
+            this.data.modeID = props.modeID;
+            this.data.userID = props.id;
+            this.data.email = props.email;
+            this.data.hospital_id = props.hospital_id;
+            this.data.npi = props.npi;
+            this.data.phy_addr = props.addr;
+            this.data.phy_bio = props.bio;
+            this.data.phy_name = props.name;
+            this.data.phy_qual = props.qual;
+            this.data.reviewCnt = props.reviewCnt;
+            this.data.username = props.username;
+        }
+        else if(props.modeID == 'doctor')
+        {
 
+        }
+        else
+        {
+            console.log("Unable to confirm User Mode to Login.")
+        }
+*/
+    }
 
 
     render() {

@@ -248,7 +248,7 @@ export class LoginRegisterDisplay extends React.Component {
                 {!this.state.choseReturn && !this.state.isLogin &&
                 <RegFunctionalComponent hospital = {this.state.hospitalNameArr} data={this.data} handleSubmit={(e) => this.handleSubmit(e)}/>}
                 {!this.state.choseReturn &&
-                this.state.isLogin && <Login data={this.data}/>}
+                this.state.isLogin && <Login data={this.data} handleUserLoginFromNavBar = {this.props.handleUserLoginFromNavBar}/>}
 
             </div>
         );
