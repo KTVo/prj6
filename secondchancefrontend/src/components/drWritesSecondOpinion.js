@@ -34,8 +34,6 @@ export class DrWritesSecondOpinion extends React.Component
         fetch("http://52.247.220.137:80/get_all_physician_records",requestOptions)
             .then(response => response.json())
             .then(json => {
-                console.log("KILLL");
-                console.log(json);
                 for(let i = 0; i < json.length; i++)
                 {
 
@@ -94,8 +92,6 @@ export class DrWritesSecondOpinion extends React.Component
 
     showDrEditView = () =>
     {
-        console.log("roof");
-        console.log(this.correctCase)
         return(
             <Container style={{width:"50%", margin:"auto"}}>
                 <Form className={'loginForm'} onSubmit={this.handleSubmit}>
@@ -151,7 +147,6 @@ export class DrWritesSecondOpinion extends React.Component
 
     handleSubmit()
     {
-        console.log(this.state.secondDiagnosisMessage);
 
         //Submit to the backend the assessment and mark status as complete
 
@@ -169,9 +164,6 @@ export class DrWritesSecondOpinion extends React.Component
     }
 
     render() {
-        console.log("GEEEEEEEN");
-        console.log(this.props);
-        console.log(this.state);
 
         return(
             <div>
