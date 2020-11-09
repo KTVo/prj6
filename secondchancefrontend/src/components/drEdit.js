@@ -146,7 +146,7 @@ export class DrEdit extends React.Component
 
                 <br/>
 
-                <Form.Control as={"select"} name = "selectedHospitalName" value={this.state.value}
+                <Form.Control as={"select"} name = "selectedHospitalName"
                         defaultValue={this.state.hospitalNameArr[indxCurrentHospital].value}
                         onChange={this.handleInputChange}>
                     {this.state.hospitalNameArr.map(function(hospitalName, index){
