@@ -3,9 +3,9 @@ import {Container, Row, Col, Button, Modal} from 'react-bootstrap';
 import doctor_left from '../pictures/patient_doctor_select/left_doctor.png';
 import patient_right from '../pictures/patient_doctor_select/right_patient.png';
 import {HoverImgBlkWhite} from "./hoverImgBlkWhite";
-import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
+
 import {LoginRegisterDisplay} from "./loginRegisterDisplay";
-import {Modal_It} from "./modal_it";
+
 
 
 export class DoctorPatientSelect extends React.Component

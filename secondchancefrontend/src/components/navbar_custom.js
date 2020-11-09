@@ -153,18 +153,18 @@ export default class NavbarClass extends React.Component
 
         if(this.state.modeID === 'patient')
         {
-            console.log("I am in navbar 1 " + this.state.modeID )
+
             return(this.PatientNavBar())
         }
         else if(this.state.modeID === 'physician')
         {
-            console.log("I am in navbar 2 " + this.state.modeID )
+
             return(this.DoctorNavBar())
         }
         else    //If not logged in
         {
 
-            console.log("I am in navbar 3 " + this.state.modeID )
+
             return(this.NewUserNavBar())
 
         }
@@ -172,8 +172,7 @@ export default class NavbarClass extends React.Component
     }
     handleUserLoginFromNavBar = (props) =>
     {
-        console.log("I am not Eric");
-        console.log(props);
+
         this.setState({
             modeID: props.modeID,
             userID: props.userID,

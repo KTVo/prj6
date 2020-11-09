@@ -1,6 +1,6 @@
 import React from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
-import ToolkitProvider, { Search, columnToggle } from 'react-bootstrap-table2-toolkit';
+import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import {Button, Container, Modal} from 'react-bootstrap';
 import {DrWritesSecondOpinion} from './drWritesSecondOpinion';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -10,8 +10,7 @@ export class GenerateSortableTable extends React.Component
 {
     constructor(props) {
         super(props);
-        console.log("Gene5rate sort table const");
-        console.log(props);
+
         this.state = {
             parsedJSONObj: [], //this array will have everything parsedJSONObj and will include a url to caseID and cancel buttons
             error: null,
@@ -28,8 +27,7 @@ export class GenerateSortableTable extends React.Component
     handleModal(status, record_assessment_id)
     {
 
-        console.log("6969 I am the handleModal function")
-        console.log(record_assessment_id);
+
         this.setState({
             showModal: status,
             record_assessment_id: record_assessment_id
@@ -52,7 +50,7 @@ export class GenerateSortableTable extends React.Component
 
 
         //send to backend this.state.parsedJSONObj.record_id for deletion
-        console.log("MF DELETE" + record_assessment_id);
+
         //Call in fetch to delete case with id
 
         const requestOptions = {
@@ -64,7 +62,9 @@ export class GenerateSortableTable extends React.Component
 
         fetch("http://52.247.220.137:80/update_pending_records", requestOptions)
             .then(response=>response.text())
-            .then(text => console.log(text));
+            .then(text => {
+                this.LoadTables();
+                console.log(text)});
         //Close Modal
         this.CloseModalHandle();
         //Refreshes page
@@ -77,8 +77,6 @@ export class GenerateSortableTable extends React.Component
 
     ConfirmCancelButtonHandle(record_assessment_id)
     {
-        console.log("I am the ConfirmCancelButtonHandle function");
-        console.log(record_assessment_id);
         //Ask user to confirm
         return(
             <div>
@@ -105,11 +103,7 @@ export class GenerateSortableTable extends React.Component
     }
 
     componentDidMount() {
-
         this.LoadTables();
-
-
-
     }
 
     LoadTables()
@@ -118,13 +112,12 @@ export class GenerateSortableTable extends React.Component
             .then(res => res.json())
             .then(
                 (result) => {
-                    console.log("RESULT PATIENT TABLE");
-                    console.log(result);
+
                     let l = result.length;
                     for (let i = 0; i < l; i++) {
                         if (result[i].status == "pending" && this.props.is_patient) {
                             result[i].cancelButton = <Button onClick={() => {
-                                console.log(" --- " + result[i].record_assessment_id);
+
                                 this.handleModal(true, result[i].record_assessment_id)
 
                             }}>Cancel</Button>
@@ -149,7 +142,7 @@ export class GenerateSortableTable extends React.Component
                         }
 
                         else if(result[i].status == "Diagnosing" && !this.props.is_patient) {
-                            console.log("h2llo")
+
                             result[i].createAssessmentButton = <Button onClick={() => {
                                 this.recordID = result[i].record_assessment_id;
                                 this.setState(
@@ -183,32 +176,8 @@ export class GenerateSortableTable extends React.Component
         )
     }
 
-
-    AcceptCaseHandle(recordID){
-        console.log("GIVE IT TO0");
-
-        return(<div><DrWritesSecondOpinion status={true} recordID={this.recordID}/></div>);
-    }
-
-    appendCancelButtonToArrayHandle(id)
-    {
-        //Send a request to backend to cancel case with id
-        console.log("I am canceling Case# " + id);
-
-        this.state.parsedJSONObj.map((eachElement) =>
-            {
-                this.setState({
-                    //improvedArray.wf: eachElement.assessment;
-                })
-            }
-        )
-    }
-
-
     render() {
-        console.log("ASDFASDFASDFASDF");
-        console.log(this.state);
-        console.log(this.props);
+
         return (
             <div>
                 {this.ConfirmCancelButtonHandle(this.state.record_assessment_id)}

@@ -2,7 +2,7 @@ import React from 'react';
 import {RegFunctionalComponent} from './registration_funct_comp';
 import {ButtonGroup, Button} from 'react-bootstrap';
 import {Login} from './login';
-import {DoctorPatientSelect} from "./doctorPatientSelect";
+
 import '../App.css';
 
 export class LoginRegisterDisplay extends React.Component {
