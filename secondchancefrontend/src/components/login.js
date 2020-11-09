@@ -101,7 +101,7 @@ export class Login extends React.Component
 
                     this.props.handleUserLoginFromNavBar(userDataBackend);
         })
-                .catch(r => r.text()).then(r => console.log(r));
+                //.catch(r => r.text()).then(r => console.log(r));
 
         }
         else
@@ -114,7 +114,14 @@ export class Login extends React.Component
 
             fetch("http://52.247.220.137:80/client/login", requestOptions)
                 .then(response => response.json())
-                .then(response => console.log(response));
+                .then(response => {
+                    userDataBackend = {};
+                    userDataBackend.modeID = "patient";
+                    userDataBackend.userID = response.pat_id;
+                    userDataBackend.userData = response;
+
+                    this.props.handleUserLoginFromNavBar(userDataBackend);
+                });
         }
 
     }

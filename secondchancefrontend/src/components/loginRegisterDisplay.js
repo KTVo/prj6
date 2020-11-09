@@ -153,7 +153,7 @@ export class LoginRegisterDisplay extends React.Component {
                 .then(response => {
                         if (response == "email exists"){
                             alert("The email already exists");
-                            window.location.reload(false);
+                            //window.location.reload(false);
                         }
                     }
 
@@ -179,7 +179,6 @@ export class LoginRegisterDisplay extends React.Component {
 
         return to_send;
     }
-
     SelectLoginRegisterHandle = (status, switchUserType) =>
     {
         if(switchUserType === true){
@@ -207,6 +206,9 @@ export class LoginRegisterDisplay extends React.Component {
             );
         }
     }
+
+
+
     render() {
 
         console.log(this.data)
@@ -215,9 +217,9 @@ export class LoginRegisterDisplay extends React.Component {
             console.log("im loading....");
             return(
                 <ButtonGroup>
-                    <Button onClick={()=>this.SelectLoginRegisterHandle(true, false)}>Login</Button>
-                    <Button onClick={()=>this.SelectLoginRegisterHandle(false, false)}>Register</Button>
-                    <Button onClick={()=>this.SelectLoginRegisterHandle(true, true)}>Switch User Type</Button>
+                    <Button onClick={()=>this.SelectLoginRegisterHandle("login", false)}>Login</Button>
+                    <Button onClick={()=>this.SelectLoginRegisterHandle("reg", false)}>Register</Button>
+                    <Button onClick={()=>this.SelectLoginRegisterHandle("same", true)}>Switch User Type</Button>
                 </ButtonGroup>
             )
         }
@@ -225,19 +227,23 @@ export class LoginRegisterDisplay extends React.Component {
             <div>
 
                 <ButtonGroup>
-                    <Button onClick={()=>this.SelectLoginRegisterHandle(true, false)}>Login</Button>
-                    <Button onClick={()=>this.SelectLoginRegisterHandle(false, false)}>Register</Button>
-                    <Button onClick={()=>this.SelectLoginRegisterHandle(true, true)}>Switch User Type</Button>
+                    <Button onClick={()=>this.SelectLoginRegisterHandle("login", false)}>Login</Button>
+                    <Button onClick={()=>this.SelectLoginRegisterHandle("reg", false)}>Register</Button>
+                    <Button onClick={()=>this.SelectLoginRegisterHandle("same", true)}>Switch User Type</Button>
                 </ButtonGroup>
 
                 {
+
                     this.state.choseReturn &&
                     <RegFunctionalComponent hospital = {this.state.hospitalNameArr} data={this.data} handleSubmit={(e) => this.handleSubmit(e)}/>
                 }
 
-                {!this.state.choseReturn && !this.state.isLogin &&
+                {
+
+                    !this.state.choseReturn && !this.state.isLogin &&
                 <RegFunctionalComponent hospital = {this.state.hospitalNameArr} data={this.data} handleSubmit={(e) => this.handleSubmit(e)}/>}
-                {!this.state.choseReturn &&
+                {
+                    !this.state.choseReturn &&
                 this.state.isLogin && <Login data={this.data} handleUserLoginFromNavBar = {this.props.handleUserLoginFromNavBar}/>}
 
             </div>

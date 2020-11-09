@@ -25,9 +25,6 @@ export class GenerateSortableTable extends React.Component
     }
 
 
-
-
-
     handleModal(status, record_assessment_id)
     {
 
@@ -46,6 +43,7 @@ export class GenerateSortableTable extends React.Component
         this.handleModal(false, null);
         //Refreshes Page
         //window.location.reload(false);
+        this.LoadTables();
 
     }
 
@@ -70,7 +68,8 @@ export class GenerateSortableTable extends React.Component
         //Close Modal
         this.CloseModalHandle();
         //Refreshes page
-        window.location.reload(false);
+        //window.location.reload(false);
+        this.LoadTables();
 
 
     }
@@ -107,9 +106,14 @@ export class GenerateSortableTable extends React.Component
 
     componentDidMount() {
 
-        console.log("Testing get_all_patient_records POST from Client Ongoing Table");
+        this.LoadTables();
 
 
+
+    }
+
+    LoadTables()
+    {
         fetch(this.props.incomingData.URL_for_Fetch, this.props.incomingData.requestOptions)
             .then(res => res.json())
             .then(
@@ -129,6 +133,7 @@ export class GenerateSortableTable extends React.Component
                         else if (result[i].status == "pending" && !this.props.is_patient){
                             result[i].cancelButton = <Button onClick={() => {
                                 this.handleModal(true, result[i].record_assessment_id)
+
                             }}>Cancel</Button>
                             result[i].acceptButton = <Button onClick={() => {
                                 fetch("http://52.247.220.137/accept_pending_record",
@@ -138,7 +143,8 @@ export class GenerateSortableTable extends React.Component
                                         body: JSON.stringify({"record_assessment_id": result[i].record_assessment_id})
                                     }).then(() => alert("accepted!"))
                                     .then(() => {
-                                        window.location.reload(false)});
+                                        this.LoadTables();
+                                    });
                             }}>Accept</Button>
                         }
 
@@ -166,8 +172,6 @@ export class GenerateSortableTable extends React.Component
 
                 }
             );
-
-
     }
 
     ShowAssessmentPageModalHandle()

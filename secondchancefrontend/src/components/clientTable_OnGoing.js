@@ -7,7 +7,7 @@ export class ClientTable_OnGoing extends React.Component
 
     constructor(props) {
         super(props);
-        console.log("GET DEEZ PROPS");
+        console.log("GET DEEZ PROPS for Patient");
         console.log(props);
         this.data={
             is_patient: true
@@ -58,6 +58,8 @@ export class ClientTable_OnGoing extends React.Component
     }
 
     render() {
+        console.log("data from client_ongoing");
+        console.log(this.data);
         return (
             <div>
                 <GenerateSortableTable incomingData = {this.data} />

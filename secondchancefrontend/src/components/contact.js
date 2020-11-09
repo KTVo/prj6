@@ -59,8 +59,6 @@ export class Contact extends React.Component
 
     render() {
 
-        console.log("from Contacts modeID = " + this.props.userInfo.modeID);
-        console.log("from Contacts userID = " + this.props.userInfo.userID);
         return(
             <div>
                 {this.displayLoginForm()}
