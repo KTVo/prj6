@@ -184,7 +184,9 @@ export class GenerateSortableTable extends React.Component
                 <Container>
                     { this.state.showAssessmentPageModal && <DrWritesSecondOpinion recordID={this.recordID}
                                                                                    showAssessmentPageModal={this.state.showAssessmentPageModal}
-                                                                                   ShowAssessmentPageModalHandle = {this.ShowAssessmentPageModalHandle}/> }
+                                                                                   ShowAssessmentPageModalHandle = {this.ShowAssessmentPageModalHandle}
+                                                                                   reload_tables={() => this.LoadTables()}
+                                                                /> }
                     <ToolkitProvider
                         keyField="id"
                         data={ this.state.parsedJSONObj }
