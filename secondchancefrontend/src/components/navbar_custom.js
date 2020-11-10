@@ -95,7 +95,7 @@ export default class NavbarClass extends React.Component
                         <Switch>
                             <Route exact path={'/'} component={() => <Homepage userInfo = {this.state.userData}/>}></Route>
                             <Route exact path='/contact' component={() => <Contact userInfo = {this.state.userData}/>}></Route>
-                            <Route exact path={'/edit'} component ={() => <DrEdit userInfo = {this.state.userData}/>}></Route>
+                            <Route exact path={'/edit'} component ={() => <DrEdit userMode = {"patient"} userInfo = {this.state.userData}/>}></Route>
                             <Route exact path={'/pricing'} component={() => <Pricing/>}></Route>
                             <Route exact path={'/clientCaseMgmt'} component={() => <ClientCaseManagement userInfo = {this.state.userData}/>}></Route>
                             <Route exact path={'/caseCreate'} component={() => <CaseCreation userInfo = {this.state.userData}/>}></Route>
@@ -111,6 +111,7 @@ export default class NavbarClass extends React.Component
 
     DoctorNavBar()
     {
+        console.log(this);
         //user personalID and pass as props into all the other pages to display that user's info for tables
         return(
             <div>
@@ -134,7 +135,7 @@ export default class NavbarClass extends React.Component
                         <Switch>
                             <Route exact path={'/'} component={() => <Homepage userInfo = {this.state.userData}/>}></Route>
                             <Route exact path='/contact' component={() => <Contact userInfo = {this.state.userData}/>}></Route>
-                            <Route exact path={'/edit'} component={() => <DrEdit userInfo = {this.state.userData}/>}></Route>
+                            <Route exact path={'/edit'} component={() => <DrEdit userMode = {"doctor"} userInfo = {this.state.userData}/>}></Route>
                             <Route exact path={'/pricing'} component={Pricing}></Route>
                             <Route exact path={'/doctorCaseMgmt'} component={() => <DrCaseManagement userInfo = {this.state.userData}/>}></Route>
 

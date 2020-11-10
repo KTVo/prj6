@@ -28,16 +28,20 @@ export class DrWritesSecondOpinion extends React.Component
         const requestOptions = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({"phy_id": doctorID})
+            body: JSON.stringify({"phy_id": this.props.phy_id})
         };
 
         fetch("http://52.247.220.137:80/get_all_physician_records",requestOptions)
             .then(response => response.json())
             .then(json => {
-
                 for(let i = 0; i < json.length; i++)
                 {
-                    allCaseInfo[i] = json[i];
+
+                    if(this.props.phy_id == json[i].phy_id)
+                    {
+                        allCaseInfo = json[i];
+                        i = json.length;
+                    }
                 }
                 this.setState(
                     {
@@ -56,18 +60,7 @@ export class DrWritesSecondOpinion extends React.Component
         )
     }
 
-    ChooseCorrectCase()
-    {
-        this.state.parsedJSON.map((value, index) =>
-        {
-            if(value.record_id === this.props.recordID)
-            {
-                this.correctCase = value;
-                index = this.state.parsedJSON.length;
-            }
-        })
 
-    }
 
     handleInputChange = (event) =>
     {
@@ -110,20 +103,22 @@ export class DrWritesSecondOpinion extends React.Component
                             <Row>
                                 <Col  style={{width: "50%", margin:"auto", border: "1px", padding:"25px", borderStyle: "solid", borderColor: "black"}}>
                                     <h3 style={{padding: "2px"}}>Fill in Second Diagnosis</h3>
-                                    <Row style={{padding:"5px"}}>Patient Name: {this.correctCase.pat_name}</Row>
-                                    <Row style={{padding:"5px"}}>Patient Sex: {this.correctCase.pat_sex}</Row>
-                                    <Row style={{padding:"5px"}}>Patient Age: {this.correctCase.pat_age}</Row>
-                                    <Row style={{padding:"5px"}}>Patient Email: {this.correctCase.email}</Row>
-                                    <Row style={{padding:"5px"}}>Record ID: {this.correctCase.record_id}</Row>
+                                    <Row style={{padding:"5px"}}>Patient Name: {this.state.parsedJSON.pat_name}</Row>
+                                    <Row style={{padding:"5px"}}>Patient Sex: {this.state.parsedJSON.pat_sex}</Row>
+                                    <Row style={{padding:"5px"}}>Patient Age: {this.state.parsedJSON.pat_age}</Row>
+                                    <Row style={{padding:"5px"}}>Patient Email: {this.state.parsedJSON.email}</Row>
+                                    <Row style={{padding:"5px"}}>Record ID: {this.state.parsedJSON.record_id}</Row>
                                     <br />
                                     Patient Medical History:
                                     <Container>
-                                        <Row style={{border: "2px", padding:"25px", borderStyle: "solid", borderColor: "black"}}>{this.correctCase.pat_medical_history}</Row>
+                                        <Row style={{border: "2px", padding:"25px", borderStyle: "solid", borderColor: "black"}}>
+                                            {this.state.parsedJSON.pat_medical_history}</Row>
                                     </Container>
                                     <br />
                                     Primary Diagnosis:
                                     <Container>
-                                        <Row style={{border: "2px", padding:"25px", borderStyle: "solid", borderColor: "black"}}>{this.correctCase.comment}</Row>
+                                        <Row style={{border: "2px", padding:"25px", borderStyle: "solid", borderColor: "black"}}>
+                                            {this.state.parsedJSON.comment}</Row>
                                     </Container>
                                 </Col>
                             </Row>
@@ -152,14 +147,14 @@ export class DrWritesSecondOpinion extends React.Component
 
     handleSubmit()
     {
-        console.log(this.state.secondDiagnosisMessage);
 
-        //Submit to the backend
+        //Submit to the backend the assessment and mark status as complete
 
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({"record_assessment_id": this.props.recordID, "assessment": this.state.secondDiagnosisMessage, "status": "Complete"})
+            body: JSON.stringify({"record_assessment_id": this.props.recordID, "assessment": this.state.secondDiagnosisMessage,
+                "status": "Complete"})
         };
 
         fetch("http://52.247.220.137:80/update_pending_records", requestOptions)
@@ -170,7 +165,7 @@ export class DrWritesSecondOpinion extends React.Component
     }
 
     render() {
-        {this.ChooseCorrectCase()}
+
         return(
             <div>
 

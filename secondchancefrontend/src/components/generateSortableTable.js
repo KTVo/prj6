@@ -183,6 +183,7 @@ export class GenerateSortableTable extends React.Component
                 {this.ConfirmCancelButtonHandle(this.state.record_assessment_id)}
                 <Container>
                     { this.state.showAssessmentPageModal && <DrWritesSecondOpinion recordID={this.recordID}
+                                                                                   phy_id={this.props.phy_id}
                                                                                    showAssessmentPageModal={this.state.showAssessmentPageModal}
                                                                                    ShowAssessmentPageModalHandle = {this.ShowAssessmentPageModalHandle}
                                                                                    reload_tables={() => this.LoadTables()}

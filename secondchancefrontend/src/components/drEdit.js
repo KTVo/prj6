@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Form, Col, Row, Container, Collapse} from 'react-bootstrap';
+import {Button, Form, Col, Row, Container, Collapse, DropdownButton, ButtonGroup, Dropdown} from 'react-bootstrap';
 import '../css/hoverForText.css';
 import {MDBInput} from 'mdbreact';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -9,7 +9,7 @@ export class DrEdit extends React.Component
         super(props);
 
         this.data = {};
-        this.data.oldBio = 'I am bio.';
+        this.data.oldBio = this.props.pat_medical_history;
 
 
         this.state =
@@ -18,12 +18,12 @@ export class DrEdit extends React.Component
                 email: '',
                 password: '',
                 repassword: '',
-                firstName: 'Kent',
-                lastName: 'Moore',
-                npi: '6161',
+                age: '',
+                name: '',
+                npi: '',
+                sex: '',
                 picture: '',
-                speciality: 'Lungs',
-                copiedText:'',
+                speciality: '',
                 hospitalNameArr: [
                     {label:"Cleveland Clinic", value:"Cleveland Clinic"},
                     {label: "Johns Hopkins Hospital", value: "Johns Hopkins Hospital"},
@@ -34,7 +34,7 @@ export class DrEdit extends React.Component
                 passwordAuthorization: '',
                 showOldBio: false,
                 assignJSON: [],
-                isLoading: true
+                isLoading: false
             };
 
 
@@ -44,70 +44,58 @@ export class DrEdit extends React.Component
     }
 
     componentDidMount() {
-        console.log("gogogo " + this.props.email);
-        this.setState(
-            {
-                bio: '',
-                email: this.props.email,
-                password: '',
-                repassword: '',
-                firstName: 'Kent',
-                lastName: 'Moore',
-                npi: '6161',
-                picture: '',
-                speciality: 'Lungs',
-                copiedText:''
-            }
-        )
+        console.log("this from drEdit.js");
+        console.log(this.props);
+
+        if(this.props.userMode == "patient") {
+            this.data.oldBio = this.props.pat_medical_history;
+
             this.setState(
                 {
-                    isLoading: false
+                    bio: this.props.userInfo.pat_medical_history,
+                    email: this.props.userInfo.email,
+                    password: this.props.userInfo.password,
+                    repassword: this.props.userInfo.password,
+                    name: this.props.userInfo.pat_name,
+
+                    picture: '',
+
+                    currentHospital: 'Johns Hopkins Hospital',
+                    passwordAuthorization: '',
+                    assignJSON: [],
+                    isLoading: false,
+                    sex: 'm'
+                }
+            )
+        }
+        //Handles multiple namings
+        else if(this.props.userMode == "physician" || this.props.userMode == "doctor" )
+        {
+
+            this.data.oldBio = this.props.pat_medical_history;
+
+            this.setState(
+                {
+                    bio: this.props.userInfo.phy_bio,
+                    email: this.props.userInfo.email,
+                    password: this.props.userInfo.password,
+                    repassword: this.props.userInfo.password,
+                    name: this.props.userInfo.phy_name,
+                    npi: this.props.userInfo.npi,
+                    picture: '',
+                    speciality: this.props.userInfo.phy_qual,
+                    currentHospital: 'Johns Hopkins Hospital',
+                    passwordAuthorization: '',
+                    assignJSON: [],
+                    isLoading: false,
+                    sex: 'm'
                 }
             )
 
-        /*
-        console.log("Testing physician_<id> GET");
 
-        //Concatinates client_ID to URL for backend
-        let urlConcat = "http://52.247.220.137:80/physician/" + this.props.userInfo.userID;
-        console.log(urlConcat);
-        fetch(urlConcat)
-            .then(response => response.json())
-            .then(json => { this.setState({assignJSON: json})})
-            .then(json=>console.log(this.state.assignJSON))
-            .then(()=>{
-                this.data.oldBio = this.state.assignJSON.bio;
-                console.log("loaddddddd");
-                console.log(this.state.assignJSON);
-                this.setState(
-                    {
-                        bio: this.data.oldBio,
-                        email: this.state.assignJSON.email,
-                        name: this.state.assignJSON.name,
-                        npi: this.state.assignJSON.npi,
-                        speciality: this.state.assignJSON.qual,
-                        hospitalNameArr: [
-                            {label:"Cleveland Clinic", value:"Cleveland Clinic"},
-                            {label: "Johns Hopkins Hospital", value: "Johns Hopkins Hospital"},
-                            {label: "Mayo Clinic", value: "Mayo Clinic"},
-                            {label: "UCLA Medical Center", value: "UCLA Medical Center"}
-                        ],
-                        currentHospital: 'Johns Hopkins Hospital',
+        }
 
-                    }
-                )
-                console.log("load3333333dddddd");
-                console.log(this.state.bio);
-            });
-        console.log("Testing physician_<id> GETlllllllllllllllllllll");
-
-        this.setState(
-            {
-                isLoading: false
-            }
-        )
-
-         */
+        //Insert endpoint for gathering user info here in Phase II for updated information
     }
 
     iter_over_items(){
@@ -146,7 +134,7 @@ export class DrEdit extends React.Component
 
                 <br/>
 
-                <Form.Control as={"select"} name = "selectedHospitalName" value={this.state.value}
+                <Form.Control as={"select"} name = "selectedHospitalName"
                         defaultValue={this.state.hospitalNameArr[indxCurrentHospital].value}
                         onChange={this.handleInputChange}>
                     {this.state.hospitalNameArr.map(function(hospitalName, index){
@@ -183,22 +171,96 @@ export class DrEdit extends React.Component
             })
     }
 
-    handleSubmit = async (event) => {
+
+    handleSubmit = (event) => {
         event.preventDefault();
+
+        console.log("I am in handleSubmit(event) for from here is " + this.props.userMode)
+
+        if(this.state.passwordAuthorization == this.props.userInfo.password)
+        {
+
+            if(this.props.userMode == "patient") {
+
+                //Run endpoint for submitting changes to backend
+                //"username", "age", "sex", "medical_history", "email", "password", "pat_id", "name"
+                console.log("DUUUUUE NOTGETTING PAT AGE!!");
+                console.log(this.state);
+                console.log("thiiiss props");
+                console.log(this.props);
+                const requestOptions = {
+                    method: 'PUT',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        "username": this.props.userInfo.username,
+                        "pat_name": this.state.name,
+                        "pat_age": this.state.age,
+                        "pat_sex": this.state.sex,
+                        "pat_medical_history": this.state.bio,
+                        "email": this.state.email,
+                        "password": this.props.userInfo.password,
+                        "pat_id": this.props.userInfo.pat_id
+                    })
+                };
+
+                fetch("http://52.247.220.137:80/client", requestOptions)
+                    .then(response => console.log(response));
+
+            }
+            //Handles multiple namings
+            else if(this.props.userMode == "physician" || this.props.userMode == "doctor" )
+            {
+
+                console.log("Testing_physician PUT");
+
+                const requestOptions = {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({"npi": this.props.userInfo.npi, "username": this.props.userInfo.username,
+                        "phy_name": this.state.name, "phy_bio": this.state.bio,
+                        "phy_addr": this.props.userInfo.phy_addr, "phy_qual": this.state.speciality,
+                        "reviewCnt": 0, "email": this.props.userInfo.email, "password": this.props.userInfo.password,
+                        "phy_id": this.props.userInfo.phy_id, "hospital_id": this.props.userInfo.hospital_id})
+                };
+
+                fetch("http://52.247.220.137:80/physician", requestOptions)
+                    .then(response => console.log(response));
+
+
+            }
+
+
+            console.log("Look for state");
+            console.log(this);
+            alert("Changes have been submitted. Note for testing purposes, changes made to Password has been blocked at this time.");
+        }
+        else
+        {
+            alert("Confirmation password does not match. Test Mode: Try " + this.props.userInfo.password);
+        }
 
 
     }
 
+    SelectSexHandle(selectedSex)
+    {
+        this.setState(
+            {
+                sex: selectedSex
+            }
+        )
+        console.log(this.state.sex);
+    }
+
 
     render() {
-        console.log("from edit modeID = " + this.props.userInfo.modeID);
-        console.log("from edit userID = " + this.props.userInfo.userID);
+
         return (
             <div>
                 {
                     !this.state.isLoading &&
                 <Container>
-                    {console.log("kill me")}
+
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Label>
                             Edit Personal Info
@@ -209,7 +271,6 @@ export class DrEdit extends React.Component
                             <Form.Control as={"input"}
                                           name="email"
                                           type="text"
-                                          value={this.state.email}
                                           onChange={this.handleInputChange}
                                           placeholder={this.state.email}
 
@@ -224,7 +285,6 @@ export class DrEdit extends React.Component
                             <Form.Control as={"input"}
                                           name="password"
                                           type="password"
-                                          value={this.state.password}
                                           onChange={this.handleInputChange}
                                           placeholder={'******'}
                             />
@@ -237,7 +297,6 @@ export class DrEdit extends React.Component
                             <Form.Label as={"input"}
                                         name="repassword"
                                         type="password"
-                                        value={this.state.repassword}
                                         onChange={this.handleInputChange}
                                         placeholder={'******'}
                             />
@@ -245,42 +304,29 @@ export class DrEdit extends React.Component
 
                         <br/>
                         <Form.Label>
-                            First Name:
+                            Full Name:
                             <Form.Control as={"input"}
-                                          name="firstName"
+                                          name="name"
                                           type="text"
-                                          value={this.state.firstName}
+                                          placeholder={this.state.name}
                                           onChange={this.handleInputChange}
 
                             />
                         </Form.Label>
 
-                        <br/>
+                        <br />
 
                         <Form.Label>
-                            Last Name:
+                            Age:
                             <Form.Control as={"input"}
-                                          name="lastName"
-                                          type="text"
-                                          value={this.state.lastName}
+                                          name="age"
+                                          type="number"
+                                          placeholder={this.state.age}
                                           onChange={this.handleInputChange}
 
                             />
                         </Form.Label>
 
-                        <br/>
-
-
-                        <Form.Label>
-                            Speciality:
-                            <Form.Control as={"input"}
-                                          name="speciality"
-                                          type="text"
-                                          value={this.state.speciality}
-                                          onChange={this.handleInputChange}
-
-                            />
-                        </Form.Label>
 
                         <br/>
 
@@ -290,30 +336,38 @@ export class DrEdit extends React.Component
 
                         <br/>
 
-                        <Form.Label>Bio:</Form.Label>
+
                         <br/><br/>
 
+                        <div>
+                            {
+                                    <DropdownButton
+                                        as={ButtonGroup}
+                                        name={"selectSex"}
+                                        title={"Choose Gender"}
+                                    >
+                                        <Dropdown.Item onClick={()=>this.SelectSexHandle("m")}>Male</Dropdown.Item>
+                                        <Dropdown.Item onClick={()=>this.SelectSexHandle("f")}>Female</Dropdown.Item>
+                                    </DropdownButton>
+                                }
+                        </div>
+                        <br/>
 
-                        <Button onClick={() => this.handleShowOldBio(this.state.showOldBio)}
-                                aria-controls={"oldBioCollapse"}
-                                aria-expanded={this.state.showOldBio}>Show Old Bio</Button>
+                        { ( (this.props.userMode == 'physician') || (this.props.userMode == 'doctor') &&
+                            <Form.Label>
+                                Specialty:
+                                <Form.Control as={"input"}
+                                              name="speciality"
+                                              type="text"
+                                              placeholder={this.state.speciality}
+                                              onChange={this.handleInputChange}
 
-                        <Collapse in={this.state.showOldBio}>
-                            <div id={"oldBioCollapse"} style={{
-                                border: "2px solid",
-                                padding: "20px",
-                                margin: "30px",
-                                width: "300px",
-                                resize: "horizontal",
-                                overflow: "auto"
-                            }}>
-                                <p><u>Old Bio:</u></p>
-                                <p><i>{this.data.oldBio}</i></p>
-                            </div>
-                        </Collapse>
+                                />
+                            </Form.Label>
+                        )}
 
                         <br/>
-                        <br/>
+                        <Form.Label>Bio:</Form.Label>
                         <Form.Control as="textarea" name="bio" value={this.state.bio} ref="newText"
                                       style={{rows: "10", cols: "10"}} onChange={this.handleInputChange}></Form.Control>
 
@@ -324,7 +378,7 @@ export class DrEdit extends React.Component
                                       name="passwordAuthorization"
                                       label={"Enter Password to submit changes:"}
                                       type="password"
-                                      value={this.state.passwordAuthorization}
+                                      placeholder={this.state.passwordAuthorization}
                                       onChange={this.handleInputChange}
                                       style={{
                                           width: "100%", padding: "12px 40px",

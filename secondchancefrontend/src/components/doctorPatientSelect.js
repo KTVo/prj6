@@ -49,7 +49,7 @@ export class DoctorPatientSelect extends React.Component
     }
     handleDoctorPic = () =>
     {
-
+        
         this.toggleShowPic('Doctor');
     }
 

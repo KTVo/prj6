@@ -43,7 +43,7 @@ export class Caller_SwipeCardAnimation extends React.Component
                     for (let i = 0; i < l; i++) {
                         peopleArray.push({});
                         peopleArray[i].doctorName = result[i].phy_name;
-                        peopleArray[i].age = Math.floor(Math.random()%30+30);
+                        peopleArray[i].age = Math.floor(Math.random()*30+30);
                         peopleArray[i].location = result[i].phy_addr;
                         peopleArray[i].email = result[i].email;
                         peopleArray[i].rating = "CONSULT BACKEND ABOUT A FLOAT RATING [0.0, 5.0]";
