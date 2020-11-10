@@ -53,7 +53,7 @@ export class CaseCreation extends React.Component
             method: "POST",
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify( {
-                pat_id: 1 // pat_id
+                pat_id: this.props.userInfo.pat_id // pat_id
             })
         }
         fetch("http://52.247.220.137/get_all_patient_records", requestMethods)
