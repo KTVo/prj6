@@ -1,7 +1,7 @@
 from flask import Flask, Blueprint, jsonify, json, request, abort, session as flask_session
 from flask_cors import CORS, cross_origin
 import models
-
+import random
 
 client_blueprint = Blueprint('api_client', __name__,)
 
@@ -39,9 +39,22 @@ def api_client_add():
     stmt = models.Patient.insert().\
         values(username=uname, pat_age=age, pat_sex=sex, pat_medical_history=medical_history, email=email,
                pat_name=name, password=password)
+
     con = models.db.engine.connect()
     con.execute(stmt)
     con.close()
+
+    sess = models.db.get_session()
+    e = sess.query(models.Patient).filter(username=uname).all()
+    for i in e:
+        id_ = i.pat_id
+
+    stmt = models.records.insert().\
+        values(pat_id=id_, physician_id=round(random.random() * 50), comment="This is some placeholder text", hospital_id=1)
+    con = models.db.engine.connect()
+    con.execute(stmt)
+    con.close()
+
     return "Client registered."
 
 
