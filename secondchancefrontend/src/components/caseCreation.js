@@ -22,7 +22,7 @@ export class CaseCreation extends React.Component
                 people1: [],
                 patientRecords: [],
                 is_rec_loading: true,
-                record_id: 1
+                record_id: this.props.userInfo.record_id
             };
         this.data = {
             pat_email: '',  //For identifying who the case belongs to
@@ -53,10 +53,12 @@ export class CaseCreation extends React.Component
             method: "POST",
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify( {
-                pat_id: this.props.modeID // pat_id
+
+                pat_id: this.props.userInfo.pat_id // pat_id
+
             })
         }
-        fetch("http://52.247.220.137/get_all_patient_records", requestMethods)
+        fetch("http://52.247.220.137/get_pat_records_lite", requestMethods)
             .then((d) => d.json())
             .then(d => {
                 console.log(d);
@@ -282,7 +284,7 @@ export class CaseCreation extends React.Component
             body: JSON.stringify( {
                 record_id: this.state.record_id,
                 physician_id: selectedDr.drId,
-                pat_id: 1 // this.props.userInfo.pat_id
+                pat_id: this.props.userInfo.pat_id // this.props.userInfo.pat_id
 
             })
         }

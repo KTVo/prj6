@@ -317,6 +317,25 @@ def route_get_all_pat_records():
     return jsonify(to_ret)
 
 
+@app.route("/get_pat_records_lite", methods=["POST"])
+@cross_origin()
+def route_get_pat_recs():
+    if not request.is_json:
+        return "not json"
+    post_data = request.get_json()
+
+    try:
+        pat_id = post_data["pat_id"]
+    except Exception as e:
+        print(e)
+        return "need 'phy_id'"
+    sess = models.db.get_session()
+    to_ret = []
+
+    e = sess.query(models.records).filter(models.records.c.pat_id == pat_id).all()
+    for i in e:
+        to_ret.append(i._asdict())
+    return jsonify(to_ret)
 
 @app.route('/insertreview', methods=["POST"])
 @cross_origin()
