@@ -22,7 +22,6 @@ export class LoginRegisterDisplay extends React.Component {
         this.state = {
             isLogin: true,
             choseReturn: false,
-            switchUserType: false,
             isLoading: true,
             hospitalNameArr: []
         }
