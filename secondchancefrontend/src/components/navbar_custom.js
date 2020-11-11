@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom';
 import {ClientCaseManagement} from '../components/clientCaseManagement';
 
 import {DrCaseManagement} from "../components/drCaseManagement";
@@ -99,6 +99,7 @@ export default class NavbarClass extends React.Component
                             <Route exact path={'/pricing'} component={() => <Pricing/>}></Route>
                             <Route exact path={'/clientCaseMgmt'} component={() => <ClientCaseManagement userInfo = {this.state.userData}/>}></Route>
                             <Route exact path={'/caseCreate'} component={() => <CaseCreation userInfo = {this.state.userData}/>}></Route>
+                            <Redirect to={'/clientCaseMgmt'} />
                         </Switch>
                     </div>
                 </Router>
@@ -138,7 +139,7 @@ export default class NavbarClass extends React.Component
                             <Route exact path={'/edit'} component={() => <DrEdit userMode = {"doctor"} userInfo = {this.state.userData}/>}></Route>
                             <Route exact path={'/pricing'} component={Pricing}></Route>
                             <Route exact path={'/doctorCaseMgmt'} component={() => <DrCaseManagement modeID = {this.state.modeID} userInfo = {this.state.userData}/>}></Route>
-
+                            <Redirect to={'/doctorCaseMgmt'} />
 
                         </Switch>
                     </div>
@@ -155,7 +156,7 @@ export default class NavbarClass extends React.Component
         if(this.state.modeID === 'patient')
         {
 
-            return(this.PatientNavBar())
+            return( this.PatientNavBar() )
         }
         else if(this.state.modeID === 'physician')
         {

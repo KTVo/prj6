@@ -84,7 +84,7 @@ export class Login extends React.Component
     handleLoginSubmit()
     {
         let userDataBackend = [];
-        if(this.props.data.userMode === 'Doctor') {
+        if(this.props.data.userMode == 'Doctor') {
             const requestOptions = {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
