@@ -45,7 +45,7 @@ def api_client_add():
     con.close()
 
     sess = models.db.get_session()
-    e = sess.query(models.Patient).filter(username=uname).all()
+    e = sess.query(models.Patient).filter(models.Patient.c.username == uname).all()
     for i in e:
         id_ = i.pat_id
 
