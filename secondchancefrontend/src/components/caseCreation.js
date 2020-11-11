@@ -56,7 +56,7 @@ export class CaseCreation extends React.Component
                 pat_id: this.props.userInfo.pat_id // pat_id
             })
         }
-        fetch("http://52.247.220.137/get_all_patient_records", requestMethods)
+        fetch("http://52.247.220.137/get_pat_records_lite", requestMethods)
             .then((d) => d.json())
             .then(d => {
                 console.log(d);
