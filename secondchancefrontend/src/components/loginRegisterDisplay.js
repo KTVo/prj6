@@ -22,6 +22,7 @@ export class LoginRegisterDisplay extends React.Component {
         this.state = {
             isLogin: true,
             choseReturn: false,
+            switchUserType: false,
             isLoading: true,
             hospitalNameArr: []
         }
@@ -99,7 +100,7 @@ export class LoginRegisterDisplay extends React.Component {
 
         const calculatedAge = this.GetAge(data);
 
-        if(this.props.userMode === 'Physician') {
+        if(this.props.userMode == 'Physician' || this.props.userMode == 'Doctor') {
             const requestOptions = {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
@@ -179,32 +180,44 @@ export class LoginRegisterDisplay extends React.Component {
 
         return to_send;
     }
-    SelectLoginRegisterHandle = (status, switchUserType) =>
+    SelectLoginRegisterHandle = (choice) =>
     {
-        if(switchUserType === true){
-            if(this.data.userMode === "Doctor")
-            {
-                this.data.userMode = "Patient";
-            }
-            else
-            {
-                this.data.userMode = "Doctor";
-            }
-            this.setState(
+        switch(choice)
+        {
+            case "login":{
+                this.setState({
+                    isLogin: true,
+                    choseReturn: false
+                })
+
+            };break;
+            case "reg": {
+                this.setState({
+                    isLogin: false,
+                    choseReturn: false
+                })
+
+            };break;
+            case "switch": {
+                if(this.data.userMode == "Doctor" || this.data.userMode == "Physician")
                 {
-                    isLogin: status,
+                    this.data.userMode = "Patient";
+                }
+                else
+                {
+                    this.data.userMode = "Doctor";
+                }
+
+                this.setState({
+                    isLogin: this.state.isLogin,
                     choseReturn: true
-                }
-            );
+                })
+
+            };break;
+
         }
-        else {
-            this.setState(
-                {
-                    isLogin: status,
-                    choseReturn: switchUserType
-                }
-            );
-        }
+
+        console.log("**** isLogin = " + this.state.isLogin + ", choseReturn = " + this.state.choseReturn + ", userMode = " + this.data.userMode)
     }
 
 
@@ -217,9 +230,9 @@ export class LoginRegisterDisplay extends React.Component {
             console.log("im loading....");
             return(
                 <ButtonGroup>
-                    <Button onClick={()=>this.SelectLoginRegisterHandle("login", false)}>Login</Button>
-                    <Button onClick={()=>this.SelectLoginRegisterHandle("reg", false)}>Register</Button>
-                    <Button onClick={()=>this.SelectLoginRegisterHandle("same", true)}>Switch User Type</Button>
+                    <Button onClick={()=>this.SelectLoginRegisterHandle("login")}>Login</Button>
+                    <Button onClick={()=>this.SelectLoginRegisterHandle("reg")}>Register</Button>
+                    <Button onClick={()=>this.SelectLoginRegisterHandle("switch")}>Switch User Type</Button>
                 </ButtonGroup>
             )
         }
@@ -227,24 +240,34 @@ export class LoginRegisterDisplay extends React.Component {
             <div>
 
                 <ButtonGroup>
-                    <Button onClick={()=>this.SelectLoginRegisterHandle("login", false)}>Login</Button>
-                    <Button onClick={()=>this.SelectLoginRegisterHandle("reg", false)}>Register</Button>
-                    <Button onClick={()=>this.SelectLoginRegisterHandle("same", true)}>Switch User Type</Button>
+                    <Button onClick={()=>this.SelectLoginRegisterHandle("login")}>Login</Button>
+                    <Button onClick={()=>this.SelectLoginRegisterHandle("reg")}>Register</Button>
+                    <Button onClick={()=>this.SelectLoginRegisterHandle("switch")}>Switch User Type</Button>
                 </ButtonGroup>
 
                 {
-
                     this.state.choseReturn &&
+                    this.state.isLogin &&
+                    <Login data={this.data} handleUserLoginFromNavBar = {this.props.handleUserLoginFromNavBar}/>
+                }
+
+                {
+                    this.state.choseReturn &&
+                    !this.state.isLogin &&
                     <RegFunctionalComponent hospital = {this.state.hospitalNameArr} data={this.data} handleSubmit={(e) => this.handleSubmit(e)}/>
                 }
 
                 {
 
-                    !this.state.choseReturn && !this.state.isLogin &&
-                <RegFunctionalComponent hospital = {this.state.hospitalNameArr} data={this.data} handleSubmit={(e) => this.handleSubmit(e)}/>}
+                    !this.state.choseReturn &&
+                    !this.state.isLogin &&
+                    <RegFunctionalComponent hospital = {this.state.hospitalNameArr} data={this.data} handleSubmit={(e) => this.handleSubmit(e)}/>
+                }
                 {
                     !this.state.choseReturn &&
-                this.state.isLogin && <Login data={this.data} handleUserLoginFromNavBar = {this.props.handleUserLoginFromNavBar}/>}
+                    this.state.isLogin &&
+                    <Login data={this.data} handleUserLoginFromNavBar = {this.props.handleUserLoginFromNavBar}/>
+                }
 
             </div>
         );

@@ -46,7 +46,7 @@ function DropDownMenu_Hosp(data){
 function DrAttritube(data)
 {
     console.log(data);
-    if(data.modeID === 'Doctor') {
+    if(data.modeID == 'Doctor') {
         return (
             <div>
                 <Form.Label>NPI:</Form.Label>
@@ -75,7 +75,7 @@ function DrAttritube(data)
 
 function GetTitle(data)
 {
-    if(data.modeID === 'Doctor')
+    if(data.modeID == 'Doctor')
     {
         return(<Form.Label><u className={"display-4"}>Physician Registration</u></Form.Label>);
     }

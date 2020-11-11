@@ -60,6 +60,8 @@ export class ClientTable_OnGoing extends React.Component
     render() {
         console.log("data from client_ongoing");
         console.log(this.data);
+        console.log('THIS IS PROPS');
+        console.log(this.props.userInfo.pat_id);
         return (
             <div>
                 <GenerateSortableTable incomingData = {this.data} />

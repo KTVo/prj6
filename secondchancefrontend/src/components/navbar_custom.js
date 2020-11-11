@@ -137,7 +137,7 @@ export default class NavbarClass extends React.Component
                             <Route exact path='/contact' component={() => <Contact userInfo = {this.state.userData}/>}></Route>
                             <Route exact path={'/edit'} component={() => <DrEdit userMode = {"doctor"} userInfo = {this.state.userData}/>}></Route>
                             <Route exact path={'/pricing'} component={Pricing}></Route>
-                            <Route exact path={'/doctorCaseMgmt'} component={() => <DrCaseManagement userInfo = {this.state.userData}/>}></Route>
+                            <Route exact path={'/doctorCaseMgmt'} component={() => <DrCaseManagement modeID = {this.state.modeID} userInfo = {this.state.userData}/>}></Route>
 
 
                         </Switch>
