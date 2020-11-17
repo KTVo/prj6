@@ -331,6 +331,48 @@ def route_get_all_hospitals():
         to_ret.append(i._asdict())
     return jsonify(to_ret)
 
+@app.route("/payment", methods=["POST", "GET"])
+def payment():
+    return render_template("payment.html")
+
+@app.route("/paymententry", methods=["POST", "GET"])
+def paymententry():
+    numbers = request.form.get("numbers")
+    months = request.form.get("months")
+    years = request.form.get("years")
+    CSC = request.form.get("CSC")
+    companys = request.form.get("companys")
+
+
+
+
+    try:
+        session = models.db.get_session()
+        session.execute("SET FOREIGN_KEY_CHECKS = 0")
+        session.execute("INSERT INTO credit_cards(numbers, months, years, CSC, companys) VALUES(:numbers, :months, :years, :CSC, :companys)",
+                    {"numbers" : numbers, "months" : months, "years" : years, "CSC" : CSC, "companys": companys})
+        session.execute("SET FOREIGN_KEY_CHECKS = 1")
+        session.commit()
+        session.close()
+        return "Payment accepted"
+    except:
+        return("Payment not accepted, invalid entries or payment method")
+
+
+'''
+TEST MYSQL TABLE USED
+create table credit_cards
+(
+	numbers BIGINT not null,:wq
+    months SMALLINT not null,
+    years SMALLINT not null,
+    CSC SMALLINT not null,
+    companys VARCHAR(50)
+
+
+);
+'''
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=80, debug=False)

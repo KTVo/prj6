@@ -1,0 +1,39 @@
+    <div class = "card mt-100">
+                <div class = "card-body">
+                    <form class = "form" method = "post" action = "/paymententry
+">
+
+                        <label> Credit Card Number</label><br><!--<br> serves as a line breaker-->
+                        <input type="number" class = "form-control" name="numbers" min = '1000000000000000' max = 9999999999999999><br><br>
+                       <label>Expiration Month</label><br>
+                        <input type = "number" class = "form-control" name = "months" min = '00' max = '12'><br>
+                        <label> Expiration Year</label><br>
+                        <input type = "number" class = "form-control" name = "years" min = '20' max = '99'><br><br>
+                        <label> CSC</label><br>
+                        <input type = "number" class = "form-control" name = "CSC" min = '000' max = '999'><br><br>
+
+
+                        <input type = "radio" id = "Visa", name = "companys" value = "Visa">
+                        <label for = "Visa">Visa</label><br>
+                        <input type = "radio" id = "Mastercard", name = "companys" value = "Mastercard">
+                        <label for = "Mastercard">Mastercard</label><br>
+                        <input type = "radio" id = "American Express", name = "companys" value = "American Express">
+                        <label for = "American Express">American Express</label><br>
+                        <input type = "radio" id = "Other", name = "companys" value = "Other">
+                        <label for = "Other">Other</label><br><br>
+
+                        <input type = "submit" class = "btn btn-primary btn-block btn-lg" value = "Submit Payment">
+                        <!-- btn = button -->
+   </form>
+
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+  </div>
