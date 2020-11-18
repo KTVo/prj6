@@ -1,20 +1,20 @@
 import React from 'react';
 
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom';
-import {ClientCaseManagement} from '../components/clientCaseManagement';
+import {ClientCaseManagement} from './case_related/clientCaseManagement';
 
-import {DrCaseManagement} from "../components/drCaseManagement";
+import {DrCaseManagement} from "./case_related/drCaseManagement";
 
 import {Contact} from '../components/contact';
 
-import {DrEdit} from "../components/drEdit";
+import {DrEdit} from "./user_related/drEdit";
 import '../css/navbar_design.css';
 import {Homepage} from "./homepage";
 import {Pricing} from './pricingPage';
 
-import {CaseCreation} from './caseCreation';
+import {CaseCreation} from './case_related/caseCreation';
 
-import {DoctorPatientSelect} from './doctorPatientSelect'
+import {DoctorPatientSelect} from './user_related/doctorPatientSelect'
 
 
 

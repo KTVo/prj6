@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Form, Container, Row, Col, Modal} from 'react-bootstrap';
 import {MDBInput} from 'mdbreact';
-import '../css/modalLarge.css';
+import '../../css/modalLarge.css';
 
 
 export class DrWritesSecondOpinion extends React.Component

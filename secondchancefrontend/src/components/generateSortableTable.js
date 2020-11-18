@@ -2,7 +2,7 @@ import React from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import {Button, Container, Modal} from 'react-bootstrap';
-import {DrWritesSecondOpinion} from './drWritesSecondOpinion';
+import {DrWritesSecondOpinion} from './case_related/drWritesSecondOpinion';
 import 'bootstrap/dist/css/bootstrap.css';
 const {SearchBar} = Search;
 

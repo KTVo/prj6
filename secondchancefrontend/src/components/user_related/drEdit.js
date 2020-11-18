@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, Form, Col, Row, Container, Collapse, DropdownButton, ButtonGroup, Dropdown} from 'react-bootstrap';
-import '../css/hoverForText.css';
+import '../../css/hoverForText.css';
 import {MDBInput} from 'mdbreact';
 import 'bootstrap/dist/css/bootstrap.css';
 export class DrEdit extends React.Component

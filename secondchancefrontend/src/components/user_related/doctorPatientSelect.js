@@ -1,8 +1,8 @@
 import React from 'react';
 import {Container, Row, Col, Button, Modal} from 'react-bootstrap';
-import doctor_left from '../pictures/patient_doctor_select/left_doctor.png';
-import patient_right from '../pictures/patient_doctor_select/right_patient.png';
-import {HoverImgBlkWhite} from "./hoverImgBlkWhite";
+import doctor_left from '../../pictures/patient_doctor_select/left_doctor.png';
+import patient_right from '../../pictures/patient_doctor_select/right_patient.png';
+import {HoverImgBlkWhite} from "../hoverImgBlkWhite";
 
 import {LoginRegisterDisplay} from "./loginRegisterDisplay";
 

@@ -1,13 +1,13 @@
 import React from 'react';
-import {PicCarousel} from './picCarousel';
-import {MultiBrowsePic} from './multiBrowsePic';
+import {PicCarousel} from '../picCarousel';
+import {MultiBrowsePic} from '../multiBrowsePic';
 //import {people1} from './data/data';
 import {Row, Col, Button, Form, Container} from 'react-bootstrap';
 import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
-import {Caller_SwipeCardAnimation} from './caller_SwipeCardAnimation';
+import {Caller_SwipeCardAnimation} from '../card_related/caller_SwipeCardAnimation';
 import {MDBInput} from "mdbreact";
-import {PatientSlidePanel} from "./patientSidePanel";
+import {PatientSlidePanel} from "../patientSidePanel";
 import 'mdbreact/dist/css/mdb.css';
 import 'mdbreact/dist/css/style.css';
 

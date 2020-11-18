@@ -1,17 +1,16 @@
 import React from 'react';
 
+import {GenerateSortableTable} from '../generateSortableTable';
 
-import {GenerateSortableTable} from './generateSortableTable';
-
-export class DrCaseManagement extends React.Component
+export class ClientTable_OnGoing extends React.Component
 {
 
     constructor(props) {
         super(props);
-        console.log("PROPS FOR DR CASE MANAGEMENT");
+        console.log("GET DEEZ PROPS for Patient");
         console.log(props);
-        this.data = {
-            is_patient: false
+        this.data={
+            is_patient: true
         };
 
         this.data.defaultSorted = [{
@@ -20,12 +19,8 @@ export class DrCaseManagement extends React.Component
         }];
 
         this.data.columns = [{
-            dataField: 'id',
-            text: 'Case ID',
-            sort: true
-        }, {
-            dataField: 'pat_name',
-            text: 'Patient Name',
+            dataField: 'phy_name',
+            text: 'Doctor',
             sort: true
         }, {
             dataField: 'comment',
@@ -51,29 +46,25 @@ export class DrCaseManagement extends React.Component
             dataField: 'cancelButton',
             text: 'Cancel',
             sort: false
-        }, {
-            dataField: 'acceptButton',
-            text: 'Accept',
-            sort: false
-        }, {
-            dataField: 'createAssessmentButton',
-            text: 'Assessment',
-            sort: false
-        }];
+            }];
 
         this.data.requestOptions = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({"phy_id": this.props.userInfo.phy_id})
+            body: JSON.stringify({"pat_id": this.props.userInfo.pat_id})
         };
-        this.data.URL_for_Fetch = "http://52.247.220.137/get_all_physician_records";
+        this.data.URL_for_Fetch = "http://52.247.220.137/get_all_patient_records";
         this.data.userInfo = this.props.userInfo;
     }
 
     render() {
+        console.log("data from client_ongoing");
+        console.log(this.data);
+        console.log('THIS IS PROPS');
+        console.log(this.props.userInfo.pat_id);
         return (
             <div>
-                <GenerateSortableTable incomingData = {this.data} phy_id={this.props.userInfo.phy_id}/>
+                <GenerateSortableTable incomingData = {this.data} />
             </div>
         );
     }

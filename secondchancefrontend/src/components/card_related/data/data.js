@@ -1,13 +1,13 @@
 import React from 'react';
-import PicOfDoc1 from '../images/dr_female/female_quality_1/female_doctor_1.jpg';
-import PicOfDoc2 from '../images/dr_female/female_quality_1/female_doctor_2.jpg';
-import PicOfDoc3 from '../images/dr_female/female_quality_1/female_doctor_3.jpg';
-import PicOfDoc4 from '../images/dr_female/female_quality_1/female_doctor_4.jpg';
-import PicOfDoc5 from '../images/dr_female/female_quality_1/female_doctor_5.jpg';
-import PicOfDoc6 from '../images/dr_female/female_quality_1/female_doctor_6.jpg';
-import PicOfDoc7 from '../images/dr_male/male_quality_1/male_doctor_1.jpg';
-import PicOfDoc8 from '../images/dr_male/male_quality_1/male_doctor_2.jpg';
-import PicOfDoc9 from '../images/dr_male/male_quality_1/male_doctor_3.jpg';
+import PicOfDoc1 from '../../images/dr_female/female_quality_1/female_doctor_1.jpg';
+import PicOfDoc2 from '../../images/dr_female/female_quality_1/female_doctor_2.jpg';
+import PicOfDoc3 from '../../images/dr_female/female_quality_1/female_doctor_3.jpg';
+import PicOfDoc4 from '../../images/dr_female/female_quality_1/female_doctor_4.jpg';
+import PicOfDoc5 from '../../images/dr_female/female_quality_1/female_doctor_5.jpg';
+import PicOfDoc6 from '../../images/dr_female/female_quality_1/female_doctor_6.jpg';
+import PicOfDoc7 from '../../images/dr_male/male_quality_1/male_doctor_1.jpg';
+import PicOfDoc8 from '../../images/dr_male/male_quality_1/male_doctor_2.jpg';
+import PicOfDoc9 from '../../images/dr_male/male_quality_1/male_doctor_3.jpg';
 
 
 //export let people1 = [];

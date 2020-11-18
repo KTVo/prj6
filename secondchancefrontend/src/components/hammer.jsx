@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Hammer from 'react-hammerjs';
-import cardContainer from './card';
+import cardContainer from './card_related/card';
 
 export default class HammerArea extends Component {
   constructor(props){

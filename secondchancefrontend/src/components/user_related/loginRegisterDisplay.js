@@ -3,7 +3,7 @@ import {RegFunctionalComponent} from './registration_funct_comp';
 import {ButtonGroup, Button} from 'react-bootstrap';
 import {Login} from './login';
 
-import '../App.css';
+import '../../App.css';
 
 export class LoginRegisterDisplay extends React.Component {
     state = {selectedFile: null}
