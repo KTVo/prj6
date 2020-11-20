@@ -11,7 +11,7 @@ import {PatientSlidePanel} from "../patientSidePanel";
 import 'mdbreact/dist/css/mdb.css';
 import 'mdbreact/dist/css/style.css';
 
-export class CaseCreation extends React.Component
+export class Patient_CaseCreation extends React.Component
 {
     constructor(props) {
         super(props);
@@ -61,7 +61,7 @@ export class CaseCreation extends React.Component
         fetch("http://52.247.220.137/get_pat_records_lite", requestMethods)
             .then((d) => d.json())
             .then(d => {
-                console.log(d);
+                    console.log(d);
                     this.setState({
                         patientRecords: d,
                         is_rec_loading: false
@@ -157,7 +157,7 @@ export class CaseCreation extends React.Component
 
 
 
-    drCaseCreationComponents = () =>
+    PatientCaseCreationComponents = () =>
     {
         /*
         let pat_id = this.props.userInfo.pat_id
@@ -171,16 +171,16 @@ export class CaseCreation extends React.Component
                     <br />
 
 
-                        <Container style={{width:"1000px", margin:"auto", border:"0px"}}>
-                            <Row>
-                                <Col style={{width:"0px", marginLeft:"200px", border:"0px"}}>
-                                    <h3 style={{width:"250px", margin:"0px", border:"0px", textAlign:"right"}}>Name for Case:</h3>
-                                </Col>
-                                <Col >
-                                    <p style={{width:"500px", margin:"0px", border:"0px", textAlign:"left"}}>{this.data.prim_case_description}</p>
-                                </Col>
-                            </Row>
-                        </Container>
+                    <Container style={{width:"1000px", margin:"auto", border:"0px"}}>
+                        <Row>
+                            <Col style={{width:"0px", marginLeft:"200px", border:"0px"}}>
+                                <h3 style={{width:"250px", margin:"0px", border:"0px", textAlign:"right"}}>Name for Case:</h3>
+                            </Col>
+                            <Col >
+                                <p style={{width:"500px", margin:"0px", border:"0px", textAlign:"left"}}>{this.data.prim_case_description}</p>
+                            </Col>
+                        </Row>
+                    </Container>
 
                     <br />
 
@@ -221,11 +221,11 @@ export class CaseCreation extends React.Component
                             <Form.Label style={{width: "500px", marginLeft:"45%", marginRight:"1px"}}>
                                 <Form.Control name={"record_id"} as={"select"} defaultValue={"1"}
                                               onChange={this.handleInputChange}>
-                            {!this.state.is_rec_loading && this.state.patientRecords.map(item => {
-                                return(
-                                    <option value={item.record_id}>{item.comment}</option>
-                                )
-                            })}
+                                    {!this.state.is_rec_loading && this.state.patientRecords.map(item => {
+                                        return(
+                                            <option value={item.record_id}>{item.comment}</option>
+                                        )
+                                    })}
                                 </Form.Control>
                             </Form.Label>
                         </Col>
@@ -315,7 +315,7 @@ export class CaseCreation extends React.Component
         return(
             <div>
 
-                {this.drCaseCreationComponents()};
+                {this.PatientCaseCreationComponents()};
             </div>
         );
     }

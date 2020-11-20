@@ -1,5 +1,5 @@
 import React from "react";
-import "../../assets/card.scss";
+import "./assets/card.scss";
 import '../../css/makeImgUndraggable.css';
 
 const FrontCard = (props) => {

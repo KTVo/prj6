@@ -12,9 +12,10 @@ import '../css/navbar_design.css';
 import {Homepage} from "./homepage";
 import {Pricing} from './pricingPage';
 
-import {CaseCreation} from './case_related/caseCreation';
-
+import {Patient_CaseCreation} from './case_related/patient_CaseCreation';
+import{Dr_CaseCreation} from './case_related/dr_CaseCreation';
 import {DoctorPatientSelect} from './user_related/doctorPatientSelect'
+import {Payment_Form} from "./payment/payment_form";
 
 
 
@@ -54,12 +55,15 @@ export default class NavbarClass extends React.Component
 
                             <Link to="/loginSelect">Login</Link>
 
+                            <Link to={"/payment"}>Payment</Link>
+
                         </nav>
                         <Switch>
                             <Route exact path={'/'} component={() => <Homepage userInfo = {this.data} handleUserLoginFromNavBar = {this.handleUserLoginFromNavBar}/>}></Route>
                             <Route exact path={'/loginSelect'} component={() => <DoctorPatientSelect handleUserLoginFromNavBar = {this.handleUserLoginFromNavBar}/>}></Route>
                             <Route exact path={'/contact'} component={() => <Contact userInfo = {this.data}/>}></Route>
                             <Route exact path={'/pricing'} component={() => <Pricing/>}></Route>
+                            <Route exact path={'/payment'} component={()=> <Payment_Form/>}></Route>
                         </Switch>
                     </div>
                 </Router>
@@ -98,8 +102,8 @@ export default class NavbarClass extends React.Component
                             <Route exact path={'/edit'} component ={() => <DrEdit userMode = {"patient"} userInfo = {this.state.userData}/>}></Route>
                             <Route exact path={'/pricing'} component={() => <Pricing/>}></Route>
                             <Route exact path={'/clientCaseMgmt'} component={() => <ClientCaseManagement userInfo = {this.state.userData}/>}></Route>
-                            <Route exact path={'/caseCreate'} component={() => <CaseCreation userInfo = {this.state.userData}/>}></Route>
-                            <Redirect to={'/clientCaseMgmt'} />
+                            <Route exact path={'/caseCreate'} component={() => <Patient_CaseCreation userInfo = {this.state.userData}/>}></Route>
+                            <Redirect to={'/'} />
                         </Switch>
                     </div>
                 </Router>
@@ -127,6 +131,8 @@ export default class NavbarClass extends React.Component
 
                             <Link to="/edit">Edit</Link>
 
+                            <Link to={"/caseCreate"}>Case Submission</Link>
+
                             <Link to="/pricing">Pricing</Link>
 
                             <Link to={"/doctorCaseMgmt"}>Doctor Case Management</Link>
@@ -138,8 +144,9 @@ export default class NavbarClass extends React.Component
                             <Route exact path='/contact' component={() => <Contact userInfo = {this.state.userData}/>}></Route>
                             <Route exact path={'/edit'} component={() => <DrEdit userMode = {"doctor"} userInfo = {this.state.userData}/>}></Route>
                             <Route exact path={'/pricing'} component={Pricing}></Route>
+                            <Route exact path={'/caseCreate'} component={() => <Dr_CaseCreation userInfo = {this.state.userData}/>}></Route>
                             <Route exact path={'/doctorCaseMgmt'} component={() => <DrCaseManagement modeID = {this.state.modeID} userInfo = {this.state.userData}/>}></Route>
-                            <Redirect to={'/doctorCaseMgmt'} />
+                            <Redirect to={'/'} />
 
                         </Switch>
                     </div>

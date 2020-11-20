@@ -228,11 +228,26 @@ export class LoginRegisterDisplay extends React.Component {
         if (this.state.isLoading){
             console.log("im loading....");
             return(
-                <ButtonGroup>
-                    <Button onClick={()=>this.SelectLoginRegisterHandle("login")}>Login</Button>
-                    <Button onClick={()=>this.SelectLoginRegisterHandle("reg")}>Register</Button>
-                    <Button onClick={()=>this.SelectLoginRegisterHandle("switch")}>Switch User Type</Button>
-                </ButtonGroup>
+                <div>
+                    <ButtonGroup>
+                        <Button onClick={()=>this.SelectLoginRegisterHandle("login")}>Login</Button>
+                        <Button onClick={()=>this.SelectLoginRegisterHandle("reg")}>Register</Button>
+                        <Button onClick={()=>this.SelectLoginRegisterHandle("switch")}>Switch User Type</Button>
+                    </ButtonGroup>
+
+                    {
+                        !this.state.choseReturn &&
+                        this.state.isLogin &&
+                        <Login data={this.data} handleUserLoginFromNavBar = {this.props.handleUserLoginFromNavBar}/>
+                    }
+
+                    {
+                        this.state.choseReturn &&
+                        this.state.isLogin &&
+                        <Login data={this.data} handleUserLoginFromNavBar = {this.props.handleUserLoginFromNavBar}/>
+                    }
+
+                </div>
             )
         }
         return (

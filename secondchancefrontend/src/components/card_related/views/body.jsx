@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import HammerArea from "../../hammer";
-import "../../../assets/body.scss";
+import "../assets/body.scss";
 import {Button, Modal} from "react-bootstrap";
 import Header from "./header";
 
