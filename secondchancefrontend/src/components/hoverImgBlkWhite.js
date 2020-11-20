@@ -1,7 +1,6 @@
 import React from "react";
 import { MDBMask, MDBView, MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import 'mdbreact/dist/css/mdb.css';
-import {Container, Row, Col, Button} from "react-bootstrap";
 
 
 export function HoverImgBlkWhite(props){
@@ -12,8 +11,13 @@ export function HoverImgBlkWhite(props){
         return (
 
             <MDBContainer className="mt-4">
+                <div style={{position: "relative",
+                    textAlign: "center",
+                    color: "black", fontSize: "20px",
+                    fontWeight: "600"}}>Click Image below to {props.overlayText}</div>
                 <MDBRow>
                     <MDBCol>
+
                         <MDBView hover>
 
                             <img
@@ -27,9 +31,9 @@ export function HoverImgBlkWhite(props){
 
                             <MDBMask className="flex-center" overlay={props.data.overlayColor}>
                                 <p className="white-text">{props.overlayText}</p>
-
-
                             </MDBMask>
+
+
                         </MDBView>
                     </MDBCol>
                 </MDBRow>

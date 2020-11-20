@@ -1,9 +1,13 @@
 import React from 'react';
-import {MDBInput, MDBIcon} from 'mdbreact';
+import {MDBInput} from 'mdbreact';
 import {Button, Form, Modal, Container, Row, Col} from 'react-bootstrap';
 import {MultiBrowsePic} from '../multiBrowsePic';
 import 'mdbreact/dist/css/mdb.css';
 import 'mdbreact/dist/css/style.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
+
 
 import major_credit_card_pics from './payment_pics/major_credit_cards_pic.png';
 
@@ -19,9 +23,8 @@ export class Payment_Form extends React.Component {
         };
 
         this.subtotal = 150.00;
-        this.subtotal.toFixed(2);
-        this.total = this.subtotal + this.subtotal*0.08;
-        this.total.toFixed(2);
+        this.taxRate = 0.08;
+        this.total = this.subtotal + this.subtotal*this.taxRate;
     }
     componentDidMount() {
         //Insert API into here
@@ -56,6 +59,7 @@ export class Payment_Form extends React.Component {
     {
         return(
             <div>
+
                 <Button onClick={()=>{this.showModalHandle()}}>
                     Payment
                 </Button>
@@ -68,36 +72,40 @@ export class Payment_Form extends React.Component {
                     </Modal.Header>
                     <Modal.Body>
 
-
-                            <Row>
-                                <Col>
-                                    <Container style={{padding: "0px", margin: "0px", border:"1px", borderColor: "black", borderStyle: "solid"}}>
-                                    <Row>
-                                        <img  style={{height: "auto", width: "100-px", margin:"auto"}} src={major_credit_card_pics} />
-                                    </Row>
-
+                        <Row>
+                            <Col>
+                                <Container style={{width: "100%", padding: "0px", margin: "0px", border:"1px", borderColor: "black", borderStyle: "solid"}}>
+                                <Row>
+                                    <img style={{height: "auto", width: "100-px", margin:"auto"}} src={major_credit_card_pics} />
+                                </Row>
                                     <Form className={'paymentForm'} onSubmit={this.handleSubmit} style={{width: "50%", margin: "auto"}}>
-                                        <Container style={{margin: "auto"}}>
-                                            <Row style={{width: "50%", margin: "auto"}}>
+                                        <Container style={{margin: "auto", width: "100%"}}>
+                                            <Row style={{width: "100%", margin: "auto"}}>
+                                                <Row>
+                                                    <Col style={{paddingRight: "0px", margin:"auto", border:"0px"}}>
+                                                    </Col>
+                                                        <Col>
+                                                            <MDBInput as={"input"}
+                                                                      style={{align:"right", width: "100%", margin: "auto"}}
+                                                                          label={"Name on Card"}
+                                                                      icon={"fas fa-user"}
+                                                                          name="name_on_card"
+                                                                          onChange={this.handleInputChange}
+                                                                          required/>
+                                                        </Col>
 
-                                                    <MDBInput as={"input"}
-                                                              style={{width: "50%", margin: "auto"}}
-                                                                  label={"Name on Card"}
-                                                                  name="name_on_card"
-                                                                  icon = "user"
-                                                                  onChange={this.handleInputChange}
-                                                                  required/>
+                                                </Row>
 
                                             </Row>
                                             <Row style={{width: "50%", margin: "auto"}}>
 
                                                     <MDBInput as={"input"}
+                                                              className="far fa-credit-card"
                                                               label={"Card Number"}
                                                               name="name_on_card"
-                                                              icon = "user"
+                                                              icon = "far fa-credit-card"
                                                               onChange={this.handleInputChange}
                                                               required/>
-                                                <MDBIcon far icon="credit-card" />
                                             </Row>
                                             <Row>
                                                 <Row style={{width: "50%", margin: "auto"}}>
@@ -125,7 +133,7 @@ export class Payment_Form extends React.Component {
                                         </Container>
 
 
-                                    </Form>
+                                        </Form>
                                     </Container>
                                 </Col>
                                 <Col>
@@ -141,8 +149,9 @@ export class Payment_Form extends React.Component {
                                             <Col>
                                                 ${this.subtotal.toFixed(2)}
                                             </Col>
-                                            <Col style={{paddingTop: "500px"}}>
+                                            <Col style={{paddingTop: "400px"}}>
                                                 <h6>Subtotal: ${this.subtotal.toFixed(2)}</h6>
+                                                <h6>Tax: ${(this.taxRate * this.subtotal).toFixed(2)}</h6>
                                                 <h5>Total: ${this.total.toFixed(2)}</h5>
                                             </Col>
                                         </Row>

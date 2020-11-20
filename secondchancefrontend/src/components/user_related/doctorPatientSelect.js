@@ -8,6 +8,7 @@ import {LoginRegisterDisplay} from "./loginRegisterDisplay";
 
 
 
+
 export class DoctorPatientSelect extends React.Component
 {
     constructor(props) {
@@ -68,20 +69,18 @@ export class DoctorPatientSelect extends React.Component
 
                 <Row>
                     <Col>
-                        <h3 style={{textAlign:"center"}}><u>Select Which Type of You Are:</u></h3>
+                        <h3 style={{textAlign:"center", color: "black"}}><u>Select Which Type of User You Are:</u></h3>
                     </Col>
                 </Row>
 
                 <Row>
 
                     <Col>
-                        <div onClick = {() => this.handleDoctorPic()}>
 
-                            <HoverImgBlkWhite data={this.data} overlayText = "Sign In / Register as Doctor"
+                         <HoverImgBlkWhite data={this.data} overlayText = "Sign In / Register as Doctor"
                                               imgSource = {doctor_left}
-                            />
+                         />
 
-                        </div>
                     </Col>
 
                     <Col >
