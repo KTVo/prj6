@@ -31,7 +31,7 @@ export const MultiBrowsePic = () => {
             <div>
                 <input type="file" id="file" multiple onChange={handleImageChange} />
                 <div className="label-holder">
-                    <label htmlFor="file" className="label">Browse Image</label>
+                    <label htmlFor="file" className="label">Browse</label>
                 </div>
                 <div className="result">{renderPhotos(selectedFiles)}</div>
 

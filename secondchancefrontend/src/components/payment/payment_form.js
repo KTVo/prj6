@@ -2,13 +2,13 @@ import React from 'react';
 import {MDBInput} from 'mdbreact';
 import {Button, Form, Modal, Container, Row, Col} from 'react-bootstrap';
 import {MultiBrowsePic} from '../multiBrowsePic';
+import Cards from 'react-credit-cards';
 import 'mdbreact/dist/css/mdb.css';
 import 'mdbreact/dist/css/style.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
-
-
+import 'react-credit-cards/lib/styles.scss';
 import major_credit_card_pics from './payment_pics/major_credit_cards_pic.png';
 
 export class Payment_Form extends React.Component {
@@ -19,7 +19,8 @@ export class Payment_Form extends React.Component {
             name_on_card: '',
             credit_card_num: '',
             exp_date: '',
-            cv_code: ''
+            cv_code: '',
+            focus: ''
         };
 
         this.subtotal = 150.00;
@@ -35,7 +36,6 @@ export class Payment_Form extends React.Component {
     {
         this.setState(
             {
-
                 [event.target.name]: event.target.value
             })
 
@@ -53,7 +53,9 @@ export class Payment_Form extends React.Component {
         console.log("aaa "+ this.state.isShown);
     }
 
-
+    handleInputFocus = (e) => {
+        this.setState({ focus: e.target.name });
+    }
 
     render()
     {
@@ -84,16 +86,23 @@ export class Payment_Form extends React.Component {
                                                 <Row>
                                                     <Col style={{paddingRight: "0px", margin:"auto", border:"0px"}}>
                                                     </Col>
+                                                    <Cards
+                                                        cvc={this.state.cv_code}
+                                                        expiry={this.state.exp_date}
+                                                        focused={this.state.focus}
+                                                        name={this.state.name_on_card}
+                                                        number={this.state.credit_card_num}
+                                                    />
                                                         <Col>
                                                             <MDBInput as={"input"}
                                                                       style={{align:"right", width: "100%", margin: "auto"}}
-                                                                          label={"Name on Card"}
+                                                                      label={"Name on Card"}
                                                                       icon={"fas fa-user"}
-                                                                          name="name_on_card"
-                                                                          onChange={this.handleInputChange}
-                                                                          required/>
+                                                                      name="name_on_card"
+                                                                      onChange={this.handleInputChange}
+                                                                      onFocus={this.handleInputFocus}
+                                                                      required/>
                                                         </Col>
-
                                                 </Row>
 
                                             </Row>
@@ -102,9 +111,10 @@ export class Payment_Form extends React.Component {
                                                     <MDBInput as={"input"}
                                                               className="far fa-credit-card"
                                                               label={"Card Number"}
-                                                              name="name_on_card"
+                                                              name="credit_card_num"
                                                               icon = "far fa-credit-card"
                                                               onChange={this.handleInputChange}
+                                                              onFocus={this.handleInputFocus}
                                                               required/>
                                             </Row>
                                             <Row>
@@ -115,6 +125,7 @@ export class Payment_Form extends React.Component {
                                                               name="exp_date"
                                                               prepend = "credit-card"
                                                               onChange={this.handleInputChange}
+                                                              onFocus={this.handleInputFocus}
                                                               required/>
 
                                                 </Row>
@@ -125,6 +136,7 @@ export class Payment_Form extends React.Component {
                                                               name="cv_code"
                                                               prepend = "credit-card"
                                                               onChange={this.handleInputChange}
+                                                              onFocus={this.handleInputFocus}
                                                               required/>
 
                                                 </Row>
@@ -144,7 +156,7 @@ export class Payment_Form extends React.Component {
 
                                         <Row style={{paddingRight:'0px', margin: 'auto', borderRight:'0px'}}>
                                             <Col>
-                                                <h5 style={{paddingLeft: '30px'}}>Diagnosis</h5>
+                                                <h6 style={{paddingLeft: '30px'}}>Diagnosis Fee</h6>
                                             </Col>
                                             <Col>
                                                 ${this.subtotal.toFixed(2)}
@@ -158,8 +170,6 @@ export class Payment_Form extends React.Component {
                                     </Container>
                                 </Col>
                             </Row>
-
-
 
                     </Modal.Body>
                     <Modal.Footer>

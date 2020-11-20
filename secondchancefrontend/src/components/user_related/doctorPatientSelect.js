@@ -76,10 +76,11 @@ export class DoctorPatientSelect extends React.Component
                 <Row>
 
                     <Col>
-
-                         <HoverImgBlkWhite data={this.data} overlayText = "Sign In / Register as Doctor"
-                                              imgSource = {doctor_left}
-                         />
+                        <div onClick = { () => this.handleDoctorPic()}>
+                             <HoverImgBlkWhite data={this.data} overlayText = "Sign In / Register as Doctor"
+                                                  imgSource = {doctor_left}
+                             />
+                        </div>
 
                     </Col>
 

@@ -140,7 +140,21 @@ export class GenerateSortableTable extends React.Component
                                     });
                             }}>Accept</Button>
                         }
+                        else if(result[i].status == "Awaiting Payment" && this.props.is_patient)
+                        {
+                            result[i].payButton = <Button onClick={() => {
+                                fetch("http://52.247.220.137/pay",
+                                    {
+                                        method: 'PUT',
+                                        headers: {'Content-Type': 'application/json'},
+                                        body: JSON.stringify({"record_assessment_id": result[i].record_assessment_id})
+                                    }).then(() => alert("Payment Accepted!"))
+                                    .then(() => {
+                                        this.LoadTables();
+                                    });
+                            }}>Pay</Button>
 
+                        }
                         else if(result[i].status == "Diagnosing" && !this.props.is_patient) {
 
                             result[i].createAssessmentButton = <Button onClick={() => {
