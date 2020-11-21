@@ -2,15 +2,88 @@ import React from 'react';
 import { Spring, animated, config } from 'react-spring/renderprops';
 import {ContactUs_HomePage} from './homepage_sections/contact_us/contactus';
 //import '../css/style_homepage_background_scroll.css'
-
+import { Parallax, Background } from 'react-parallax';
 
 import {TestEndpoint} from "./testEndpoint";
 
-const COLORS = [
-    'black',
-    'white',
-    'orange'
-]
+const Container1 = () => (
+    <Parallax
+        blur={{ min: -15, max: 15 }}
+        bgImage={require('./seanPennPics/sean-penn_1.jpg')}
+        bgImageAlt="penn-1"
+        strength={-200}
+    >
+        
+        <div style={{ height: '500px' }} />
+    </Parallax>
+
+);
+
+const Container2 = () => (
+    <Parallax
+        blur={{ min: -15, max: 15 }}
+        bgImage={require('./seanPennPics/sean-penn_2.jpg')}
+        bgImageAlt="penn-1"
+        strength={-200}
+    >
+        
+        <div style={{ height: '500px' }} />
+    </Parallax>
+
+);
+
+const Container3 = () => (
+    <Parallax
+        blur={{ min: -15, max: 15 }}
+        bgImage={require('./seanPennPics/sean-penn_3.jpg')}
+        bgImageAlt="penn-1"
+        strength={-200}
+    >
+        
+        <div style={{ height: '800px' }} />
+    </Parallax>
+
+);
+
+const Container4 = () => (
+    <Parallax
+        blur={{ min: -15, max: 15 }}
+        bgImage={require('./seanPennPics/sean-penn_4.jpg')}
+        bgImageAlt="penn-4"
+        strength={-200}
+    >
+        
+        <div style={{ height: '800px' }} />
+    </Parallax>
+
+);
+
+const Container5 = () => (
+    <Parallax
+        blur={{ min: -15, max: 15 }}
+        bgImage={require('./seanPennPics/sean-penn_5.jpg')}
+        bgImageAlt="penn-1"
+        strength={-200}
+    >
+
+        <div style={{ height: '800px' }} />
+    </Parallax>
+
+);
+
+const Container6 = () => (
+    <Parallax
+        blur={{ min: -15, max: 15 }}
+        bgImage={require('./seanPennPics/sean-penn_6.jpg')}
+        bgImageAlt="penn-6"
+        strength={-200}
+    >
+
+        <div style={{ height: '720px' }} />
+    </Parallax>
+
+);
+
 
 function Contact_us_display()
 {
@@ -29,7 +102,13 @@ export class Homepage extends React.Component
     {
         return(
             <div>
-                <TestEndpoint />
+                <Container1 />
+                <Container2 />
+                <Container3 />
+                <Container4 />
+                <Container5 />
+                <Container6 />
+
             </div>
         )
     }
