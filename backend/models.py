@@ -193,12 +193,22 @@ records = Table('record', metadata,
 # order_id
 # isPaid
 
+credit_card = Table("credit_card", metadata,
+                    Column("credit_card_id", Integer, primary_key=True, autoincrement=True),
+                    Column("number", Integer),
+                    Column("month", String(400)),
+                    Column("year", String(400)),
+                    Column("csc", String(400)),
+                    Column("company", String(400)))
+
+
 Payment = Table('payment', metadata,
                 Column('payment_id', Integer, autoincrement=True, primary_key=True, unique=True),
                 Column('pat_id', Integer, ForeignKey('patient.pat_id')),
-                Column('record_id', Integer, ForeignKey('record.record_id')),
+                Column('record_assessment_id', Integer, ForeignKey('record_assessment.record_assessment_id')),
                 Column('total', Float),
-                Column('is_paid', Boolean)
+                Column('is_paid', Boolean),
+                Column("credit_card_id", Integer, ForeignKey("credit_card.credit_card_id"))
                 )
 
 
