@@ -49,6 +49,7 @@ export class PicCarousel extends React.Component
                 return (
 
                     <Carousel.Item>
+                        <div style={{width: "70%", margin: "auto"}}>
                         <img
                             style={{maxHeight:"1080px", maxWidth:"1920px"}}
                             key={index}
@@ -56,6 +57,7 @@ export class PicCarousel extends React.Component
                             src={selectedPic.valueURL}
                             alt={selectedPic.valueFileName}
                         />
+                        </div>
                         <Carousel.Caption>
                             <table style={{backgroundColor: 'rgba(23,32,42, 0.55)'}}>
                                 <h3>{selectedPic.valueTitle}</h3>

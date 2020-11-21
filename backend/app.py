@@ -193,7 +193,7 @@ def route_get_pending_records():
         data["record_assessment_id"] = entry.record_assessment_id
         data["phy_id"] = entry.physician_id
         data["record_id"] = entry.record_id
-        data["patient_name"] = entry.name
+        data["patient_name"] = entry.pat_name
         data["original_assessment"] = entry.comment
         data["create_dt"] = entry.create_dt
         data_to_ret.append(data)
@@ -220,7 +220,7 @@ def route_update_pending_record_assessment():
     except Exception as e:
         print("ERRORING OUT")
         print(e)
-        return "need fields: 'record_assessment_id', 'assessment'"
+        return "need fields: 'record_assessment_id', 'assessment', 'status'"
 
     if status == "Cancelled":
         stmt = models.Record_Assessments.update(). \
@@ -228,7 +228,7 @@ def route_update_pending_record_assessment():
                      values(completion_dt=completion_date, status=status)
     else:
         stmt = models.Record_Assessments.update().where(models.Record_Assessments.c.record_assessment_id == record_assessment_id)\
-            .values(assessment=assessment, completion_dt=completion_date, status=status)
+            .values(assessment=assessment, completion_dt=completion_date, status="Complete")
 
     con = models.db.engine.connect()
     con.execute(stmt)
@@ -260,6 +260,82 @@ def route_accept_pending_record():
     con.close()
     return "accepted"
 
+
+@app.route("/get_all_physician_records", methods=["POST"])
+@cross_origin()
+def route_get_all_records():
+    if not request.is_json:
+        return "not json"
+    post_data = request.get_json()
+
+    try:
+        phy_id = post_data["phy_id"]
+    except Exception as e:
+        print(e)
+        return "need 'phy_id'"
+
+    sess = models.db.get_session()
+    to_ret = []
+    entries = sess.query(models.Record_Assessments,
+                         models.Physician,
+                         models.Patient,
+                         models.records)\
+                  .filter(models.Record_Assessments.c.physician_id == phy_id,
+                          models.Record_Assessments.c.physician_id == models.Physician.c.phy_id,
+                          models.Record_Assessments.c.pat_id == models.Patient.c.pat_id,
+                          models.records.c.record_id == models.Record_Assessments.c.record_id).all()
+    for entry in entries:
+        to_ret.append(entry._asdict())
+
+    return jsonify(to_ret)
+
+
+@app.route("/get_all_patient_records", methods=["POST"])
+@cross_origin()
+def route_get_all_pat_records():
+    if not request.is_json:
+        return "not json"
+    post_data = request.get_json()
+
+    try:
+        pat_id = post_data["pat_id"]
+    except Exception as e:
+        print(e)
+        return "need 'phy_id'"
+
+    sess = models.db.get_session()
+    to_ret = []
+    entries = sess.query(models.Record_Assessments, models.records, models.Physician, models.Patient)\
+        .join(models.Record_Assessments, models.Record_Assessments.c.record_id == models.records.c.record_id)\
+        .filter(models.Record_Assessments.c.pat_id == pat_id,
+                models.Record_Assessments.c.record_id == models.records.c.record_id,
+                models.Physician.c.phy_id == models.Record_Assessments.c.physician_id,
+                models.Patient.c.pat_id == models.records.c.pat_id).all()
+    for entry in entries:
+        to_ret.append(entry._asdict())
+
+    return jsonify(to_ret)
+
+
+@app.route("/get_pat_records_lite", methods=["POST"])
+@cross_origin()
+def route_get_pat_recs():
+    if not request.is_json:
+        return "not json"
+    post_data = request.get_json()
+
+    try:
+        pat_id = post_data["pat_id"]
+    except Exception as e:
+        print(e)
+        return "need 'phy_id'"
+    sess = models.db.get_session()
+    to_ret = []
+
+    e = sess.query(models.records).filter(models.records.c.pat_id == pat_id).all()
+    for i in e:
+        to_ret.append(i._asdict())
+    return jsonify(to_ret)
 
 @app.route('/insertreview', methods=["POST"])
 @cross_origin()

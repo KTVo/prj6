@@ -1,0 +1,11 @@
+@import 'setting';
+
+header {
+  @include back-image;
+  p {
+    font-size: 35px;
+    text-align:center;
+    padding: 15px 0;
+    color: $white;
+  }
+}

@@ -58,14 +58,19 @@ class CloudDB:
         return scoped_session(session)
 
 
-# Defunct
-User = Table('user', metadata,
-    Column('id', Integer, autoincrement=True, primary_key=True),
-    Column('name', String(100)),
-    Column('email', String(100)),
-    Column('password', String(2000)),
-    Column('user_type', String(100))
-             )
+# Creating table for hospital data
+# hospital_id  -> A ID specific to the hospital
+# address      -> Allows for hospital address to be displayed
+# city         -> Displays the city that the hospital is located in
+# zip code     -> Displays the city zip code for the hospital
+
+hospitals = Table('hospital', metadata,
+                  Column('hospital_id', Integer, autoincrement=True, primary_key=True, unique=True),
+                  Column('address', String(400)),
+                  Column('city', String(400)),
+                  Column('zip_code', String(400)),
+                  Column("hospital_name", String(400))
+                  )
 
 
 """
@@ -97,14 +102,15 @@ reviewCnt -> Used to display number of reviews for a physician on their profile 
 Physician = Table('physician', metadata,
                   Column('phy_id', Integer, primary_key=True, unique=True, autoincrement=True),
                   Column('npi', String(20), unique=True),
-                  Column('name', String(400)),
-                  Column('bio', String(400)),
-                  Column('addr', String(400)),
+                  Column('phy_name', String(400)),
+                  Column('phy_bio', String(400)),
+                  Column('phy_addr', String(400)),
                   Column('username', String(50), unique=True),
-                  Column('qual', String(400)),
+                  Column('phy_qual', String(400)),
                   Column('reviewCnt', String(400)),
                   Column('email', String(100), unique=True),
                   Column('password', String(50)),
+                  Column('hospital_id', Integer, ForeignKey("hospital.hospital_id"))
                   )
 
 
@@ -119,10 +125,10 @@ password        -> Password for login (hash-value)
 """
 Patient = Table('patient', metadata,
                 Column('pat_id', Integer, primary_key=True, unique=True, autoincrement=True),
-                Column('medical_history', String(400)),
-                Column('name', String(100)),
-                Column('sex', String(400)),
-                Column('age', Integer),
+                Column('pat_medical_history', String(400)),
+                Column('pat_name', String(100)),
+                Column('pat_sex', String(400)),
+                Column('pat_age', Integer),
                 Column('username', String(50), unique=True),
                 Column('email', String(100), unique=True),
                 Column('password', String(50)),
@@ -155,7 +161,7 @@ ratings = Table('rating', metadata,
 
 # After the doctor finishes making their assement.
 # Flow: Patient picks their doctor -> creates entry here -> When doctor says yes/no -> status updates
-# Status: Pending, Diagnosing, Cancelled
+# Status: Pending, Diagnosing, Cancelled, Complete
 Record_Assessments = Table('record_assessment', metadata,
                           Column('record_assessment_id', Integer, primary_key=True, autoincrement=True, unique=True),
                           Column('record_id', Integer, ForeignKey('record.record_id')),
@@ -175,19 +181,6 @@ records = Table('record', metadata,
                 Column('hospital_id', Integer, ForeignKey('hospital.hospital_id')),
                 )
 
-# Creating table for hospital data
-# hospital_id  -> A ID specific to the hospital
-# address      -> Allows for hospital address to be displayed
-# city         -> Displays the city that the hospital is located in
-# zip code     -> Displays the city zip code for the hospital
-
-hospitals = Table('hospital', metadata,
-                  Column('hospital_id', Integer, autoincrement=True, primary_key=True, unique=True),
-                  Column('address', String(400)),
-                  Column('city', String(400)),
-                  Column('zip_code', String(400)),
-                  )
-
 
 
 
@@ -200,12 +193,22 @@ hospitals = Table('hospital', metadata,
 # order_id
 # isPaid
 
+credit_card = Table("credit_card", metadata,
+                    Column("credit_card_id", Integer, primary_key=True, autoincrement=True),
+                    Column("number", Integer),
+                    Column("month", String(400)),
+                    Column("year", String(400)),
+                    Column("csc", String(400)),
+                    Column("company", String(400)))
+
+
 Payment = Table('payment', metadata,
                 Column('payment_id', Integer, autoincrement=True, primary_key=True, unique=True),
                 Column('pat_id', Integer, ForeignKey('patient.pat_id')),
-                Column('record_id', Integer, ForeignKey('record.record_id')),
+                Column('record_assessment_id', Integer, ForeignKey('record_assessment.record_assessment_id')),
                 Column('total', Float),
-                Column('is_paid', Boolean)
+                Column('is_paid', Boolean),
+                Column("credit_card_id", Integer, ForeignKey("credit_card.credit_card_id"))
                 )
 
 

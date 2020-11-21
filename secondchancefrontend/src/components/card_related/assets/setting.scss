@@ -1,0 +1,28 @@
+$first-black: rgba(0, 0, 0, 0.9);
+$second-black: rgba(0, 0, 0, 0.7);
+$white: rgb(218, 216, 216);
+$red: rgb(219, 8, 8);
+$blue: #307EB8;
+
+$border_style: 1px solid $second-black;
+
+@mixin animation($animation_name, $time: 0.5s) {
+  animation-name: $animation_name;
+  animation-duration: $time;
+  animation-fill-mode: forwards;
+}
+
+@mixin btn ($size, $btn-color: $white){
+  width: $size;
+  height: $size;
+  border: $border_style;
+  border-radius: 50%;
+  background-color: $btn-color;
+}
+
+@mixin back-image {
+  background-color:rgb(0, 70, 223);
+  background-image: url("https://external-preview.redd.it/KV7l5SRCesx_0rFAnut3gLqEdpPRW7IfEpNC2AKybVU.jpg?auto=webp&s=f0a1c45addc3af9f44fce469e31124895e98e097");
+  background-size: cover;
+}
+

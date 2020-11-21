@@ -1,71 +1,204 @@
 import React from 'react';
-import{Navbar, Nav, FormControl, Form, Button } from "react-bootstrap";
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import {ClientCaseManagement} from '../components/clientCaseManagement';
-import DrRegister from "../components/drRegister";
-import ClientRegister from "../components/clientRegister";
-import {DrCaseManagement} from "../components/drCaseManagement";
-import {CaseCreation} from './caseCreation'
-import {DrOverlay} from '../components/drOverlay';
-import { ClientTable_OnGoing } from './clientTable_OnGoing';
+
+import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom';
+import {ClientCaseManagement} from './case_related/clientCaseManagement';
+
+import {DrCaseManagement} from "./case_related/drCaseManagement";
+
 import {Contact} from '../components/contact';
-import {Login} from '../components/login';
-import {DrEdit} from "../components/drEdit";
+
+import {DrEdit} from "./user_related/drEdit";
 import '../css/navbar_design.css';
 import {Homepage} from "./homepage";
-import pricing from './pricingPage';
-import {Carousel_it} from "./carousel_it";
-import {MultiBrowsePic} from './multiBrowsePic';
+import {Pricing} from './pricingPage';
+
+import {Patient_CaseCreation} from './case_related/patient_CaseCreation';
+import{Dr_CaseCreation} from './case_related/dr_CaseCreation';
+import {DoctorPatientSelect} from './user_related/doctorPatientSelect'
+import {Payment_Form} from "./payment/payment_form";
+
+
 
 export default class NavbarClass extends React.Component
 {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            modeID: "",
+            userID: "",
+            userData: ""
+        }
+
+        this.handleUserLoginFromNavBar = this.handleUserLoginFromNavBar.bind(this);
+
+    }
+
+
+    NewUserNavBar()
+    {
+
+
+        return(
+            <div>
+                <Router>
+                    <div>
+
+                        <nav className={'navbarDesign'}>
+
+                            <Link to="/">Home</Link>
+
+                            <Link to="/contact">Contact Us</Link>
+
+                            <Link to="/pricing">Pricing</Link>
+
+                            <Link to="/loginSelect">Login</Link>
+
+                            <Link to={"/payment"}>Payment</Link>
+
+                        </nav>
+                        <Switch>
+                            <Route exact path={'/'} component={() => <Homepage userInfo = {this.data} handleUserLoginFromNavBar = {this.handleUserLoginFromNavBar}/>}></Route>
+                            <Route exact path={'/loginSelect'} component={() => <DoctorPatientSelect handleUserLoginFromNavBar = {this.handleUserLoginFromNavBar}/>}></Route>
+                            <Route exact path={'/contact'} component={() => <Contact userInfo = {this.data}/>}></Route>
+                            <Route exact path={'/pricing'} component={() => <Pricing/>}></Route>
+                            <Route exact path={'/payment'} component={()=> <Payment_Form/>}></Route>
+                        </Switch>
+                    </div>
+                </Router>
+
+                <br />
+
+            </div>
+        );
+    }
+    PatientNavBar()
+    {
+        console.log("ERICS CONSOLE LOG");
+        console.log(this.state.userData);
+        return(
+            <div>
+                <Router>
+                    <div>
+
+                        <nav className={'navbarDesign'}>
+
+                            <Link to="/">Home</Link>
+
+                            <Link to="/contact">Contact Us</Link>
+
+                            <Link to="/edit">Edit</Link>
+
+                            <Link to="/pricing">Pricing</Link>
+
+                            <Link to={"/caseCreate"}>Case Submission</Link>
+
+                            <Link to={"/clientCaseMgmt"}>Client Case Management</Link>
+
+
+                        </nav>
+                        <Switch>
+                            <Route exact path={'/'} component={() => <Homepage userInfo = {this.state.userData}/>}></Route>
+                            <Route exact path='/contact' component={() => <Contact userInfo = {this.state.userData}/>}></Route>
+                            <Route exact path={'/edit'} component ={() => <DrEdit userMode = {"patient"} userInfo = {this.state.userData}/>}></Route>
+                            <Route exact path={'/pricing'} component={() => <Pricing/>}></Route>
+                            <Route exact path={'/clientCaseMgmt'} component={() => <ClientCaseManagement userInfo = {this.state.userData}/>}></Route>
+                            <Route exact path={'/caseCreate'} component={() => <Patient_CaseCreation userInfo = {this.state.userData}/>}></Route>
+                            <Redirect to={'/'} />
+                        </Switch>
+                    </div>
+                </Router>
+                <br />
+
+            </div>
+        );
+
+    }
+
+    DoctorNavBar()
+    {
+        console.log(this);
+        //user personalID and pass as props into all the other pages to display that user's info for tables
+        return(
+            <div>
+                <Router>
+                    <div>
+
+                        <nav className={'navbarDesign'}>
+
+                            <Link to="/">Home</Link>
+
+                            <Link to="/contact">Contact Us</Link>
+
+                            <Link to="/edit">Edit</Link>
+
+                            <Link to={"/caseCreate"}>Case Submission</Link>
+
+                            <Link to="/pricing">Pricing</Link>
+
+                            <Link to={"/doctorCaseMgmt"}>Doctor Case Management</Link>
+
+
+                        </nav>
+                        <Switch>
+                            <Route exact path={'/'} component={() => <Homepage userInfo = {this.state.userData}/>}></Route>
+                            <Route exact path='/contact' component={() => <Contact userInfo = {this.state.userData}/>}></Route>
+                            <Route exact path={'/edit'} component={() => <DrEdit userMode = {"doctor"} userInfo = {this.state.userData}/>}></Route>
+                            <Route exact path={'/pricing'} component={Pricing}></Route>
+                            <Route exact path={'/caseCreate'} component={() => <Dr_CaseCreation userInfo = {this.state.userData}/>}></Route>
+                            <Route exact path={'/doctorCaseMgmt'} component={() => <DrCaseManagement modeID = {this.state.modeID} userInfo = {this.state.userData}/>}></Route>
+                            <Redirect to={'/'} />
+
+                        </Switch>
+                    </div>
+                </Router>
+                <br />
+
+            </div>
+        );
+    }
+
+    NavbarModes()
+    {
+
+        if(this.state.modeID === 'patient')
+        {
+
+            return( this.PatientNavBar() )
+        }
+        else if(this.state.modeID === 'physician')
+        {
+
+            return(this.DoctorNavBar())
+        }
+        else    //If not logged in
+        {
+
+
+            return(this.NewUserNavBar())
+
+        }
+
+    }
+    handleUserLoginFromNavBar = (props) =>
+    {
+
+        this.setState({
+            modeID: props.modeID,
+            userID: props.userID,
+            userData: props.userData
+        })
+
+       sessionStorage.setItem('userInfoFromSessionStorage', props)
+    }
+
+
     render() {
+
         return(
           <div>
-              <Router>
-                  <div>
-
-                      <nav className={'navbarDesign'}>
-                          <Link to="/homepage">Home</Link>
-
-                          <Link to="/drRegister">Doctor Registration</Link>
-
-                          <Link to="/caseCreation">Case Creation</Link>
-
-                          <Link to="/contact">Contact Us</Link>
-
-                          <Link to="/edit">Edit</Link>
-
-                          <Link to="/pricing">Pricing</Link>
-
-                          <Link to={"/doctorCaseMgmt"}>Doctor Case Management</Link>
-
-                          <Link to={"/clientCaseMgmt"}>Client Case Management</Link>
-
-
-                          <Link to={"/carousel_it"}>Carousel It Test</Link>
-
-                          MultiBrowsePic
-
-                          <Link to={"/MultiBrowsePic"}>MultiBrowsePic</Link>
-                          <Login />
-
-                      </nav>
-                      <Switch>
-                          <Route exact path={'/homepage'} component={Homepage}></Route>
-                          <Route exact path={'/Login'} component={Login}></Route>
-                          <Route exact path={'/drRegister'} component={DrRegister}></Route>
-                          <Route exact path={'/caseCreation'} component={CaseCreation}></Route>
-                          <Route exact path='/contact' component={Contact}></Route>
-                          <Route exact path={'/edit'} component ={DrEdit}></Route>
-                          <Route exact path={'/pricing'} component={pricing}></Route>
-                          <Route exact path={'/doctorCaseMgmt'} component={DrCaseManagement}></Route>
-                          <Route exact path={'/clientCaseMgmt'} component={ClientCaseManagement}></Route>
-                          <Route exact path={'/carousel_it'} component={Carousel_it}></Route>
-                          <Route exact path={'/multiBrowsePic'} component={MultiBrowsePic}></Route>
-                      </Switch>
-                  </div>
-              </Router>
+              {this.NavbarModes()}
               <br />
 
           </div>

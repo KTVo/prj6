@@ -1,0 +1,79 @@
+._carouselSize {
+  width: 100px;
+  height: 100px;
+
+}
+._carouselBackgroundColor{
+  color: grey;
+  background-color: #EEF6FF  !important;
+  height: 300px;
+  width: 1280px;
+  padding-left: 0px;
+  margin-left: 0px;
+  border-left: 0px;
+}
+._carouselImgSize
+{
+  float: right;
+  width:600px;
+  height:200px;
+  text-align:center;
+  max-width:100%;
+
+
+
+
+  padding-left: 75px;
+  padding-right: 325px;
+  padding-top: 10px;
+  padding-bottom: 0px;
+
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+
+  border-left: 0px;
+  border-right: 0px;
+  border-top: 10px;
+  border-bottom: 0px;
+
+}
+
+._carouselCaption
+{
+
+  padding-left: 150px;
+  padding-right: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+
+  border-left: 0px;
+  border-right: 0px;
+  border-top: 0px;
+  border-bottom: 0px;
+}
+
+._outsideLayer
+{
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+
+  border-left: 0px;
+  border-right: 0px;
+  border-top: 10px;
+  border-bottom: 0px;
+}
+

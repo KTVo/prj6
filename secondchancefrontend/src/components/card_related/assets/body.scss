@@ -1,0 +1,48 @@
+@import 'setting';
+
+#main-container{
+  .card-area {
+    position: center;
+    width: 200%;
+    height: 600px;
+  }
+  .button-area {
+    width: 35%;
+    margin: 0px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    button:disabled{
+      cursor: default;
+      &:hover{
+        opacity: 1.0;
+      }
+    }
+    // first button cancels the
+    button:first-child {
+
+    }
+    button:nth-child(n) {
+
+    }
+    button:last-child {
+
+    }
+  }
+}
+
+@media (max-width:600px){
+  .button-area{
+    width: 100% !important;
+  }
+}
+@media (max-height:600px){
+  .card-area{
+    height: 400px !important;
+  }
+}
+@media (min-height:300px) and (max-height: 800px){
+  .card-area{
+    height: 550px !important;
+  }
+}

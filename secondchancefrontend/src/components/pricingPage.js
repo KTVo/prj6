@@ -2,7 +2,7 @@ import React from "react";
 import pricedoctor from '../pictures/docwithclipboard.jpg';
 
 
-function pricing() {
+export function Pricing() {
 
 
     return (
@@ -25,6 +25,3 @@ function pricing() {
     );
 
 }
-
-
-export default pricing;

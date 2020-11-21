@@ -1,0 +1,231 @@
+import React from 'react';
+import BootstrapTable from 'react-bootstrap-table-next';
+import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
+import {Button, Container, Modal} from 'react-bootstrap';
+import {DrWritesSecondOpinion} from './case_related/drWritesSecondOpinion';
+import 'bootstrap/dist/css/bootstrap.css';
+const {SearchBar} = Search;
+
+export class GenerateSortableTable extends React.Component
+{
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            parsedJSONObj: [], //this array will have everything parsedJSONObj and will include a url to caseID and cancel buttons
+            error: null,
+            showModal: false,
+            record_assessment_id: null,
+            showAssessmentPageModal: false
+        };
+
+        this.recordID = null;
+        this.ShowAssessmentPageModalHandle = this.ShowAssessmentPageModalHandle.bind(this);
+    }
+
+
+    handleModal(status, record_assessment_id)
+    {
+
+
+        this.setState({
+            showModal: status,
+            record_assessment_id: record_assessment_id
+        })
+
+    }
+
+    CloseModalHandle()
+    {
+        //Closes the modal
+        this.handleModal(false, null);
+        //Refreshes Page
+        //window.location.reload(false);
+        this.LoadTables();
+
+    }
+
+    CaseCancellationHandle(record_assessment_id)
+    {
+
+
+        //send to backend this.state.parsedJSONObj.record_id for deletion
+
+        //Call in fetch to delete case with id
+
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({"record_assessment_id": record_assessment_id,
+                                        "assessment": "", "status": "Cancelled"})
+        };
+
+        fetch("http://52.247.220.137:80/update_pending_records", requestOptions)
+            .then(response=>response.text())
+            .then(text => {
+                this.LoadTables();
+                console.log(text)});
+        //Close Modal
+        this.CloseModalHandle();
+        //Refreshes page
+        //window.location.reload(false);
+        this.LoadTables();
+
+
+    }
+
+
+    ConfirmCancelButtonHandle(record_assessment_id)
+    {
+        //Ask user to confirm
+        return(
+            <div>
+
+                <Modal show = {this.state.showModal}
+                       size = {'xl'}
+                >
+                    <Modal.Header>
+                        Are you sure you want to delete this case?
+
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Button onClick={()=>{this.CaseCancellationHandle(record_assessment_id)}}>Yes</Button>
+                        <Button onClick={()=>{this.CloseModalHandle()}}>No</Button>
+
+                    </Modal.Body>
+                    <Modal.Footer>
+
+                    </Modal.Footer>
+                </Modal>
+            </div>
+        )
+
+    }
+
+    componentDidMount() {
+        this.LoadTables();
+    }
+
+    LoadTables()
+    {
+        fetch(this.props.incomingData.URL_for_Fetch, this.props.incomingData.requestOptions)
+            .then(res => res.json())
+            .then(
+                (result) => {
+
+                    let l = result.length;
+                    for (let i = 0; i < l; i++) {
+                        if (result[i].status == "pending" && this.props.is_patient) {
+                            result[i].cancelButton = <Button onClick={() => {
+
+                                this.handleModal(true, result[i].record_assessment_id)
+
+                            }}>Cancel</Button>
+
+                        }
+                        else if (result[i].status == "pending" && !this.props.is_patient){
+                            result[i].cancelButton = <Button onClick={() => {
+                                this.handleModal(true, result[i].record_assessment_id)
+
+                            }}>Cancel</Button>
+                            result[i].acceptButton = <Button onClick={() => {
+                                fetch("http://52.247.220.137/accept_pending_record",
+                                    {
+                                        method: 'PUT',
+                                        headers: {'Content-Type': 'application/json'},
+                                        body: JSON.stringify({"record_assessment_id": result[i].record_assessment_id})
+                                    }).then(() => alert("accepted!"))
+                                    .then(() => {
+                                        this.LoadTables();
+                                    });
+                            }}>Accept</Button>
+                        }
+                        else if(result[i].status == "Awaiting Payment" && this.props.is_patient)
+                        {
+                            result[i].payButton = <Button onClick={() => {
+                                fetch("http://52.247.220.137/pay",
+                                    {
+                                        method: 'PUT',
+                                        headers: {'Content-Type': 'application/json'},
+                                        body: JSON.stringify({"record_assessment_id": result[i].record_assessment_id})
+                                    }).then(() => alert("Payment Accepted!"))
+                                    .then(() => {
+                                        this.LoadTables();
+                                    });
+                            }}>Pay</Button>
+
+                        }
+                        else if(result[i].status == "Diagnosing" && !this.props.is_patient) {
+
+                            result[i].createAssessmentButton = <Button onClick={() => {
+                                this.recordID = result[i].record_assessment_id;
+                                this.setState(
+                                    {
+                                        showAssessmentPageModal: true
+                                    }
+                                )
+                            }
+                            }>Create Assessment</Button>
+                        }
+                    }
+                    this.setState({
+                        parsedJSONObj: result
+                    })
+                },
+
+                (error) => {
+                    console.log("Error with JSON retrieval for Client Ongoing Case Table.");
+                    console.log(error.data);
+
+                }
+            );
+    }
+
+    ShowAssessmentPageModalHandle()
+    {
+        this.setState(
+            {
+                showAssessmentPageModal: !this.state.showAssessmentPageModal
+            }
+        )
+    }
+
+    render() {
+
+        return (
+            <div>
+                {this.ConfirmCancelButtonHandle(this.state.record_assessment_id)}
+                <Container>
+                    { this.state.showAssessmentPageModal && <DrWritesSecondOpinion recordID={this.recordID}
+                                                                                   phy_id={this.props.phy_id}
+                                                                                   showAssessmentPageModal={this.state.showAssessmentPageModal}
+                                                                                   ShowAssessmentPageModalHandle = {this.ShowAssessmentPageModalHandle}
+                                                                                   reload_tables={() => this.LoadTables()}
+                                                                /> }
+                    <ToolkitProvider
+                        keyField="id"
+                        data={ this.state.parsedJSONObj }
+                        columns={ this.props.incomingData.columns }
+                        defaultSorted={ this.props.incomingData.defaultSorted }
+                        columnToggle
+                        search
+                    >
+                        {
+                            props => (
+                                <div>
+                                    <h3>Input something at below input field:</h3>
+                                    <SearchBar { ...props.searchProps } />
+                                    <hr />
+                                    <BootstrapTable
+                                        { ...props.baseProps }
+                                    />
+                                </div>
+                            )
+                        }
+                    </ToolkitProvider>
+                </Container>
+
+            </div>
+        );
+    }
+}

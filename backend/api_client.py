@@ -1,7 +1,7 @@
 from flask import Flask, Blueprint, jsonify, json, request, abort, session as flask_session
 from flask_cors import CORS, cross_origin
 import models
-
+import random
 
 client_blueprint = Blueprint('api_client', __name__,)
 
@@ -29,19 +29,32 @@ def api_client_add():
         return "user exists"
 
     uname = post_data["username"]
-    age = post_data["age"]
-    sex = post_data["sex"]
-    medical_history = post_data["medical_history"]
-    name = post_data["name"]
+    age = post_data["pat_age"]
+    sex = post_data["pat_sex"]
+    medical_history = post_data["pat_medical_history"]
+    name = post_data["pat_name"]
     email = post_data["email"]
     password = post_data["password"]
 
     stmt = models.Patient.insert().\
-        values(username=uname, age=age, sex=sex, medical_history=medical_history, email=email,
-               name=name, password=password)
+        values(username=uname, pat_age=age, pat_sex=sex, pat_medical_history=medical_history, email=email,
+               pat_name=name, password=password)
+
     con = models.db.engine.connect()
     con.execute(stmt)
     con.close()
+
+    sess = models.db.get_session()
+    e = sess.query(models.Patient).filter(models.Patient.c.username == uname).all()
+    for i in e:
+        id_ = i.pat_id
+
+    stmt = models.records.insert().\
+        values(pat_id=id_, physician_id=round(random.random() * 50), comment="This is some placeholder text", hospital_id=1)
+    con = models.db.engine.connect()
+    con.execute(stmt)
+    con.close()
+
     return "Client registered."
 
 
@@ -54,16 +67,16 @@ def api_client_edit():
     # post_data = post_data["data"]
     pat_id = post_data["pat_id"]
     uname = post_data["username"]
-    age = post_data["age"]
-    sex = post_data["sex"]
-    name = post_data["name"]
-    medical_history = post_data["medical_history"]
+    age = post_data["pat_age"]
+    sex = post_data["pat_sex"]
+    name = post_data["pat_name"]
+    medical_history = post_data["pat_medical_history"]
     email = post_data["email"]
     password = post_data["password"]
 
     stmt = models.Patient.update().where(models.Patient.c.pat_id == pat_id).\
-        values(username=uname, age=age, sex=sex, medical_history=medical_history,
-               name=name, email=email, password=password)
+        values(username=uname, pat_age=age, pat_sex=sex, pat_medical_history=medical_history,
+               pat_name=name, email=email, password=password)
     con = models.db.engine.connect()
     con.execute(stmt)
     con.close()
@@ -81,10 +94,10 @@ def api_client_id(id):
         data = dict()
         data["username"] = entry.username
         data["pat_id"] = entry.pat_id
-        data["age"] = entry.age
-        data["sex"] = entry.sex
-        data["medical_history"] = entry.medical_history
-        data["name"] = entry.name
+        data["pat_age"] = entry.pat_age
+        data["pat_sex"] = entry.pat_sex
+        data["pat_medical_history"] = entry.pat_medical_history
+        data["pat_name"] = entry.pat_name
         data["email"] = entry.email
         data["password"] = entry.password
 
@@ -103,10 +116,10 @@ def api_clients_all():
         data = dict()
         data["username"] = entry.username
         data["pat_id"] = entry.pat_id
-        data["age"] = entry.age
-        data["sex"] = entry.sex
-        data["name"] = entry.name
-        data["medical_history"] = entry.medical_history
+        data["pat_age"] = entry.pat_age
+        data["pat_sex"] = entry.pat_sex
+        data["pat_name"] = entry.pat_name
+        data["pat_medical_history"] = entry.pat_medical_history
         data["email"] = entry.email
         data["password"] = entry.password
         data_to_return.append(data)

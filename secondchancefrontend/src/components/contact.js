@@ -1,6 +1,6 @@
 import React from 'react';
-import {Modal_It} from './modal_it';
-
+import {Container, Col, Row, Form, Button} from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.css'
 export class Contact extends React.Component
 {
     constructor(props) {
@@ -15,61 +15,56 @@ export class Contact extends React.Component
     {
         return(
           <div>
-              <h1 style={{textAlign: 'center'}}>Contact Me</h1>
+              <h1  className="h1-responsive font-weight-bold text-center my-4" style={{textAlign: 'center'}}>Contact Us</h1>
+              <Container className="col-md-9 mb-md-0 mb-5"  style={{width:"500px", margin:"auto"}}>
 
-              <table>
-                  <tr>
-                      <td>
-                          <div className = {"container"} >
-                              <form action = { `mailto:${this.state.physician_email}`} method={ "post"}
-                                    encType={ "text/plain" } className={ "form-control" }>
-                                  <tr>
-                                      <td>
-                                          <label>Name: </label>
-                                          <input type={ "text" } name={ "From "} className={ "form-control"} />
-                                      </td>
-                                  </tr>
-                                  <tr>
-                                      <td>
-                                          <label>Email: </label>
-                                          <input type={  "email" } name={  "Recipient's Email " }
-                                                 className={  "form-control" } />
-                                      </td>
-                                  </tr>
+                  <Form action = { `mailto:${this.state.physician_email}`} method={ "post"}
+                        encType={ "text/plain" } className={ "form-control" } style ={{border:"0px"}}>
+                      <Row>
+                        <Form.Group controlId={"nameContact"} style={{paddingLeft:"10%"}}>
+                          <Form.Label>Name</Form.Label>
+                          <Form.Control as={"input"} type={ "text" } name={ "From "} className={ "form-control"}
+                                        placeholder={"Your fullname"} style={{width:"150%"}}/>
+                        </Form.Group>
+                      </Row>
+                      <Row>
+                          <Form.Group controlId={"emailContact"} style={{paddingLeft:"10%"}}>
+                              <Form.Label>Email</Form.Label>
+                              <Form.Control as={"input"} name={  "Recipient's Email " }
+                                     className={  "form-control" } placeholder={"name@example.com"} style={{width:"150%"}}/>
+                          </Form.Group>
+                      </Row>
 
 
-                                  <tr>
-                                      <td>
-                                          <label>Message: </label>
-                                          <br />
-                                          <textarea name={  "Message " }rows={  "20"} cols={  "100"}
-                                                    className={  "form-control" }></textarea>
-                                      </td>
-                                  </tr>
-                                  <tr>
-                                      <td>
+                      <Row>
+                          <Form.Group controlId={"messageContact"} style={{paddingLeft:"10%"}}>
+                              <Form.Label>Message</Form.Label>
 
-                                          <input type={  "submit"} name = { "" }/>
+                              <Form.Control name={"Message"} as={"textarea"} rows={5} cols={100}
+                                            placeholder={"Your message..."}/>
+                          </Form.Group>
 
-                                      </td>
-                                  </tr>
-                              </form>
-                          </div>
-                      </td>
-                  </tr>
-              </table>
+                      </Row>
+
+
+                      <Button style={{borderLeft:"10%", marginLeft:"9%", paddingLeft:"-10%"}} as={"input"} type={  "submit"} name = { "" } />
+
+                  </Form>
+
+
+              </Container>
           </div>
         );
     }
 
     render() {
 
-
         return(
             <div>
-
-                <Modal_It nameOfFunction={this.displayLoginForm()} modalTitle={"Contact"} />
+                {this.displayLoginForm()}
             </div>
         );
     }
 };
+
+//<Modal_It nameOfFunction={this.displayLoginForm()} modalTitle={"Contact"} />

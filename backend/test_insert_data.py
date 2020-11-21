@@ -47,30 +47,30 @@ def insert_all():
     :return: None
     '''
 
-    insert_into_table(tablename="hospital", address="23 October street", city="Los Angeles", zip_code="90210")
-    insert_into_table(tablename="hospital", address="22 April street", city="San Bernardino", zip_code="92321")
-    insert_into_table(tablename="hospital", address="12 June ave", city="San Fransisco", zip_code="99820")
+    insert_into_table(tablename="hospital", hospital_name="Hospital1", address="23 October street", city="Los Angeles", zip_code="90210")
+    insert_into_table(tablename="hospital", hospital_name="Hospital2", address="22 April street", city="San Bernardino", zip_code="92321")
+    insert_into_table(tablename="hospital", hospital_name="Hospital3", address="12 June ave", city="San Fransisco", zip_code="99820")
 
 
-    insert_into_table(tablename="patient", medical_history="I have fallen and I cant get up",
-                      sex="m", age=23, username="imapatient", email="patient@aol.com", password="123pass", name="Eric Deezy")
+    insert_into_table(tablename="patient", pat_medical_history="I have fallen and I cant get up",
+                      pat_sex="m", pat_age=23, username="imapatient", email="patient@aol.com", password="123pass", pat_name="Eric Deezy")
 
-    insert_into_table(tablename="patient", medical_history="I have tripped and I cant get up",
-                      sex="m", age=24, username="imapatient2", email="patient2@aol.com", password="123pass", name="Eric Deezy")
+    insert_into_table(tablename="patient", pat_medical_history="I have tripped and I cant get up",
+                      pat_sex="m", pat_age=24, username="imapatient2", email="patient2@aol.com", password="123pass", pat_name="Eric Deezy")
 
-    insert_into_table(tablename="patient", medical_history="bumped elbow",
-                      sex="f", age=26, username="imapatient3", email="patient3@aol.com", password="123pass", name="Eric Deezy")
+    insert_into_table(tablename="patient", pat_medical_history="bumped elbow",
+                      pat_sex="f", pat_age=26, username="imapatient3", email="patient3@aol.com", password="123pass", pat_name="Eric Deezy")
 
-    insert_into_table(tablename="physician", npi="1", name="Eric Diaz", bio="Human Butcher", addr="96 ave lane",
-                      username="ericisbalanced", qual="PhDoctorate", reviewCnt="0", email="email@aol.hotmail",
+    insert_into_table(tablename="physician", npi="1", phy_name="Eric Diaz", phy_bio="Human Butcher", phy_addr="96 ave lane",
+                      username="ericisbalanced", phy_qual="PhDoctorate", reviewCnt="0", email="email@aol.hotmail",
                       password="password_is_plain_text")
 
-    insert_into_table(tablename="physician", npi="2", name="Sammy Diaz", bio="Human", addr="99 ave lane",
-                      username="Sammy", qual="PhDoctorate", reviewCnt="0", email="email2@aol.hotmail",
+    insert_into_table(tablename="physician", npi="2", phy_name="Sammy Diaz", phy_bio="Human", phy_addr="99 ave lane",
+                      username="Sammy", phy_qual="PhDoctorate", reviewCnt="0", email="email2@aol.hotmail",
                       password="password_is_plain_text")
 
-    insert_into_table(tablename="physician", npi="3", name="Eric Hasaan", bio="Butcher", addr="93 ave lane",
-                      username="Hassan", qual="PhDoctorate", reviewCnt="0", email="email3@aol.hotmail",
+    insert_into_table(tablename="physician", npi="3", phy_name="Eric Hasaan", phy_bio="Butcher", phy_addr="93 ave lane",
+                      username="Hassan", phy_qual="PhDoctorate", reviewCnt="0", email="email3@aol.hotmail",
                       password="password_is_plain_text")
 
     insert_into_table(tablename="record", pat_id=1, comment="Yep, thats bad", hospital_id=1)
@@ -86,12 +86,17 @@ def insert_all():
                       assessment=None, completion_dt=date(2020, 2, 1), create_dt=date(2020, 1, 1), status="pending")
 
     # PAYMENT ENTRIES
-    insert_into_table(tablename="payment", pat_id=1, record_id=1, total=1, is_paid=1)
-    insert_into_table(tablename="payment", pat_id=2, record_id=2, total=2, is_paid=1)
-    insert_into_table(tablename="payment", pat_id=3, record_id=3, total=3, is_paid=0)
+    insert_into_table(tablename="payment", pat_id=1, record_assessment_id=1, total=1, is_paid=1)
+    insert_into_table(tablename="payment", pat_id=2, record_assessment_id=2, total=2, is_paid=1)
+    insert_into_table(tablename="payment", pat_id=3, record_assessment_id=3, total=3, is_paid=0)
 
     # HOSPITAL ENTRIES
-
+    insert_from_npi_gov()
+    insert_from_npi_gov("Kevin")
+    insert_from_npi_gov("Trevor")
+    insert_from_npi_gov("Lee")
+    insert_from_npi_gov("Bernard")
+    insert_from_npi_gov("Alannah")
 
 
 def insert_from_npi_gov(name="eric"):
@@ -105,10 +110,10 @@ def insert_from_npi_gov(name="eric"):
         i = r[i]
         try:
             insert_into_table(tablename="physician",
-                              npi=i["number"], name=i["basic"]["first_name"] + " " + i["basic"]["last_name"],
-                              bio=i["taxonomies"][0]["desc"], addr=i["addresses"][0]["address_1"],
+                              npi=i["number"], phy_name=i["basic"]["first_name"] + " " + i["basic"]["last_name"],
+                              phy_bio=i["taxonomies"][0]["desc"], phy_addr=i["addresses"][0]["address_1"],
                               username=i["basic"]["first_name"]+i["addresses"][0]["postal_code"],
-                              qual=i["taxonomies"][0]["desc"], reviewCnt=0,
+                              phy_qual=i["taxonomies"][0]["desc"], reviewCnt=0,
                               email=i["basic"]["first_name"]+i["basic"]["last_name"]+"@aol.com",
                               password="123pass")
         except Exception as e:
