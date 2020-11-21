@@ -75,6 +75,8 @@ export default class NavbarClass extends React.Component
     }
     PatientNavBar()
     {
+        console.log("ERICS CONSOLE LOG");
+        console.log(this.state.userData);
         return(
             <div>
                 <Router>

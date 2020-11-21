@@ -54,6 +54,7 @@ export class Dr_CaseCreation extends React.Component
                     console.log(d);
                     this.setState({
                         patientRecords: d,
+                        record_id: d[0].record_id,
                         is_rec_loading: false
                     })
                 }

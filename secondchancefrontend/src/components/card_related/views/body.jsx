@@ -34,8 +34,7 @@ export default class Body extends Component {
 
     ShowContentsOfBody()
     {
-        console.log("ggg");
-        console.log(this.props);
+
         return(
             <div>
                 <div id="main-container">

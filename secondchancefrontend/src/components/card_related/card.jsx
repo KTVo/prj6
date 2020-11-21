@@ -3,7 +3,7 @@ import "./assets/card.scss";
 import '../../css/makeImgUndraggable.css';
 
 const FrontCard = (props) => {
-  console.log("suckkkk " + props.user.phy_name);
+
   return (
     <article
       id="front-card"
