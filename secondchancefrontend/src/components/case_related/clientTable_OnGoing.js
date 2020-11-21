@@ -1,6 +1,5 @@
 import React from 'react';
-
-import {GenerateSortableTable} from '../generateSortableTable';
+import {SlidePageTransitionAnimation} from '../animations/ani_reload_mgmt_table';
 
 export class ClientTable_OnGoing extends React.Component
 {
@@ -58,13 +57,13 @@ export class ClientTable_OnGoing extends React.Component
     }
 
     render() {
-        console.log("data from client_ongoing");
+        console.log("AAAAdata from client_ongoing");
         console.log(this.data);
         console.log('THIS IS PROPS');
         console.log(this.props.userInfo.pat_id);
         return (
             <div>
-                <GenerateSortableTable incomingData = {this.data} />
+                <SlidePageTransitionAnimation incomingData={this.data} />
             </div>
         );
     }

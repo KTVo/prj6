@@ -11,6 +11,9 @@ import 'mdbreact/dist/css/mdb.css';
 import 'react-credit-cards/lib/styles.scss';
 import major_credit_card_pics from './payment_pics/major_credit_cards_pic.png';
 
+
+
+
 export class Payment_Form extends React.Component {
     constructor(props) {
         super(props);
@@ -180,6 +183,7 @@ export class Payment_Form extends React.Component {
                 </Modal>
 
                 <MultiBrowsePic />
+
             </div>
         )
     }
