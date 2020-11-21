@@ -344,8 +344,6 @@ def paymententry():
     companys = request.form.get("companys")
 
 
-
-
     try:
         session = models.db.get_session()
         session.execute("SET FOREIGN_KEY_CHECKS = 0")
@@ -357,6 +355,56 @@ def paymententry():
         return "Payment accepted"
     except:
         return("Payment not accepted, invalid entries or payment method")
+
+
+@app.route("/get_payment", methods=["POST", "GET"])
+def get_payment():
+
+    recassess = 4
+
+    my_session = models.db.get_session()
+    paid = []
+    not_paid = []
+
+    for entry in my_session.query(models.Payment):
+        data = dict()
+        data["record_id"] = entry.record_id
+        if data["record_id"] == recassess:
+            data["payment_id"] = entry.payment_id
+            data["pat_id"] = entry.pat_id
+            data["total"] = entry.total
+            data["is_paid"] = entry.is_paid
+            if data["is_paid"] == 0:
+                not_paid.append(data)
+            else:
+                paid.append(data)
+
+    return jsonify(paid, not_paid)
+
+@app.route("/get_payment_patid",  methods=["POST", "GET"])
+def get_payment_patid():
+    identification = 123456
+
+    my_session = models.db.get_session()
+    paid = []
+    not_paid = []
+
+    for entry in my_session.query(models.Payment):
+        data = dict()
+        data["pat_id"] = entry.pat_id
+        if data["pat_id"] == identification:
+            data["payment_id"] = entry.payment_id
+            data["record_id"] = entry.record_id
+            data["total"] = entry.total
+            data["is_paid"] = entry.is_paid
+            if data["is_paid"] == 0:
+                not_paid.append(data)
+            else:
+                paid.append(data)
+
+    return jsonify(paid, not_paid)
+
+
 
 
 '''
