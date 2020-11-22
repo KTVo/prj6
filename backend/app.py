@@ -409,7 +409,8 @@ def get_payment_patid():
 @app.route("/paidhistorydoctor", methods=["POST", "GET"])
 def paidstatusdoctor():
     #function variables
-    patient_id = 3
+    post_data = request.get_json()
+    patient_id = post_data["patient_id"]
 
     #local variables used
     tot_owed = float(0.00)      #calculates the total for all the unpaid checks
