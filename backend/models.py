@@ -205,9 +205,18 @@ Payment = Table('payment', metadata,
                 Column('pat_id', Integer, ForeignKey('patient.pat_id')),
                 Column('record_id', Integer, ForeignKey('record.record_id')),
                 Column('total', Float),
-                Column('is_paid', Boolean)
-                )
+                Column('is_paid', Boolean),
+                Column('physician_id', Integer)
 
+                )
+credit_card = Table("credit_card", metadata,
+                    Column("credit_card_id", Integer, primary_key=True, autoincrement=True),
+                    Column("number", Integer),
+                    Column("month", String(400)),
+                    Column("year", String(400)),
+                    Column("csc", String(400)),
+                    Column("company", String(400)),
+                    Column("record_id", Integer))
 
 # Fields for the case history table
 #{ id: 1, caseTitle: 'Irregular Heart Beat', case_status: 'Patient Canceled',

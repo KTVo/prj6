@@ -404,22 +404,49 @@ def get_payment_patid():
 
     return jsonify(paid, not_paid)
 
+#payment history function for the physician to check patients
+
+@app.route("/paidhistorydoctor", methods=["POST", "GET"])
+def paidstatusdoctor():
+    #function variables
+    patient_id = 3
+
+    #local variables used
+    tot_owed = float(0.00)      #calculates the total for all the unpaid checks
+    paid =[]                    #dictionaries to store both paid and unpaid values
+    not_paid = []
+    check_phy_id = ''           # will copy the physician id to access the physician table
+    check_rec = ''             #will copy record assessment to access the credit card table
+
+    my_session = models.db.get_session()
+    for entry in my_session.query(models.Payment):
+        data = dict()
+        temp = entry.pat_id
+        if temp == patient_id:
+            data["is_paid"] = entry.is_paid
+            data["total"] = entry.total
+            check_phy_id = entry.physician_id
+            check_rec = entry.record_id
+            for entry in my_session.query(models.Physician):
+                if check_phy_id == entry.phy_id:
+                    data["name"] = entry.name
+            for entry in my_session.query(models.credit_card):
+                if check_rec ==entry.record_id:
+                    data["number"] = entry.number
+            if data["is_paid"] == 0:
+                tot_owed = tot_owed + float(data["total"])
+                not_paid.append(data)
+            else:
+                paid.append(data)
 
 
 
-'''
-TEST MYSQL TABLE USED
-create table credit_cards
-(
-	numbers BIGINT not null,:wq
-    months SMALLINT not null,
-    years SMALLINT not null,
-    CSC SMALLINT not null,
-    companys VARCHAR(50)
+
+    return jsonify(paid, not_paid)
 
 
-);
-'''
+
+
 
 
 if __name__ == '__main__':
