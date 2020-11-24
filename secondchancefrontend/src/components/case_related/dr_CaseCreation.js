@@ -1,12 +1,12 @@
 import React from 'react';
 import {PicCarousel} from '../picCarousel';
 import {MultiBrowsePic} from '../multiBrowsePic';
-//import {people1} from './data/data';
+
 import {Row, Col, Button, Form, Container} from 'react-bootstrap';
-import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import {Caller_SwipeCardAnimation} from '../card_related/caller_SwipeCardAnimation';
-import {MDBInput} from "mdbreact";
+
 import {PatientSlidePanel} from "../patientSidePanel";
 import 'mdbreact/dist/css/mdb.css';
 import 'mdbreact/dist/css/style.css';
@@ -164,10 +164,10 @@ export class Dr_CaseCreation extends React.Component
 
                     <Container style={{width:"1000px", margin:"auto", border:"0px"}}>
                         <Row>
-                            <h4 style={{textAlign:"left"}}>Note: </h4>
+                            <h4 style={{textAlign:"left", paddingLeft:"30px"}}>Note: </h4>
                         </Row>
 
-                        <Row style={{paddingLeft:"20px"}}>
+                        <Row style={{paddingLeft:"50px"}}>
                                 <h4 style={{textAlign:"left"}}>
                                     An Identifying Number will be generated for this case on the servers once created.
                                 </h4>
@@ -306,7 +306,7 @@ export class Dr_CaseCreation extends React.Component
         console.log("from dr Case Submission modeID = " + this.props.userInfo.modeID);
         console.log("from dr Case Submission = " + this.props.userInfo.userID);
         return(
-            <div>
+            <div style={{border: "1px solid ", background: `rgba(0, 0, 0, 0.7)`, height:"1080px"}}>
 
                 {this.drCaseCreationComponents()};
             </div>

@@ -65,18 +65,24 @@ export class PatientSlidePanel extends React.Component
 
                 <Container>
                     <Row className={"RowVerticalSpacing"}>
+                        <div className={"TitleText"} >Patient Information:</div>
+                    </Row>
+                    <Row style={{marginLeft: "30px"}} className={"RowVerticalSpacing"}>
+                        Name: {this.data.pat_name}
+                    </Row>
+                    <Row style={{marginLeft: "30px"}} className={"RowVerticalSpacing"}>
                         Sex: {this.data.pat_sex}
                     </Row>
-                    <Row  className={"RowVerticalSpacing"}>
+                    <Row  style={{marginLeft: "30px"}} className={"RowVerticalSpacing"}>
                         Age: {this.data.pat_age}
                     </Row>
-                    <Row  className={"RowVerticalSpacing"}>
+                    <Row  style={{marginLeft: "30px"}} className={"RowVerticalSpacing"}>
                         Height: {this.data.pat_height} cm
                     </Row>
-                    <Row  className={"RowVerticalSpacing"}>
+                    <Row  style={{marginLeft: "30px"}} className={"RowVerticalSpacing"}>
                         Weight: {this.data.pat_weight} kg
                     </Row>
-                    <Row  className={"RowVerticalSpacing"}>
+                    <Row  style={{marginLeft: "30px"}} className={"RowVerticalSpacing"}>
                         Bio: {this.data.pat_bio}
                     </Row>
 

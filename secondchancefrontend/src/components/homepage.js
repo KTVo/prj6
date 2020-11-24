@@ -72,6 +72,34 @@ const Container_OurStory = () => (
 
 );
 
+const Container_SelectDoctorTitle = () => (
+    <Parallax
+        blur={{ min: -15, max: 15 }}
+        bgImageAlt="penn-1"
+        strength={-200}
+        style={{
+            position: 'absolute',
+            background: `rgba(0, 0, 0, 0)`,
+        }}
+
+    >
+
+
+        <div style={{ height: '300px' }} />
+        <div style={{ backgroundColor:`rgba(0, 0, 0, 0.65)`, display: "inline",
+            paddingLeft:"30px",fontSize: 120, color:"white", fontWeight: 100, fontFamily:"Arial, Helvetica, sans-serif"}}>Pick from hundreds of doctors.</div>
+
+        <div style={{
+            backgroundColor:`rgba(0, 0, 0, 0.65)`,
+            width:"1000px",
+            paddingLeft:"30px",fontSize: 75, color:"white",
+            fontWeight: 100, fontFamily:"Arial, Helvetica, sans-serif"}}>Nationwide.</div>
+
+    </Parallax>
+
+);
+
+
 
 
 const Container_Testimonial = () => (
@@ -86,7 +114,7 @@ const Container_Testimonial = () => (
 
     >
 
-        <div style={{ marginLeft: "0px", height: '25px', width: '1920px' }} />
+        <div className={"TestimonySliderStretcher"} />
         <div className={"ResizeParallax"} />
         <Testimonial_Slider />
         <div style={{ height: '25px' }} />
@@ -145,6 +173,7 @@ export class Homepage extends React.Component
                 <Container_IntroTitle />
                 <div className={"FixedBackgroundImg"}></div>
                 <Container_OurStory />
+                <Container_SelectDoctorTitle />
                 <div className={"FixedBackgroundImg3"} />
                 <div style={{height: "400px", backgroundColor:"black"}}>
                     <Container_Testimonial />

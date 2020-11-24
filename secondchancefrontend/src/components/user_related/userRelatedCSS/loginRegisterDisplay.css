@@ -43,6 +43,29 @@
 
 }
 
+@media(min-width: 1900px) {
+    .LogReg_FixedBackgroundImg{
+        background-image: url("./patientLoginBackgroundImg.png");
+
+        /* 1K res */
+        height: 1080px;
+        width: 1920px;
+
+        position: fixed;
+        z-index: -1 !important;
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    }
+
+
+
+
+}
+
 
 @media(min-width: 2000px) {
     .LogReg_FixedBackgroundImg{

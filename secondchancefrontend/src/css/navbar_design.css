@@ -15,6 +15,32 @@ body {
 @media(min-width: 0px) {
     .SizeNav
     {
+        width: 1550px;
+    }
+    nav {
+        overflow: hidden;
+        background-color: #333;
+        position: fixed;
+        width: 1600px;
+        z-index: 100;
+    }
+
+    .MoveLinksRight{
+        width: 720px;
+    }
+
+    .MoveDoctorLinksRight{
+        width: 720px;
+    }
+
+    .MovePatientLinksRight{
+        width: 720px;
+    }
+}
+
+@media(min-width: 1900px) {
+    .SizeNav
+    {
         width: 1920px;
     }
     nav {

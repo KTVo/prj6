@@ -209,7 +209,8 @@ export class Testimonial_Slider extends React.Component
 
                                 <div style={{width: '400px'}} >
                                     <h3 style={{color:"black", textAlign:"center", width:"600px", paddingLeft:"100px"}}>{selectedPic.valueTitle}</h3>
-                                    <p style={{width:"700px",color:"black", textAlign:"center", fontSize:"30px"}}>{selectedPic.valueDescription}</p>
+                                    <p className={"ReviewMessageSize"}>{selectedPic.valueDescription}</p>
+                                    <div style={{height: '10px'}} />
                                 </div>
                             </Carousel.Caption>
                         </Carousel.Item>
