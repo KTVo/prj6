@@ -1,0 +1,76 @@
+@media(min-width: 0px) {
+    .FixedBackgroundImgCaseCreation{
+        background-image: url("../caseCreation/BackgroundCaseCreation.jpg");
+
+        /* 1K res */
+        height: 1080px;
+        width: 1550px;
+
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    }
+
+
+
+}
+
+@media(min-width: 1920px) {
+    .FixedBackgroundImgCaseCreation{
+        background-image: url("../caseCreation/BackgroundCaseCreation.jpg");
+
+        /* 1K res */
+        height: 1080px;
+        width: 1920px;
+
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    }
+
+}
+
+@media(min-width: 2000px) {
+    .FixedBackgroundImgCaseCreation{
+        background-image: url("../caseCreation/BackgroundCaseCreation.jpg");
+
+        /* Full height */
+        height: 1440px;
+        width: 2560px;
+
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    }
+
+
+}
+
+@media(min-width: 3000px) {
+    .FixedBackgroundImgCaseCreation{
+        background-image: url("../caseCreation/BackgroundCaseCreation.jpg");
+
+        /* Full height */
+        height: 2160px;
+        width: 3840px;
+
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    }
+
+
+
+}

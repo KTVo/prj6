@@ -10,6 +10,7 @@ import {Caller_SwipeCardAnimation} from '../card_related/caller_SwipeCardAnimati
 import {PatientSlidePanel} from "../patientSidePanel";
 import 'mdbreact/dist/css/mdb.css';
 import 'mdbreact/dist/css/style.css';
+import './caseCreation/fixedBackground_caseCreationPage.css';
 
 export class Dr_CaseCreation extends React.Component
 {
@@ -307,8 +308,10 @@ export class Dr_CaseCreation extends React.Component
         console.log("from dr Case Submission = " + this.props.userInfo.userID);
         return(
             <div style={{border: "1px solid ", background: `rgba(0, 0, 0, 0.7)`, height:"1080px"}}>
-
-                {this.drCaseCreationComponents()};
+                <div className={"FixedBackgroundImgCaseCreation"} />
+                <div style={{position: "absolute"}}>
+                    {this.drCaseCreationComponents()};
+                </div>
             </div>
         );
     }
