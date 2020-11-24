@@ -13,9 +13,9 @@ export function HoverImgBlkWhite(props){
             <MDBContainer className="mt-4">
                 <div style={{position: "relative",
                     textAlign: "center",
-                    color: "black",
+                    color: "white",
                     fontSize: "20px",
-                    fontWeight: "600"}}>Click Image below to {props.overlayText}</div>
+                    fontWeight: "600"}}>Click Image below to Sign In or Register as a <div style={{fontSize: "50px"}}>{props.overlayText}</div></div>
                 <MDBRow>
                     <MDBCol>
 

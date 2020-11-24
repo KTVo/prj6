@@ -1,167 +1,159 @@
 import React from 'react';
-import { Spring, animated, config } from 'react-spring/renderprops';
 import {ContactUs_HomePage} from './homepage_sections/contact_us/contactus';
-//import '../css/style_homepage_background_scroll.css'
 import { Parallax, Background } from 'react-parallax';
+import {Container, Row, Col} from 'react-bootstrap';
+import {Testimonial_Slider} from "./testimonial_slider";
+import './homepage_sections/homepage_css/fixedBackgroundImg.css';
 
-import {TestEndpoint} from "./testEndpoint";
-
-const Container1 = () => (
+const Container_IntroTitle = () => (
     <Parallax
         blur={{ min: -15, max: 15 }}
-        bgImage={require('./seanPennPics/sean-penn_1.jpg')}
         bgImageAlt="penn-1"
         strength={-200}
+        style={{
+            position: 'absolute',
+            background: `rgba(0, 0, 0, 0)`,
+        }}
+
     >
-        
-        <div style={{ height: '500px' }} />
+
+
+        <div style={{ height: '50px' }} />
+        <div style={{ backgroundColor:`rgba(0, 0, 0, 0.65)`, display: "inline",
+            paddingLeft:"30px",fontSize: 150, color:"white", fontWeight: 100, fontFamily:"Arial, Helvetica, sans-serif"}}>Second Chance. </div>
+
+        <div style={{
+            backgroundColor:`rgba(0, 0, 0, 0.65)`,
+            width:"1000px",
+            paddingLeft:"30px",fontSize: 75, color:"white",
+            fontWeight: 100, fontFamily:"Arial, Helvetica, sans-serif"}}>Physicians at your fingertips.</div>
+
     </Parallax>
 
 );
 
-const Container2 = () => (
+const Container_OurStory = () => (
+
     <Parallax
         blur={{ min: -15, max: 15 }}
-        bgImage={require('./seanPennPics/sean-penn_2.jpg')}
-        bgImageAlt="penn-1"
-        strength={-200}
-    >
-        
-        <div style={{ height: '500px' }} />
-    </Parallax>
-
-);
-
-const Container3 = () => (
-    <Parallax
-        blur={{ min: -15, max: 15 }}
-        bgImage={require('./seanPennPics/sean-penn_3.jpg')}
-        bgImageAlt="penn-1"
-        strength={-200}
-    >
-        
-        <div style={{ height: '800px' }} />
-    </Parallax>
-
-);
-
-const Container4 = () => (
-    <Parallax
-        blur={{ min: -15, max: 15 }}
-        bgImage={require('./seanPennPics/sean-penn_4.jpg')}
-        bgImageAlt="penn-4"
-        strength={-200}
-    >
-        
-        <div style={{ height: '800px' }} />
-    </Parallax>
-
-);
-
-const Container5 = () => (
-    <Parallax
-        blur={{ min: -15, max: 15 }}
-        bgImage={require('./seanPennPics/sean-penn_5.jpg')}
         bgImageAlt="penn-1"
         strength={-200}
     >
 
-        <div style={{ height: '800px' }} />
-    </Parallax>
+        <div style={{
+            backgroundColor:`rgba(0, 0, 0, .99)`,
+            height: "550px", width: "1080",
+            paddingLeft:"30px", fontSize: "25px", color:"white", fontWeight: 100,
+            fontFamily:"Helvetica, sans-serif"}}>
+            <div style={{height: "50px"}} />
+            <div style={{fontWeight: "bold"}} className="RepositionTitle">Our Story</div>
 
-);
-
-const Container6 = () => (
-    <Parallax
-        blur={{ min: -15, max: 15 }}
-        bgImage={require('./seanPennPics/sean-penn_6.jpg')}
-        bgImageAlt="penn-6"
-        strength={-200}
-    >
-
-        <div style={{ height: '720px' }} />
-    </Parallax>
-
-);
-
-
-function Contact_us_display()
-{
-
-        return(
-            <div>
-                <ContactUs_HomePage />
+            <div style={{height: "10px"}} />
+            <div style={{marginLeft: "30px", marginRight: "30px", paddingLeft: "30px", paddingRight: "30px"}}>
+                We started Second Chance as a small web-based service with just my brother and I and it is to say
+                that the story behind this company’s formation is a sorrow one. We lost our grandfather at a very young age
+                due to colon cancer. We come from a very small town in the Wyoming with only one medical doctor for miles
+                around. Unfortunately, our grandfather was misdiagnosed until it was too late where he finally succumbed to
+                his illness. We believed that if only he had a second diagnosis, he would have had a second chance to live
+                a fuller life. Hence is why we started up this company. Now we serve patients with hundreds of specialized
+                doctors nationwide from a mouse click away.
             </div>
-        );
+            <br />
+            <br />
+            <div className={"RepositionCloser"}>Stay Safe,</div>
+            <br />
+            <div className={"RepositionName"}>The Lehmann Doctors</div>
 
-}
+        </div>
+
+    </Parallax>
+
+
+
+);
+
+
+
+const Container_Testimonial = () => (
+    <Parallax
+        blur={{ min: -15, max: 15 }}
+        bgImage={require('./homepage_sections/homepage_backgrounds/testimonial_slider_background_black-texture.jpg')}
+        strength={-200}
+        style={{
+            position: 'absolute',
+            background: `rgba(0, 0, 0, 0)`,
+        }}
+
+    >
+
+        <div style={{ marginLeft: "0px", height: '25px', width: '1920px' }} />
+        <div className={"ResizeParallax"} />
+        <Testimonial_Slider />
+        <div style={{ height: '25px' }} />
+
+    </Parallax>
+
+);
+
+const Container_QualificationTitle = () => (
+    <Parallax
+        blur={{ min: -15, max: 15 }}
+        bgImageAlt="penn-1"
+        strength={-200}
+        style={{
+            position: 'absolute',
+            background: `rgba(0, 0, 0, 0)`,
+        }}
+
+    >
+        <div className={"PushQualTitleDown"} />
+        <div className={"SameQualTitle"}>Same qualifications  </div>
+
+        <div className={"SafetyOfHomeMessage"}>from the safety of your home.</div>
+
+    </Parallax>
+
+);
+
+
+const Container_Copyright = () => (
+    <Parallax
+        blur={{ min: -15, max: 15 }}
+
+        bgImageAlt="penn-1"
+        strength={-200}
+    >
+        <div style={{ height: '200px' }} />
+        <Container style={{marginLeft:"50%", width:"50%"}}>
+            <Row><ContactUs_HomePage /></Row>
+            <Row style={{marginLeft:"-8%", width:"50%"}}>© 2020 Second Chance. All rights reserved.</Row>
+        </Container>
+
+    </Parallax>
+
+);
+
+
 
 export class Homepage extends React.Component
 {
+
     render()
     {
         return(
-            <div>
-                <Container1 />
-                <Container2 />
-                <Container3 />
-                <Container4 />
-                <Container5 />
-                <Container6 />
+            <div stle={{backgroundColor: "black"}}>
+                <Container_IntroTitle />
+                <div className={"FixedBackgroundImg"}></div>
+                <Container_OurStory />
+                <div className={"FixedBackgroundImg3"} />
+                <div style={{height: "400px", backgroundColor:"black"}}>
+                    <Container_Testimonial />
+                </div>
 
+                <Container_QualificationTitle />
+                <div className={"FixedBackgroundImg2"}></div>
+                <Container_Copyright />
             </div>
         )
     }
 }
-
-/*
-export class Homepage extends React.Component {
-    state = { y: 0 }
-    el = React.createRef()
-    spring = React.createRef()
-    setY = () => this.setState({ y: Math.round(Math.random() * 750) + 50 })
-    // User interaction should stop animation in order to prevent scroll-hijacking
-    // Doing this on onWheel isn't enough, but just to illustrate ...
-    stop = () => this.spring.current.stop()
-    render() {
-
-        const y = this.el.current ? this.el.current.scrollTop : 0
-
-        return (
-            <>
-                <div className="scrolltop-main">
-
-                    <Spring
-                        native
-                        reset
-                        from={{ y }}
-                        to={{ y: this.state.y }}
-                        ref={this.spring}
-                        config={config.slow}>
-                        {props => (
-                            <animated.div
-                                className="scrolltop-c"
-                                ref={this.el}
-                                onWheel={this.stop}
-                                scrollTop={props.y}>
-                                <Carousel_it />
-                                <Contact_us_display />
-                                {COLORS.map(c => (
-                                    <div key={c} style={{ height: 1000, background: c }}>
-
-                                    </div>
-                                ))}
-                            </animated.div>
-                        )}
-                    </Spring>
-
-                </div>
-
-            </>
-        )
-
-
-    }
-
-}
-*/

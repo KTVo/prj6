@@ -1,0 +1,41 @@
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Times New Roman";
+    color: white;
+}
+.CaseTitleBlock
+{
+    border: 3px solid white;
+    background: rgba(0,0,0, 0.4);
+    width: 1000px;
+    margin: auto;
+    textColor: white;
+
+}
+
+.CaseFullViewMainBackgroundImg{
+    background-image: url("./fullViewDiagnosisBackground.JPG");
+
+    /* 4K Res */
+    height: 2160px;
+    width: 1200px;
+    position: fixed;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.IndividualBlock{
+    background: rgba(0, 0, 0, 0.4);
+    borderColor: black;
+    borderStyle: solid;
+    borderSize: 1px;
+}
+
+.ShowMedicalImgButton
+{
+    width: 100%;
+}

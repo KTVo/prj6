@@ -10,12 +10,78 @@ body {
     font-size: 30px;
 
 
-}
-nav{
-    overflow: hidden;
-    background-color: #333;
-}
 
+}
+@media(min-width: 0px) {
+    .SizeNav
+    {
+        width: 1920px;
+    }
+    nav {
+        overflow: hidden;
+        background-color: #333;
+        position: fixed;
+        width: 1920px;
+        z-index: 100;
+    }
+
+    .MoveLinksRight{
+        width: 1140px;
+    }
+
+    .MoveDoctorLinksRight{
+        width: 1080px;
+    }
+
+    .MovePatientLinksRight{
+        width: 1080px;
+    }
+}
+@media(min-width: 2000px) {
+    .SizeNav
+    {
+        width: 2560px;
+    }
+    nav {
+        overflow: hidden;
+        background-color: #333;
+        position: fixed;
+        width: 2560px;
+        z-index: 100;
+    }
+    .MoveLinksRight{
+        width: 1780px;
+    }
+    .MoveDoctorLinksRight{
+        width: 1700px;
+    }
+    .MovePatientLinksRight{
+        width: 1700px;
+    }
+}
+@media(min-width: 2561px) {
+    .SizeNav
+    {
+        width: 3840px;
+    }
+    nav {
+        overflow: hidden;
+        background-color: #333;
+        position: fixed;
+        width: 3840px;
+        z-index: 100;
+    }
+
+    .MoveLinksRight{
+        width: 1780px;
+    }
+    .MoveDoctorLinksRight{
+        width: 1700px;
+    }
+    .MovePatientLinksRight{
+        width: 1700px;
+    }
+}
 
 nav a{
     float: left;
@@ -28,5 +94,6 @@ nav a{
 nav a:hover{
     background-color: #ddd;
     color: black;
+
 }
 

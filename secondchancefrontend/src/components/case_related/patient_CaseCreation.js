@@ -22,7 +22,8 @@ export class Patient_CaseCreation extends React.Component
                 people1: [],
                 patientRecords: [],
                 is_rec_loading: true,
-                record_id: this.props.userInfo.record_id
+                record_id: this.props.userInfo.record_id,
+                hasResponsedWell: false
             };
         this.data = {
             pat_email: '',  //For identifying who the case belongs to
@@ -275,7 +276,7 @@ export class Patient_CaseCreation extends React.Component
         console.log("SELECTED DOCTOR");
         console.log(selectedDr)
         //selectedNPI = this.state.people1[selectedDr];
-
+        let localResponseStatus = "Incomplete";
         console.log("RECORD ID");
         console.log(this.state.record_id);
 
@@ -295,8 +296,11 @@ export class Patient_CaseCreation extends React.Component
         fetch("http://52.247.220.137/record_assessment", requestMethods)
             .then(ResPendingRec => ResPendingRec.text())
             .then(s => {
-                if (s == "record updated") {
-                    this.setState({responsestatus: "success"})
+                console.log('s === ');
+                console.log(s);
+                localResponseStatus = s;
+                if (s == "Record Assessment registered.") {
+                    this.setState({responsestatus: "success", hasResponsedWell: true})
                 }
                 else {
                     console.log("ERROR");
@@ -304,8 +308,6 @@ export class Patient_CaseCreation extends React.Component
                 }
 
             })
-
-
 
     }
 
@@ -316,7 +318,13 @@ export class Patient_CaseCreation extends React.Component
         return(
             <div>
 
-                {this.PatientCaseCreationComponents()};
+                {
+                    (!this.state.hasResponsedWell) && this.PatientCaseCreationComponents()
+                }
+                {
+                    (this.state.hasResponsedWell) && <h2>Case has been Submitted!</h2>
+                };
+
             </div>
         );
     }

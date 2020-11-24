@@ -1,0 +1,102 @@
+@media(min-width: 768px) {
+    .PricingInfoLayer
+    {
+        width: 1920px;
+        height: 485px;
+        bottom: 0px;
+        border: 2px solid black;
+        background: rgba(0,0,0, 1);
+        z-index: 9999 !important;
+        color: white;
+        margin: auto;
+        position: fixed;
+    }
+
+    .PricingFixedBackgroundImg
+    {
+        background-image: url("./images/pricing_page_background.jpg");
+        /* 1K res */
+        height: 475px;
+        width: 1920px;
+        top:0px;
+        position: fixed;
+        z-index: -1 !important;
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    }
+
+
+
+
+}
+
+
+@media(min-width: 2000px) {
+    .PricingInfoLayer
+    {
+        width: 800px;
+        height: 1440px;
+        border: 2px solid black;
+        background: rgba(0,0,0, .8);
+        z-index: 9999 !important;
+        color: white;
+        margin: auto;
+        position: fixed;
+    }
+
+    .PricingFixedBackgroundImg
+    {
+        background-image: url("./images/pricing_page_background.jpg");
+        /* Full height */
+        height: 1440px;
+        width: 2560px;
+        z-index: -1 !important;
+        position: fixed;
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+
+    }
+
+
+}
+
+@media(min-width: 3000px) {
+    .PricingInfoLayer
+    {
+        width: 800px;
+        height: 2160px;
+        border: 2px solid black;
+        background: rgba(0,0,0, .8);
+        z-index: 9999 !important;
+        color: white;
+        margin: auto;
+        position: fixed;
+    }
+
+    .PricingFixedBackgroundImg
+    {
+        background-image: url("./images/pricing_page_background.jpg");
+        /* Full height */
+        height: 2160px;
+        width: 3840px;
+        z-index: -1 !important;
+        position: fixed;
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+
+    }
+
+
+}

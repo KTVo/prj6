@@ -2,7 +2,6 @@ import React from 'react';
 
 import NavbarClass from './components/navbar_custom';
 
-
 import './css/animatedBackground.scss'
 function App() {
 
@@ -10,6 +9,7 @@ function App() {
         <div className="App" >
 
             <NavbarClass />
+
 
         </div>
   );

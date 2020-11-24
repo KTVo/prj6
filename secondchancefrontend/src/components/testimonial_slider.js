@@ -1,5 +1,5 @@
 import React from 'react';
-import {Carousel} from "react-bootstrap";
+import {Carousel, Container, Row, Col} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/carousel.css';
 
@@ -41,10 +41,6 @@ export class Testimonial_Slider extends React.Component
             {
                 show: false,
 
-
-
-
-
             };
 
         this.pic=[
@@ -54,7 +50,7 @@ export class Testimonial_Slider extends React.Component
                 valueURL: pat_pic_1,
                 valueFileName: 'hand-xray.jpg',
                 valueDescription: 'No one was able to pinpoint why I can\'t be a nice person so I had Dr. '
-                    +'Fabien to have a look at my CTs. Turns out I\'m just an imbecile.'
+                    +'Fabien take a look at my CTs. Turns out I\'m just an imbecile.'
             },
             {
                 label: 'pic_2',
@@ -85,8 +81,8 @@ export class Testimonial_Slider extends React.Component
                 valueTitle: 'Katsumi Naomi',
                 valueURL: pat_pic_5,
                 valueFileName: 'hand-xray.jpg',
-                valueDescription: 'I come from a small village. My doctor is also my mechanic and garbage collector '
-                    +'he does the medical imagings and Second Chance does the diagnosing. It\'s just healthier for me '
+                valueDescription: 'I come from a small village. My doctor is also my mechanic and garbage collector. '
+                    +'He does the medical imagings and Second Chance does the diagnosing. It\'s just healthier for me '
                     +'this way.'
             },
             {
@@ -195,20 +191,26 @@ export class Testimonial_Slider extends React.Component
             this.pic.map(function(selectedPic,index) {
                 return (
 
-                        <Carousel.Item>
+                        <Carousel.Item style={{
+                            position: 'absolute',
+                            background: `rgba(0, 0, 0, ${0 * 1})`, backgroundColor: `rgba(0, 0, 0, ${0 * 1})`
+                        }}>
                             <img
                                 className ={"_carouselImgSize"}
                                 key={index}
                                 src={selectedPic.valueURL}
                                 alt={selectedPic.valueFileName}
+                                style={{background: `rgba(0, 0, 0, ${0 * 1})`, backgroundColor: `rgba(0, 0, 0, ${0 * 1})`, opacity: 1}}
                             />
 
-                            <Carousel.Caption className={"_carouselCaption"} style={{alignContent: 'left' }}>
+                            <Carousel.Caption className={"_carouselCaption"} style={{alignContent: 'left',
+                                position: 'absolute'
+                            }}>
 
-                                <table style={{width: '400px', backgroundColor: 'rgba(255,255,255, 0.50)', alignContent: 'center'}}>
-                                    <h3 style={{color:"black", textAlign:"center"}}>{selectedPic.valueTitle}</h3>
-                                    <p style={{color:"black", textAlign:"center"}}>{selectedPic.valueDescription}</p>
-                                </table>
+                                <div style={{width: '400px'}} >
+                                    <h3 style={{color:"black", textAlign:"center", width:"600px", paddingLeft:"100px"}}>{selectedPic.valueTitle}</h3>
+                                    <p style={{width:"700px",color:"black", textAlign:"center", fontSize:"30px"}}>{selectedPic.valueDescription}</p>
+                                </div>
                             </Carousel.Caption>
                         </Carousel.Item>
 
@@ -219,18 +221,16 @@ export class Testimonial_Slider extends React.Component
 
     render() {
         return(
-            <div >
+            <div>
                 <table>
                     <tr>
-                        <td className={"_outsideLayer"} >
-                            <Carousel className={"_carouselSize"} className={"_carouselBackgroundColor"}>
+                        <td>
+                            <Carousel className={"_carouselSize"} className={"_carouselBackgroundColor"} >
                                 {this.LoopCarouselItem()}
                             </Carousel>
                         </td>
                     </tr>
                 </table>
-
-                <br />
             </div>
         );
     }

@@ -1,40 +1,48 @@
 import React from 'react';
+import {Row, Col, Container} from 'react-bootstrap';
+
 import facebook_icon from './social_media_icons/facebook.PNG';
 import twitter_icon from './social_media_icons/twitter.PNG';
 import linkin_icon from './social_media_icons/linkin.PNG';
 
+function FakeMessage()
+{
+    return(alert("This is a FAKE company Silly!"));
+}
 export function ContactUs_HomePage()
 {
-    const widthHeightIcon = "30px";
+    const widthHeightIcon = "55px";
     return(
-      <div>
+      <Container>
+          <h3>Contact Us</h3>
+          <Row>
 
-          <table>
-              <tr>
-                  <td>
 
-                      <h3>Contact Us</h3>
-                      <p>
-                          55555 University Pkwy,
-                          <br />
-                          San Bernardino, CA 92407
-                          <br />
-                          (555) 555-5555
-                      </p>
-                      
-                  </td>
-                  <td>
-                      <img src={twitter_icon} style={{height:widthHeightIcon, width:widthHeightIcon}}/>
-                  </td>
-                  <td>
-                      <img src={facebook_icon} style={{height:widthHeightIcon, width:widthHeightIcon}}/>
-                  </td>
-                  <td>
-                      <img src={linkin_icon} style={{height:widthHeightIcon, width:widthHeightIcon}}/>
-                  </td>
-              </tr>
-          </table>
-      </div>
+              <p>
+                  55555 University Pkwy,
+                  <br />
+                  San Bernardino, CA 92407
+                  <br />
+                  (555) 555-5555
+              </p>
+
+          </Row>
+
+          <Row style={{height: widthHeightIcon, width:200}}>
+
+              <Col style={{paddingLeft: "0px", marginLeft: "-10px",height:widthHeightIcon, width:widthHeightIcon}}>
+                  <img src={twitter_icon} style={{height:widthHeightIcon, width:widthHeightIcon}} onClick={()=>FakeMessage()}/>
+              </Col>
+              <Col style={{height:widthHeightIcon, width:widthHeightIcon}}>
+                  <img src={facebook_icon} style={{height:widthHeightIcon, width:widthHeightIcon}} onClick={()=>FakeMessage()}/>
+              </Col>
+              <Col style={{height:widthHeightIcon, width:widthHeightIcon}}>
+                  <img src={linkin_icon} style={{height:widthHeightIcon, width:widthHeightIcon}} onClick={()=>FakeMessage()}/>
+              </Col>
+          </Row>
+
+
+      </Container>
     );
 
 }

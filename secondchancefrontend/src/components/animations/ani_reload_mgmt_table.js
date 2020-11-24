@@ -19,7 +19,6 @@ export function SlidePageTransitionAnimation(tableSettings) {
         ({ style }) => <animated.div style={{ ...style, background: 'white' }}><GenerateSortableTable incomingData={tableSettings.incomingData} /></animated.div>,
 
     ]
-    console.log("Why am I not transitioning this page!");
 
     return (
         <div className="simple-trans-main">

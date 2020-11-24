@@ -100,7 +100,7 @@ export class Login extends React.Component
                     userDataBackend.userData = response;
 
                     this.props.handleUserLoginFromNavBar(userDataBackend);
-        })
+        }).catch((error)=>{alert("The Username or Password is incorrect.")})
                 //.catch(r => r.text()).then(r => console.log(r));
 
         }
@@ -115,13 +115,14 @@ export class Login extends React.Component
             fetch("http://52.247.220.137:80/client/login", requestOptions)
                 .then(response => response.json())
                 .then(response => {
+                    console.log(response);
                     userDataBackend = {};
                     userDataBackend.modeID = "patient";
                     userDataBackend.userID = response.pat_id;
                     userDataBackend.userData = response;
 
                     this.props.handleUserLoginFromNavBar(userDataBackend);
-                });
+                }).catch((error)=>{alert("The Username or Password is incorrect.")})
         }
 
     }

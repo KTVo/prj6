@@ -3,7 +3,7 @@ import {RegFunctionalComponent} from './registration_funct_comp';
 import {ButtonGroup, Button} from 'react-bootstrap';
 import {Login} from './login';
 
-import '../../App.css';
+import './userRelatedCSS/loginRegisterDisplay.css';
 
 export class LoginRegisterDisplay extends React.Component {
     state = {selectedFile: null}
@@ -98,67 +98,71 @@ export class LoginRegisterDisplay extends React.Component {
 
 
         const calculatedAge = this.GetAge(data);
-
-        if(this.props.userMode == 'Physician' || this.props.userMode == 'Doctor') {
-            const requestOptions = {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    "npi": data.npi, "username": data.email, "phy_name": data.firstName + " " + data.lastName,
-                    "phy_bio": data.bio, "phy_addr": "12345", "phy_qual": data.speciality,
-                    "email": data.email, "password": data.password
-                })
-                /*
-                npi -
-                username
-                name
-                bio
-                address
-                qualifications
-                review count
-                email
-                password
-                */
-
-
-            };
-            console.log(requestOptions);
-
-            fetch("http://52.247.220.137:80/physician", requestOptions)
-                .then(response => console.log(response.text()))
-
-
-
-        }else{
-            const requestOptions = {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({"username": data.email,pat_age: calculatedAge, "pat_sex": "NA",
-                    "pat_medical_history":data.bio, "pat_name": data.firstName + " " + data.lastName, "email": data.email, "password": data.password,})
-                /*
-                username
-                pat_age
-                pat_sex
-                pat_medical_history - bio
-                pat_name
-                email
-                password
-                */
-
-
-            };
-
-            fetch("http://52.247.220.137:80/client", requestOptions)
-                .then(response => response.text())
-                .then(response => {
-                        if (response == "email exists"){
-                            alert("The email already exists");
-                            //window.location.reload(false);
-                        }
-                    }
-
-                );
+        if(data.password != data.repassword)
+        {
+            alert("Password and Re-Password does NOT match. You entered Password: " + data.password + ", Re-Passwrd: " + data.repassword);
         }
+        else
+            if(this.props.userMode == 'Physician' || this.props.userMode == 'Doctor') {
+                const requestOptions = {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        "npi": data.npi, "username": data.email, "phy_name": data.firstName + " " + data.lastName,
+                        "phy_bio": data.bio, "phy_addr": "12345", "phy_qual": data.speciality,
+                        "email": data.email, "password": data.password
+                    })
+                    /*
+                    npi -
+                    username
+                    name
+                    bio
+                    address
+                    qualifications
+                    review count
+                    email
+                    password
+                    */
+
+
+                };
+                console.log(requestOptions);
+
+                fetch("http://52.247.220.137:80/physician", requestOptions)
+                    .then(response => console.log(response.text()))
+
+
+
+            }else{
+                const requestOptions = {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({"username": data.email,pat_age: calculatedAge, "pat_sex": "NA",
+                        "pat_medical_history":data.bio, "pat_name": data.firstName + " " + data.lastName, "email": data.email, "password": data.password,})
+                    /*
+                    username
+                    pat_age
+                    pat_sex
+                    pat_medical_history - bio
+                    pat_name
+                    email
+                    password
+                    */
+
+
+                };
+
+                fetch("http://52.247.220.137:80/client", requestOptions)
+                    .then(response => response.text())
+                    .then(response => {
+                            if (response == "email exists"){
+                                alert("The email already exists");
+                                //window.location.reload(false);
+                            }
+                        }
+
+                    );
+            }
 
 
 
@@ -229,63 +233,91 @@ export class LoginRegisterDisplay extends React.Component {
             console.log("im loading....");
             return(
                 <div>
+
                     <ButtonGroup>
                         <Button onClick={()=>this.SelectLoginRegisterHandle("login")}>Login</Button>
                         <Button onClick={()=>this.SelectLoginRegisterHandle("reg")}>Register</Button>
                         <Button onClick={()=>this.SelectLoginRegisterHandle("switch")}>Switch User Type</Button>
                     </ButtonGroup>
 
-                    {
-                        !this.state.choseReturn &&
-                        this.state.isLogin &&
-                        <Login data={this.data} handleUserLoginFromNavBar = {this.props.handleUserLoginFromNavBar}/>
-                    }
 
-                    {
-                        this.state.choseReturn &&
-                        this.state.isLogin &&
-                        <Login data={this.data} handleUserLoginFromNavBar = {this.props.handleUserLoginFromNavBar}/>
-                    }
+                        {
+                            !this.state.choseReturn &&
+                            this.state.isLogin &&
+                            <div className={"Login_Form"}>
+                                <div style={{height: "50px"}}/>
+                                <Login data={this.data} handleUserLoginFromNavBar = {this.props.handleUserLoginFromNavBar}/>
+                            </div>
+                        }
+
+
+
+                        {
+                            this.state.choseReturn &&
+                            this.state.isLogin &&
+                            <div className={"Login_Form"}>
+                                <div style={{height: "50px"}}/>
+                                <Login data={this.data} handleUserLoginFromNavBar = {this.props.handleUserLoginFromNavBar}/>
+                            </div>
+                        }
 
                 </div>
             )
         }
         return (
             <div>
-
+                <div className={"LogReg_FixedBackgroundImg"} />
                 <ButtonGroup>
                     <Button onClick={()=>this.SelectLoginRegisterHandle("login")}>Login</Button>
                     <Button onClick={()=>this.SelectLoginRegisterHandle("reg")}>Register</Button>
                     <Button onClick={()=>this.SelectLoginRegisterHandle("switch")}>Switch User Type</Button>
                 </ButtonGroup>
 
-                {
-                    this.state.choseReturn &&
-                    this.state.isLogin &&
-                    <Login data={this.data} handleUserLoginFromNavBar = {this.props.handleUserLoginFromNavBar}/>
-                }
+                    {
+                        this.state.choseReturn &&
+                        this.state.isLogin &&
+                        <div className={"Login_Form"}>
+                            <div style={{height: "50px"}}/>
+                            <Login data={this.data} handleUserLoginFromNavBar = {this.props.handleUserLoginFromNavBar}/>
+                        </div>
+                    }
 
-                {
-                    this.state.choseReturn &&
-                    !this.state.isLogin &&
-                    <RegFunctionalComponent hospital = {this.state.hospitalNameArr} data={this.data} handleSubmit={(e) => this.handleSubmit(e)}/>
-                }
 
-                {
+                    {
+                        this.state.choseReturn &&
+                        !this.state.isLogin &&
+                        <div className={"Reg_Form"}>
+                            <div style={{height: "50px"}}/>
+                            <RegFunctionalComponent hospital = {this.state.hospitalNameArr} data={this.data} handleSubmit={(e) => this.handleSubmit(e)}/>
+                        </div>
+                    }
 
-                    !this.state.choseReturn &&
-                    !this.state.isLogin &&
-                    <RegFunctionalComponent hospital = {this.state.hospitalNameArr} data={this.data} handleSubmit={(e) => this.handleSubmit(e)}/>
-                }
-                {
-                    !this.state.choseReturn &&
-                    this.state.isLogin &&
-                    <Login data={this.data} handleUserLoginFromNavBar = {this.props.handleUserLoginFromNavBar}/>
-                }
+
+
+                    {
+
+                        !this.state.choseReturn &&
+                        !this.state.isLogin &&
+                        <div className={"Reg_Form"}>
+                            <div style={{height: "50px"}}/>
+                            <RegFunctionalComponent hospital = {this.state.hospitalNameArr} data={this.data} handleSubmit={(e) => this.handleSubmit(e)}/>
+                        </div>
+                    }
+
+
+                    {
+                        !this.state.choseReturn &&
+                        this.state.isLogin &&
+                        <div className={"Login_Form"}>
+                            <div style={{height: "50px"}}/>
+                            <Login data={this.data} handleUserLoginFromNavBar = {this.props.handleUserLoginFromNavBar}/>
+                        </div>
+                    }
 
             </div>
+
         );
     }
 };
 
-//                <DrRegFunctionalComponent data={this.data} funct={e => this.handleSubmit(e)}/>
+

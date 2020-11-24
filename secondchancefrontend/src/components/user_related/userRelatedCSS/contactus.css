@@ -1,0 +1,101 @@
+@media(min-width: 768px) {
+    .ContactUs_Form
+    {
+        width: 800px;
+        height: 882px;
+        border: 2px solid black;
+        background: rgba(0,0,0, .8);
+        z-index: 9999 !important;
+        color: white;
+        margin: auto;
+        position: fixed;
+    }
+
+    .ContactUsFixedBackgroundImg
+    {
+        background-image: url("../userRelatedCSS/contactus_background_img.jpg");
+        /* 1K res */
+        height: 882px;
+        width: 1920px;
+
+        position: fixed;
+        z-index: -1 !important;
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    }
+
+
+
+
+}
+
+
+@media(min-width: 2000px) {
+    .ContactUs_Form
+    {
+        width: 800px;
+        height: 1242px;
+        border: 2px solid black;
+        background: rgba(0,0,0, .8);
+        z-index: 9999 !important;
+        color: white;
+        margin: auto;
+        position: fixed;
+    }
+
+    .ContactUsFixedBackgroundImg
+    {
+        background-image: url("../userRelatedCSS/contactus_background_img.jpg");
+        /* Full height */
+        height: 1242px;
+        width: 2560px;
+        z-index: -1 !important;
+        position: fixed;
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+
+    }
+
+
+}
+
+@media(min-width: 3000px) {
+    .ContactUs_Form
+    {
+        width: 800px;
+        height: 2160px;
+        border: 2px solid black;
+        background: rgba(0,0,0, .8);
+        z-index: 9999 !important;
+        color: white;
+        margin: auto;
+        position: fixed;
+    }
+
+    .ContactUsFixedBackgroundImg
+    {
+        background-image: url("../userRelatedCSS/contactus_background_img.jpg");
+        /* Full height */
+        height: 2160px;
+        width: 3840px;
+        z-index: -1 !important;
+        position: fixed;
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+
+    }
+
+
+}
