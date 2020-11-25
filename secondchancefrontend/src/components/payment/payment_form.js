@@ -96,54 +96,44 @@ export class Payment_Form extends React.Component {
                                                         name={this.state.name_on_card}
                                                         number={this.state.credit_card_num}
                                                     />
-                                                        <Col>
-                                                            <MDBInput as={"input"}
-                                                                      style={{align:"right", width: "100%", margin: "auto"}}
-                                                                      label={"Name on Card"}
-                                                                      icon={"fas fa-user"}
-                                                                      name="name_on_card"
-                                                                      onChange={this.handleInputChange}
-                                                                      onFocus={this.handleInputFocus}
-                                                                      required/>
-                                                        </Col>
-                                                </Row>
+                                                    <Col>
+                                                        <MDBInput as={"input"}s
+                                                                  label={"Name on Card"}
+                                                                  name="name_on_card"
+                                                                  icon={"fas fa-user"}
+                                                                  onChange={this.handleInputChange}
+                                                                  onFocus={this.handleInputFocus}
+                                                                  required/>
 
-                                            </Row>
-                                            <Row style={{width: "50%", margin: "auto"}}>
+                                                        <MDBInput as={"input"}
+                                                                  className="far fa-credit-card"
+                                                                  label={"Card Number"}
+                                                                  name="credit_card_num"
+                                                                  icon = "far fa-credit-card"
+                                                                  onChange={this.handleInputChange}
+                                                                  onFocus={this.handleInputFocus}
+                                                                  required/>
 
-                                                    <MDBInput as={"input"}
-                                                              className="far fa-credit-card"
-                                                              label={"Card Number"}
-                                                              name="credit_card_num"
-                                                              icon = "far fa-credit-card"
-                                                              onChange={this.handleInputChange}
-                                                              onFocus={this.handleInputFocus}
-                                                              required/>
-                                            </Row>
-                                            <Row>
-                                                <Row style={{width: "50%", margin: "auto"}}>
+                                                        <MDBInput as={"input"}
+                                                                  label={"Expiration Date"}
+                                                                  name="exp_date"
+                                                                  prepend = "credit-card"
+                                                                  onChange={this.handleInputChange}
+                                                                  onFocus={this.handleInputFocus}
+                                                                  required/>
 
-                                                    <MDBInput as={"input"}
-                                                              label={"Expiration Date"}
-                                                              name="exp_date"
-                                                              prepend = "credit-card"
-                                                              onChange={this.handleInputChange}
-                                                              onFocus={this.handleInputFocus}
-                                                              required/>
-
-                                                </Row>
-                                                <Row style={{paddingLeft:"50px"}}>
-
-                                                    <MDBInput as={"input"}
-                                                              label={"CV Code"}
-                                                              name="cv_code"
-                                                              prepend = "credit-card"
-                                                              onChange={this.handleInputChange}
-                                                              onFocus={this.handleInputFocus}
-                                                              required/>
-
+                                                        <MDBInput as={"input"}
+                                                                  label={"CV Code"}
+                                                                  name="cv_code"
+                                                                  prepend = "credit-card"
+                                                                  onChange={this.handleInputChange}
+                                                                  onFocus={this.handleInputFocus}
+                                                                  required/>
+                                                    </Col>
                                                 </Row>
                                             </Row>
+
+
                                             <Button name="submit" style={{display:"inline"}} onClick={this.handleInputChange}>Submit</Button>
                                         </Container>
 

@@ -19,7 +19,8 @@ export function FullViewCase(caseDetails)
     {
         return(
             <div>
-                <h2><u>Case View:</u></h2>
+
+                <h2 style={{color:"white", fontFamily: "Times New Roman"}}><u>Case View:</u></h2>
                 <div style={{height:"40px"}} />
                 <Row>
                     <Container className={"CaseTitleBlock"}>
@@ -66,7 +67,7 @@ export function FullViewCase(caseDetails)
                     <Col>
                         <img style={{padding:"1px", border: "1px solid black"}} src={patientImg}/>
                     </Col>
-                    <Col style={{marginTop: "20px"}}>
+                    <Col style={{marginTop: "20px", color:"white", fontFamily: "Times New Roman"}}>
                         <h5><u>Patient Details:</u></h5>
                         <h4 style={{marginLeft: "15px", marginBottom: "15px"}}>Patient's Name:</h4>
                         <h4 style={{marginLeft: "15px", marginBottom: "15px"}}>Patient's Age:</h4>
@@ -85,11 +86,10 @@ export function FullViewCase(caseDetails)
             <Container  className={"IndividualBlock"}>
 
                 <Row>
-
                     <Col style={{marginTop: "15px"}}>
-                        <h5><u>Primary Health Provider Details:</u></h5>
-                        <h4 style={{marginLeft: "15px", marginBottom: "15px"}}>Name:</h4>
-                        <h4 style={{marginLeft: "15px", marginBottom: "15px"}}>NPI:</h4>
+                        <h5 style={{color:"white", fontFamily: "Times New Roman"}}><u>Primary Health Provider Details:</u></h5>
+                        <h4 style={{marginLeft: "15px", marginBottom: "15px", color:"white", fontFamily: "Times New Roman"}}>Name:</h4>
+                        <h4 style={{marginLeft: "15px", marginBottom: "15px", color:"white", fontFamily: "Times New Roman"}}>NPI:</h4>
                     </Col>
                     <Col>
                         <img src={primaryImg} style={{padding:"2px", border: "1px solid black", marginLeft:"210px"}}/>
@@ -103,7 +103,7 @@ export function FullViewCase(caseDetails)
     function PictureButton()
     {
         return(
-            <Button className={"ShowMedicalImgButton"}>Show Medical Images</Button>
+            <Button className={"ShowMedicalImgButton"} style={{color:"white", fontFamily: "Times New Roman"}}>Show Medical Images</Button>
         )
     }
 
@@ -114,11 +114,11 @@ export function FullViewCase(caseDetails)
                 <Row>
                     <Row style={{marginLeft: "10px"}}>
 
-                        <h3>Secondary Diagnosis:</h3>
+                        <h3 style={{color:"white", fontFamily: "Times New Roman"}}>Secondary Diagnosis:</h3>
 
                         <div style={{height:"75px"}} />
                     </Row>
-                    <Row style={{marginLeft: "50px"}}>
+                    <Row style={{marginLeft: "50px", color:"white", fontFamily: "Times New Roman"}}>
                         <h6>Ugh... Your feet are kinda big!</h6>
                         <h6>Awaiting Second aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                             aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -158,10 +158,11 @@ export function FullViewCase(caseDetails)
     function PrimaryDiagnosisBlock()
     {
         return(
-            <Container className={"IndividualBlock"}>
+            <Container className={"IndividualBlock"} style={{color:"white", fontFamily: "Times New Roman"}}>
                 <Row>
                     <h3>Primary Diagnosis / Original Diagnosis:</h3>
                 </Row>
+                <div style={{height:"60px"}} />
                 <Row style={{marginLeft: "50px"}}>
                     <h6>Awaiting Second Diagnosis</h6>
                     <h6>Awaiting Second Diagnosis</h6>
