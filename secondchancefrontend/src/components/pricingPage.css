@@ -1,31 +1,71 @@
 @media(min-width: 768px) {
+    .pageSizer
+    {
+        padding: 0px;
+        margin:0px;
+        border: 0px;
+        height: 500px;
+        width: 300px;
+    }
+    .MoveOneSmallPriceDown
+    {
+        height: 50px;
+    }
+    .OneSmallPriceText
+    {
+        font-size: 55px;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        margin-left: 10%;
+        background: rgba(255, 255, 255, .7);
+        width: 1600px;
+
+
+
+    }
+    .PriceText
+    {
+        color: white;
+        margin-left: 30%;
+        font-size:75px;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .approvalSeal
+    {
+        background-image: url("./images/guarantee_price_page.png");
+        height: 300px;
+        width: 360px;
+        z-index: 99;
+        marginLeft: 70%;
+
+        background-repeat: no-repeat;
+    }
+
     .PricingInfoLayer
     {
         width: 1920px;
-        height: 485px;
-        bottom: 0px;
+        height: 350px;
         border: 2px solid black;
-        background: rgba(0,0,0, 1);
+        background: rgba(0,0,0, 0.9);
         z-index: 9999 !important;
-        color: white;
         margin: auto;
-        position: fixed;
     }
 
     .PricingFixedBackgroundImg
     {
         background-image: url("./images/pricing_page_background.jpg");
-        /* 1K res */
-        height: 475px;
+        /* Full height */
+        height: 520px;
         width: 1920px;
-        top:0px;
-        position: fixed;
         z-index: -1 !important;
+
         /* Create the parallax scrolling effect */
         background-attachment: fixed;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
+
 
     }
 
@@ -36,26 +76,58 @@
 
 
 @media(min-width: 2000px) {
+    .pageSizer
+    {
+        padding: 0px;
+        margin:0px;
+        border: 0px;
+        height: 1080px;
+    }
+    .MoveOneSmallPriceDown
+    {
+        height: 50px;
+    }
+    .OneSmallPriceText
+    {
+        font-size: 75px;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        margin-left: 10%;
+        background: rgba(255, 255, 255, .7);
+        width: 2000px;
+
+
+
+    }
+    .approvalSeal
+    {
+        background-image: url("./images/guarantee_price_page.png");
+        height: 300px;
+        width: 360px;
+        z-index: 99;
+        marginLeft: 70%;
+
+        background-repeat: no-repeat;
+    }
+
     .PricingInfoLayer
     {
-        width: 800px;
-        height: 1440px;
+        width: 2560px;
+        height: 500px;
         border: 2px solid black;
-        background: rgba(0,0,0, .8);
+        background: rgba(0,0,0, 0.9);
         z-index: 9999 !important;
-        color: white;
         margin: auto;
-        position: fixed;
     }
 
     .PricingFixedBackgroundImg
     {
         background-image: url("./images/pricing_page_background.jpg");
         /* Full height */
-        height: 1440px;
+        height: 741px;
         width: 2560px;
         z-index: -1 !important;
-        position: fixed;
+
         /* Create the parallax scrolling effect */
         background-attachment: fixed;
         background-position: center;
@@ -69,26 +141,58 @@
 }
 
 @media(min-width: 3000px) {
+    .pageSizer
+    {
+        padding: 0px;
+        margin:0px;
+        border: 0px;
+        height: 1080px;
+    }
+    .MoveOneSmallPriceDown
+    {
+        height: 400px;
+    }
+    .OneSmallPriceText
+    {
+        font-size: 75px;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        margin-left: 10%;
+        background: rgba(255, 255, 255, .7);
+        width: 2000px;
+
+
+
+    }
+    .approvalSeal
+    {
+        background-image: url("./images/guarantee_price_page.png");
+        height: 300px;
+        width: 360px;
+        z-index: 99;
+        marginLeft: 70%;
+
+        background-repeat: no-repeat;
+    }
+
     .PricingInfoLayer
     {
-        width: 800px;
-        height: 2160px;
+        width: 2560px;
+        height: 500px;
         border: 2px solid black;
-        background: rgba(0,0,0, .8);
+        background: rgba(0,0,0, 0.9);
         z-index: 9999 !important;
-        color: white;
         margin: auto;
-        position: fixed;
     }
 
     .PricingFixedBackgroundImg
     {
         background-image: url("./images/pricing_page_background.jpg");
         /* Full height */
-        height: 2160px;
-        width: 3840px;
+        height: 741px;
+        width: 2560px;
         z-index: -1 !important;
-        position: fixed;
+
         /* Create the parallax scrolling effect */
         background-attachment: fixed;
         background-position: center;
@@ -97,6 +201,5 @@
 
 
     }
-
 
 }

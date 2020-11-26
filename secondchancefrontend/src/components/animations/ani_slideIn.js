@@ -25,7 +25,7 @@ export function SlidePageTransitionAnimation(incomingFunction, angle) {
     else if(angle == "up")
     {
         eA = "0%";
-        eB = "100";
+        eB = "100%";
         eC = "0";
 
         fA = "0%";
@@ -35,19 +35,19 @@ export function SlidePageTransitionAnimation(incomingFunction, angle) {
     }
     else if(angle == "down")
     {
-        console.log("DDDDDD");
         eA = "0%";
-        eB = "0%";
-        eC = "0%"
+        eB = "-100%";
+        eC = "0"
 
         fA = "0%";
-        fB = "-100%";
+        fB = "0";
         fC = "0";
     }
 
     let transitions = useTransition(index, p => p, {
         from: { opacity: 0, transform: `translate3d(${eA},${eB},${eC})` },
         enter: { opacity: 1, transform: `translate3d(${fA},${fB},${fC})` },
+        leave: { opacity: 0, transform: 'translate3d(0%,0%,0)' },
     })
 
     let pages = [

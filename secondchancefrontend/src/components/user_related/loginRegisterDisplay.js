@@ -25,13 +25,15 @@ export class LoginRegisterDisplay extends React.Component {
             isLoading: true,
             hospitalNameArr: []
         }
-
+        this.checkSelectedDayOfMonth = '';
+        this.catOfMonthYear = '';
+        this.isOverflowedDayOfMonth = false;
         this.data = {};
 
         //this.data.hospitalNameArr= ["Cleveland Clinic", "Johns Hopkins Hospital", "Mayo Clinic", "UCLA Medical Center"];
 
         this.data.date= {
-            month: ["January", "February", "April", "May", "June", "July", "August", "September", "October",
+            month: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
                 "November", "December"],
 
             day: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17",
@@ -40,6 +42,10 @@ export class LoginRegisterDisplay extends React.Component {
             year:[]
         };
         this.data.userMode = this.props.userMode;
+    }
+    getDaysInMonth = function(month, year)
+    {
+        return new Date(year, month, 0).getDate();
     }
 
     setCurrentYear = () =>
@@ -80,7 +86,12 @@ export class LoginRegisterDisplay extends React.Component {
         const numericalBirthMonth = this.GetNumericalMonth(data.selectedBirthMonth);
         const convertedBirthdate = new Date(data.selectedBirthYear, numericalBirthMonth, data.selectedBirthDay,
             0,0,0,0);
-
+        this.checkSelectedDayOfMonth = data.selectedBirthDay;
+        if(data.selectedBirthDay > this.getDaysInMonth(numericalBirthMonth, data.selectedBirthYear))
+        {
+            this.isOverflowedDayOfMonth = true;
+        }
+        this.catOfMonthYear = data.selectedBirthMonth + " " + data.selectedBirthYear;
         const currentDate = new Date();
 
         let calculatedAge = currentDate.getTime() - convertedBirthdate.getTime();
@@ -95,15 +106,17 @@ export class LoginRegisterDisplay extends React.Component {
 
     handleSubmit = () => {
         const data = this.iter_over_items();
-
-
         const calculatedAge = this.GetAge(data);
-        if(data.password != data.repassword)
+
+        if(this.isOverflowedDayOfMonth == true)
         {
-            alert("Password and Re-Password does NOT match. You entered Password: " + data.password + ", Re-Passwrd: " + data.repassword);
+            alert(this.catOfMonthYear + " does not have " + this.checkSelectedDayOfMonth + " days.");
         }
-        else
-            if(this.props.userMode == 'Physician' || this.props.userMode == 'Doctor') {
+        else {
+            if (data.password != data.repassword) {
+                alert("Password and Re-Password does NOT match. You entered Password: " +
+                    data.password + ", Re-Passwrd: " + data.repassword);
+            } else if (this.props.userMode == 'Physician' || this.props.userMode == 'Doctor') {
                 const requestOptions = {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
@@ -112,18 +125,6 @@ export class LoginRegisterDisplay extends React.Component {
                         "phy_bio": data.bio, "phy_addr": "12345", "phy_qual": data.speciality,
                         "email": data.email, "password": data.password
                     })
-                    /*
-                    npi -
-                    username
-                    name
-                    bio
-                    address
-                    qualifications
-                    review count
-                    email
-                    password
-                    */
-
 
                 };
                 console.log(requestOptions);
@@ -132,22 +133,15 @@ export class LoginRegisterDisplay extends React.Component {
                     .then(response => console.log(response.text()))
 
 
-
-            }else{
+            } else {
                 const requestOptions = {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({"username": data.email,pat_age: calculatedAge, "pat_sex": "NA",
-                        "pat_medical_history":data.bio, "pat_name": data.firstName + " " + data.lastName, "email": data.email, "password": data.password,})
-                    /*
-                    username
-                    pat_age
-                    pat_sex
-                    pat_medical_history - bio
-                    pat_name
-                    email
-                    password
-                    */
+                    body: JSON.stringify({
+                        "username": data.email, pat_age: calculatedAge, "pat_sex": "NA",
+                        "pat_medical_history": data.bio, "pat_name": data.firstName + " " + data.lastName,
+                        "email": data.email, "password": data.password,
+                    })
 
 
                 };
@@ -155,17 +149,18 @@ export class LoginRegisterDisplay extends React.Component {
                 fetch("http://52.247.220.137:80/client", requestOptions)
                     .then(response => response.text())
                     .then(response => {
-                            if (response == "email exists"){
+                            if (response == "email exists") {
                                 alert("The email already exists");
                                 //window.location.reload(false);
                             }
                         }
-
                     );
             }
 
 
+        }
 
+        this.isOverflowedDayOfMonth = false;
 
     }
 

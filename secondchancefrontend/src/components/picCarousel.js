@@ -51,7 +51,7 @@ export class PicCarousel extends React.Component
                     <Carousel.Item>
                         <div style={{width: "70%", margin: "auto"}}>
                         <img
-                            style={{maxHeight:"1080px", maxWidth:"1920px"}}
+                            style={{height:"1080px", width:"1920px"}}
                             key={index}
                             className="d-block w-100"
                             src={selectedPic.valueURL}
@@ -84,12 +84,12 @@ export class PicCarousel extends React.Component
                        size = {'xl'}
                 >
                     <Modal.Header>
-                        Case Pictures
+                        <h2>Case Pictures</h2>
                         <Button onClick={()=>{this.handleModal()}}>
                             Close
                         </Button>
                     </Modal.Header>
-                    <Modal.Body>
+                    <Modal.Body style={{background:`rgba(0, 0, 0, 0.7)`}}>
 
                         <Carousel>
                             {this.loopCarouselItem()}

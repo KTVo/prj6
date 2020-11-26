@@ -12,6 +12,7 @@ import 'mdbreact/dist/css/mdb.css';
 import 'mdbreact/dist/css/style.css';
 import './caseCreation/fixedBackground_caseCreationPage.css';
 
+
 export class Dr_CaseCreation extends React.Component
 {
     constructor(props) {
@@ -23,13 +24,15 @@ export class Dr_CaseCreation extends React.Component
                 people1: [],
                 patientRecords: [],
                 is_rec_loading: true,
-                record_id: this.props.userInfo.record_id
+                record_id: this.props.userInfo.record_id,
+                submitButtonClicked: false
             };
         this.data = {
             pics: '',    //Images of the patient for the case
             userID: '1', //0 -> Doctor User, 1 -> Patient User
             show: false,
-            prim_case_description: ''
+            prim_case_description: '',
+
 
         };
 
@@ -86,16 +89,11 @@ export class Dr_CaseCreation extends React.Component
     {
         console.log(this.data.userID + " - pat - " + this.patModeID);
 
-        if(this.data.userID === this.patModeID)
-        {
-            return <h3 style={{display:"inline"}}>Category for Second Opinion:</h3>
-        }
-        else
-        {
-            return <h3 style={{display:"inline"}}>Category:</h3>
-        }
+
+        return <h3 style={{display:"inline"}}>Select Category for Second Opinion:</h3>
 
     }
+
 
     viewOrAddPicMode = () =>
     {
@@ -119,9 +117,9 @@ export class Dr_CaseCreation extends React.Component
             return (
                 <div>
                     <label>
-                        Description (Optional):
+                        <div style={{fontWeight: "bold", fontSize: "30px"}}>Description (Optional):</div>
                         <br/>
-                        <textarea name="pat_notes" rows="5" cols="100" value={this.state.pat_notes}
+                        <textarea name="pat_notes" rows="15" cols="150" value={this.state.pat_notes}
                                   onChange={this.handleInputChange}/>
                     </label>
                 </div>
@@ -132,9 +130,11 @@ export class Dr_CaseCreation extends React.Component
         {
             return(
                 <label>
-                    Description:
+                    <div style={{fontWeight: "bold", fontSize: "30px"}}>Description:</div>
                     <br />
-                    <textarea  name="pat_notes" rows="20" cols="100" value={this.state.pat_notes} onChange={this.handleInputChange}/>
+                    <textarea  name="pat_notes" rows="13" cols="150" value={this.state.pat_notes}
+                               onChange={this.handleInputChange}/>
+                    <div style={{height:"40px"}}/>
                 </label>
             );
         }
@@ -156,20 +156,23 @@ export class Dr_CaseCreation extends React.Component
          */
 
         return(
-            <div>
-                <PatientSlidePanel pat_data={this.data}/>
-                <Form style={{textAlign:"center"}}>
+            <div className={"FixedBackgroundImgCaseCreation"}>
+
+
+                <Form style={{zIndex: "10", textAlign:"center", background: `rgba(255, 255, 255, 0.7)`}} >
+                    <PatientSlidePanel pat_data={this.data}/>
                     {this.pageTitleUserDisplay()}
                     <br />
 
 
                     <Container style={{width:"1000px", margin:"auto", border:"0px"}}>
                         <Row>
-                            <h4 style={{textAlign:"left", paddingLeft:"30px"}}>Note: </h4>
+                            <h4 style={{textAlign:"left", paddingLeft:"30px", fontSize:"30px",
+                                fontWeight:"bold"}}>Note: </h4>
                         </Row>
 
                         <Row style={{paddingLeft:"50px"}}>
-                                <h4 style={{textAlign:"left"}}>
+                                <h4 style={{textAlign:"left", fontSize:"20px", fontWeight:"bold"}}>
                                     An Identifying Number will be generated for this case on the servers once created.
                                 </h4>
                         </Row>
@@ -210,7 +213,7 @@ export class Dr_CaseCreation extends React.Component
                             </Form.Label>
                         </Col>
                         <Col>
-                            {this.categoryTitleUserDisplay()}
+                            <h3 style={{marginLeft:"170px"}}>Select the case:</h3>
 
                             <Form.Label style={{width: "500px", marginLeft:"45%", marginRight:"1px"}}>
                                 <Form.Control name={"record_id"} as={"select"} defaultValue={"1"}
@@ -235,12 +238,12 @@ export class Dr_CaseCreation extends React.Component
 
                     {this.descriptionTitleUserDisplay()}
 
-                    <br />
-
+                    {(this.state.submitButtonClicked) && <div style={{fontSize: "60px"}}>Case Submitted.</div>}
+                    <div style={{border:"0px", margin:"0px", padding:"0px"}}/>
                     <Button name="submit" style={{display:"inline"}} onClick={this.handleSubmit}>Submit</Button>
 
-
                 </Form>
+
             </div>
         );
     }
@@ -264,7 +267,7 @@ export class Dr_CaseCreation extends React.Component
         event.preventDefault();
 
         let selectedDr = JSON.parse(sessionStorage.getItem('selectedDoctorIndx'));
-        let selectedNPI = 0;
+
         console.log("SELECTED DOCTOR");
         console.log(selectedDr)
         //selectedNPI = this.state.people1[selectedDr];
@@ -288,6 +291,8 @@ export class Dr_CaseCreation extends React.Component
         fetch("http://52.247.220.137/record_assessment", requestMethods)
             .then(ResPendingRec => ResPendingRec.text())
             .then(s => {
+                console.log("Message from Backend after Primary Dr. Submits");
+                console.log(s);
                 if (s == "record updated") {
                     this.setState({responsestatus: "success"})
                 }
@@ -298,6 +303,7 @@ export class Dr_CaseCreation extends React.Component
 
             })
 
+            this.setState({submitButtonClicked: true})
 
 
     }
@@ -307,8 +313,7 @@ export class Dr_CaseCreation extends React.Component
         console.log("from dr Case Submission modeID = " + this.props.userInfo.modeID);
         console.log("from dr Case Submission = " + this.props.userInfo.userID);
         return(
-            <div style={{border: "1px solid ", background: `rgba(0, 0, 0, 0.7)`, height:"1080px"}}>
-                <div className={"FixedBackgroundImgCaseCreation"} />
+            <div>
                 <div style={{position: "absolute"}}>
                     {this.drCaseCreationComponents()};
                 </div>

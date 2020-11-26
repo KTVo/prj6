@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {MDBInput} from 'mdbreact';
 import {Button, Form, Modal, Container, Row, Col} from 'react-bootstrap';
 import {MultiBrowsePic} from '../multiBrowsePic';
@@ -59,6 +59,9 @@ export class Payment_Form extends React.Component {
     handleInputFocus = (e) => {
         this.setState({ focus: e.target.name });
     }
+
+
+
 
     render()
     {

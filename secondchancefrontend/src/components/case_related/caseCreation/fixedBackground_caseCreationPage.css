@@ -3,7 +3,7 @@
         background-image: url("../caseCreation/BackgroundCaseCreation.jpg");
 
         /* 1K res */
-        height: 1080px;
+        height: 900px;
         width: 1550px;
 
         /* Create the parallax scrolling effect */
@@ -11,6 +11,7 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
+
 
     }
 
@@ -23,7 +24,7 @@
         background-image: url("../caseCreation/BackgroundCaseCreation.jpg");
 
         /* 1K res */
-        height: 1080px;
+        height: 900px;
         width: 1920px;
 
         /* Create the parallax scrolling effect */
@@ -41,7 +42,7 @@
         background-image: url("../caseCreation/BackgroundCaseCreation.jpg");
 
         /* Full height */
-        height: 1440px;
+        height: 1225px;
         width: 2560px;
 
         /* Create the parallax scrolling effect */
@@ -60,7 +61,7 @@
         background-image: url("../caseCreation/BackgroundCaseCreation.jpg");
 
         /* Full height */
-        height: 2160px;
+        height: 1225px;
         width: 3840px;
 
         /* Create the parallax scrolling effect */

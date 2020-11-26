@@ -229,8 +229,6 @@ export function FullViewCase(caseDetails)
                    size = {'xl'}
             >
 
-
-
                 <Modal.Header>
                     Select Secondary Physician
 

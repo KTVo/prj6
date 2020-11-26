@@ -1,5 +1,5 @@
 //props will sent in a bunch of stuff
-import React from "react";
+import React, {useState} from "react";
 import {Container, Row, Col, Form, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap-grid.css';
 import 'react-bootstrap/dist/react-bootstrap';
@@ -107,11 +107,13 @@ function ShowRegistrationForm(props)
                     <Row>
                         <Col>
                             <Form.Label>Password</Form.Label>
-                            <Form.Control name="password" value={props.outerProps.data.password} type={"password"} placeholder={"Enter Password"} />
+                            <Form.Control name="password" value={props.outerProps.data.password} type={"password"}
+                                          placeholder={"Enter Password"} />
                         </Col>
                         <Col>
                             <Form.Label>Repeat Password</Form.Label>
-                            <Form.Control name="repassword" value={props.outerProps.data.repassword} type={"password"} placeholder={"Re-Enter Password"} />
+                            <Form.Control name="repassword" value={props.outerProps.data.repassword} type={"password"}
+                                          placeholder={"Re-Enter Password"} />
                         </Col>
                     </Row>
                 </Form.Group>
@@ -133,6 +135,7 @@ function ShowRegistrationForm(props)
                         <DropDownMenu name={"selectedBirthMonth"} dataArr = {props.outerProps.data.date.month} />
                     </Col>
                     <Col>
+
                         <DropDownMenu name={"selectedBirthDay"} dataArr = {props.outerProps.data.date.day} />
                     </Col>
                     <Col>
