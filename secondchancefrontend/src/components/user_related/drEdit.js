@@ -130,7 +130,7 @@ export class DrEdit extends React.Component
         })}
 
         return(
-            <Form.Label>
+            <Form.Label style={{color: "white"}}>
                 Select Clinic:
 
                 <br/>
@@ -262,21 +262,23 @@ export class DrEdit extends React.Component
     }
 
 
+
     render() {
 
         return (
-            <div className={"FixedBackgroundImgEdit"}>
+            <div>
+                <div className={"FixedBackgroundImgEdit"} />
                 <h2 style={{zIndex: "50", width:"100%", position: "fixed", marginBottom:"10%",
                     color: "white", textAlign: 'center',
                     background: `rgba(0,0,0,0.9)`}}><u>Edit Personal Info</u></h2>
-                <div style={{height:"40px"}}/>
                 {
                     !this.state.isLoading &&
-                <Container style={{background: `rgba(255,255,255,0.8)`}}>
+                <Container style={{background: `rgba(0,0,0,0.8)`, paddingTop:"0%", paddingBottom:"5%",
+                    paddingLeft:"5%", paddingRight:"5%"}}>
 
                     <Form onSubmit={this.handleSubmit} style={{fontSize:"30px", fontWeight:"bold"}}>
                         <br/>
-                        <Form.Label>
+                        <Form.Label style={{color: "white"}}>
                             Email:
                             <Form.Control as={"input"}
                                           name="email"
@@ -290,7 +292,7 @@ export class DrEdit extends React.Component
 
                         <br/>
 
-                        <Form.Label>
+                        <Form.Label style={{color: "white"}}>
                             Change Password:
                             <Form.Control as={"input"}
                                           name="password"
@@ -302,7 +304,7 @@ export class DrEdit extends React.Component
 
                         <br/>
 
-                        <Form.Label>
+                        <Form.Label style={{color: "white"}}>
                             Repeat Password:
                             <Form.Control as={"input"}
                                         name="repassword"
@@ -313,7 +315,7 @@ export class DrEdit extends React.Component
                         </Form.Label>
 
                         <br/>
-                        <Form.Label>
+                        <Form.Label style={{color: "white"}}>
                             Full Name:
                             <Form.Control as={"input"}
                                           name="name"
@@ -326,7 +328,7 @@ export class DrEdit extends React.Component
 
                         <br />
 
-                        <Form.Label>
+                        <Form.Label style={{color: "white"}}>
                             Age:
                             <Form.Control as={"input"}
                                           name="age"
@@ -344,10 +346,7 @@ export class DrEdit extends React.Component
                         {this.setDefaultHospital()}
 
 
-                        <br/>
 
-
-                        <br/><br/>
 
                         <div>
                             {
@@ -361,10 +360,10 @@ export class DrEdit extends React.Component
                                     </DropdownButton>
                                 }
                         </div>
-                        <br/>
+
 
                         { ( (this.props.userMode == 'physician') || (this.props.userMode == 'doctor') &&
-                            <Form.Label>
+                            <Form.Label  style={{color: "white"}}>
                                 Specialty:
                                 <Form.Control as={"input"}
                                               name="speciality"
@@ -377,7 +376,7 @@ export class DrEdit extends React.Component
                         )}
 
                         <br/>
-                        <Form.Label>Bio:</Form.Label>
+                        <Form.Label style={{color: "white"}}>Bio:</Form.Label>
                         <Form.Control as="textarea" name="bio" value={this.state.bio} ref="newText"
                                       style={{rows: "10", cols: "10"}} onChange={this.handleInputChange}></Form.Control>
 

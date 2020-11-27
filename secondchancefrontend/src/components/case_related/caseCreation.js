@@ -6,7 +6,6 @@ import {Row, Col, Button, Form, Container} from 'react-bootstrap';
 
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import {Caller_SwipeCardAnimation} from '../card_related/caller_SwipeCardAnimation';
-
 import {PatientSlidePanel} from "../patientSidePanel";
 import 'mdbreact/dist/css/mdb.css';
 import 'mdbreact/dist/css/style.css';
@@ -320,6 +319,7 @@ export class CaseCreation extends React.Component
                         color: "white", textAlign: 'center',
                         background: `rgba(0,0,0,0.9)`}}><u>Case Creation</u></h2>
                     <div style={{height:"40px"}}/>
+
                     {this.drCaseCreationComponents()};
                 </div>
             </div>

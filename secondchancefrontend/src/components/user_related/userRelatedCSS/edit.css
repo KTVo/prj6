@@ -24,14 +24,16 @@
         background-image: url("./edit_4.jpg");
 
         /* 1K res */
-        height: 900px;
+        height: 1300px;
         width: 1920px;
 
         /* Create the parallax scrolling effect */
         background-attachment: fixed;
         background-position: center;
-        background-repeat: no-repeat;
+        background-repeat: repeat-y;
         background-size: cover;
+        position: absolute;
+        z-index: -1;
 
     }
 
