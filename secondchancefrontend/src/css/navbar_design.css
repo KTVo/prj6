@@ -56,11 +56,11 @@ body {
     }
 
     .MoveDoctorLinksRight{
-        width: 1080px;
+        width: 990px;
     }
 
     .MovePatientLinksRight{
-        width: 1080px;
+        width: 990px;
     }
 }
 @media(min-width: 2000px) {
@@ -79,10 +79,10 @@ body {
         width: 1780px;
     }
     .MoveDoctorLinksRight{
-        width: 1700px;
+        width: 1630px;
     }
     .MovePatientLinksRight{
-        width: 1700px;
+        width: 1630px;
     }
 }
 @media(min-width: 2561px) {
@@ -102,10 +102,10 @@ body {
         width: 1780px;
     }
     .MoveDoctorLinksRight{
-        width: 1700px;
+        width: 1630px;
     }
     .MovePatientLinksRight{
-        width: 1700px;
+        width: 1630px;
     }
 }
 

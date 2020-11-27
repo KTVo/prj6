@@ -15,8 +15,8 @@ export function SlidePageTransitionAnimation(tableSettings) {
     })
 
     let pages = [
-        ({ style }) => <animated.div style={{ ...style, background: 'white' }}><GenerateSortableTable incomingData={tableSettings.incomingData} /></animated.div>,
-        ({ style }) => <animated.div style={{ ...style, background: 'white' }}><GenerateSortableTable incomingData={tableSettings.incomingData} /></animated.div>,
+        ({ style }) => <animated.div style={{ ...style}}><GenerateSortableTable incomingData={tableSettings.incomingData} /></animated.div>,
+        ({ style }) => <animated.div style={{ ...style}}><GenerateSortableTable incomingData={tableSettings.incomingData} /></animated.div>,
 
     ]
 
@@ -27,7 +27,6 @@ export function SlidePageTransitionAnimation(tableSettings) {
                 return <Page key={key} style={props} />
             })}
 
-            <button onClick={onClick}>Animate</button>
         </div>
     )
 }

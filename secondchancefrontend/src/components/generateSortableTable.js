@@ -194,14 +194,17 @@ export class GenerateSortableTable extends React.Component
 
         return (
             <div>
+
                 {this.ConfirmCancelButtonHandle(this.state.record_assessment_id)}
-                <Container>
-                    { this.state.showAssessmentPageModal && <DrWritesSecondOpinion recordID={this.recordID}
-                                                                                   phy_id={this.props.phy_id}
-                                                                                   showAssessmentPageModal={this.state.showAssessmentPageModal}
-                                                                                   ShowAssessmentPageModalHandle = {this.ShowAssessmentPageModalHandle}
-                                                                                   reload_tables={() => this.LoadTables()}
-                                                                /> }
+                <Container style={{background: `rgba(255, 255, 255, 0.9)`}}>
+                    { this.state.showAssessmentPageModal &&
+                        <DrWritesSecondOpinion recordID={this.recordID}
+                                               phy_id={this.props.phy_id}
+                                               showAssessmentPageModal={this.state.showAssessmentPageModal}
+                                               ShowAssessmentPageModalHandle = {this.ShowAssessmentPageModalHandle}
+                                               reload_tables={() => this.LoadTables()}
+                                                                    />
+                    }
                     <ToolkitProvider
                         keyField="id"
                         data={ this.state.parsedJSONObj }
@@ -213,7 +216,7 @@ export class GenerateSortableTable extends React.Component
                         {
                             props => (
                                 <div>
-                                    <h3>Input something at below input field:</h3>
+                                    <h3>Search:</h3>
                                     <SearchBar { ...props.searchProps } />
                                     <hr />
                                     <BootstrapTable

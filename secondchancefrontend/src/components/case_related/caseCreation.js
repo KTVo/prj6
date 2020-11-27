@@ -13,7 +13,7 @@ import 'mdbreact/dist/css/style.css';
 import './caseCreation/fixedBackground_caseCreationPage.css';
 
 
-export class Dr_CaseCreation extends React.Component
+export class CaseCreation extends React.Component
 {
     constructor(props) {
         super(props);
@@ -90,7 +90,7 @@ export class Dr_CaseCreation extends React.Component
         console.log(this.data.userID + " - pat - " + this.patModeID);
 
 
-        return <h3 style={{display:"inline"}}>Select Category for Second Opinion:</h3>
+        return <h3 style={{display:"inline", fontSize:"25px", fontWeight:"bold"}}>Select Category for Second Opinion:</h3>
 
     }
 
@@ -119,7 +119,7 @@ export class Dr_CaseCreation extends React.Component
                     <label>
                         <div style={{fontWeight: "bold", fontSize: "30px"}}>Description (Optional):</div>
                         <br/>
-                        <textarea name="pat_notes" rows="15" cols="150" value={this.state.pat_notes}
+                        <textarea name="pat_notes" rows="10" cols="150" value={this.state.pat_notes}
                                   onChange={this.handleInputChange}/>
                     </label>
                 </div>
@@ -132,7 +132,7 @@ export class Dr_CaseCreation extends React.Component
                 <label>
                     <div style={{fontWeight: "bold", fontSize: "30px"}}>Description:</div>
                     <br />
-                    <textarea  name="pat_notes" rows="13" cols="150" value={this.state.pat_notes}
+                    <textarea  name="pat_notes" rows="10" cols="150" value={this.state.pat_notes}
                                onChange={this.handleInputChange}/>
                     <div style={{height:"40px"}}/>
                 </label>
@@ -156,10 +156,10 @@ export class Dr_CaseCreation extends React.Component
          */
 
         return(
-            <div className={"FixedBackgroundImgCaseCreation"}>
+            <div className={"FixedBackgroundImgCaseCreation"} >
+                <div style={{ background: `rgba(255, 255, 255, 0.7)`, height:"100%" }}>
 
-
-                <Form style={{zIndex: "10", textAlign:"center", background: `rgba(255, 255, 255, 0.7)`}} >
+                <Form style={{zIndex: "10", textAlign:"center"}} >
                     <PatientSlidePanel pat_data={this.data}/>
                     {this.pageTitleUserDisplay()}
                     <br />
@@ -213,7 +213,7 @@ export class Dr_CaseCreation extends React.Component
                             </Form.Label>
                         </Col>
                         <Col>
-                            <h3 style={{marginLeft:"170px"}}>Select the case:</h3>
+                            <h3 style={{marginLeft:"170px", fontSize:"25px", fontWeight:"bold"}}>Select the case:</h3>
 
                             <Form.Label style={{width: "500px", marginLeft:"45%", marginRight:"1px"}}>
                                 <Form.Control name={"record_id"} as={"select"} defaultValue={"1"}
@@ -243,7 +243,7 @@ export class Dr_CaseCreation extends React.Component
                     <Button name="submit" style={{display:"inline"}} onClick={this.handleSubmit}>Submit</Button>
 
                 </Form>
-
+                </div>
             </div>
         );
     }
@@ -314,7 +314,12 @@ export class Dr_CaseCreation extends React.Component
         console.log("from dr Case Submission = " + this.props.userInfo.userID);
         return(
             <div>
-                <div style={{position: "absolute"}}>
+
+                <div style={{position: "fixed"}}>
+                    <h2 style={{zIndex: "50", width:"100%", position: "fixed", marginBottom:"10%",
+                        color: "white", textAlign: 'center',
+                        background: `rgba(0,0,0,0.9)`}}><u>Case Creation</u></h2>
+                    <div style={{height:"40px"}}/>
                     {this.drCaseCreationComponents()};
                 </div>
             </div>

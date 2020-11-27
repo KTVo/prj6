@@ -3,6 +3,7 @@ import {Button, Form, Col, Row, Container, Collapse, DropdownButton, ButtonGroup
 import '../../css/hoverForText.css';
 import {MDBInput} from 'mdbreact';
 import 'bootstrap/dist/css/bootstrap.css';
+import './userRelatedCSS/edit.css';
 export class DrEdit extends React.Component
 {
     constructor(props) {
@@ -174,72 +175,80 @@ export class DrEdit extends React.Component
 
     handleSubmit = (event) => {
         event.preventDefault();
-
-        console.log("I am in handleSubmit(event) for from here is " + this.props.userMode)
-
-        if(this.state.passwordAuthorization == this.props.userInfo.password)
+        if(this.state.age < 0)
         {
-
-            if(this.props.userMode == "patient") {
-
-                //Run endpoint for submitting changes to backend
-                //"username", "age", "sex", "medical_history", "email", "password", "pat_id", "name"
-                console.log("DUUUUUE NOTGETTING PAT AGE!!");
-                console.log(this.state);
-                console.log("thiiiss props");
-                console.log(this.props);
-                const requestOptions = {
-                    method: 'PUT',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({
-                        "username": this.props.userInfo.username,
-                        "pat_name": this.state.name,
-                        "pat_age": this.state.age,
-                        "pat_sex": this.state.sex,
-                        "pat_medical_history": this.state.bio,
-                        "email": this.state.email,
-                        "password": this.props.userInfo.password,
-                        "pat_id": this.props.userInfo.pat_id
-                    })
-                };
-
-                fetch("http://52.247.220.137:80/client", requestOptions)
-                    .then(response => console.log(response));
-
-            }
-            //Handles multiple namings
-            else if(this.props.userMode == "physician" || this.props.userMode == "doctor" )
-            {
-
-                console.log("Testing_physician PUT");
-
-                const requestOptions = {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({"npi": this.props.userInfo.npi, "username": this.props.userInfo.username,
-                        "phy_name": this.state.name, "phy_bio": this.state.bio,
-                        "phy_addr": this.props.userInfo.phy_addr, "phy_qual": this.state.speciality,
-                        "reviewCnt": 0, "email": this.props.userInfo.email, "password": this.props.userInfo.password,
-                        "phy_id": this.props.userInfo.phy_id, "hospital_id": this.props.userInfo.hospital_id})
-                };
-
-                fetch("http://52.247.220.137:80/physician", requestOptions)
-                    .then(response => console.log(response));
-
-
-            }
-
-
-            console.log("Look for state");
-            console.log(this);
-            alert("Changes have been submitted. Note for testing purposes, changes made to Password has been blocked at this time.");
+            alert("Age cannot be " + this.state.age);
         }
-        else
-        {
-            alert("Confirmation password does not match. Test Mode: Try " + this.props.userInfo.password);
+        else {
+            console.log("I am in handleSubmit(event) for from here is " + this.props.userMode)
+
+            if (this.state.passwordAuthorization == this.props.userInfo.password) {
+
+                if (this.props.userMode == "patient") {
+
+                    //Run endpoint for submitting changes to backend
+                    //"username", "age", "sex", "medical_history", "email", "password", "pat_id", "name"
+                    console.log("DUUUUUE NOTGETTING PAT AGE!!");
+                    console.log(this.state);
+                    console.log("thiiiss props");
+                    console.log(this.props);
+                    const requestOptions = {
+                        method: 'PUT',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({
+                            "username": this.props.userInfo.username,
+                            "pat_name": this.state.name,
+                            "pat_age": this.state.age,
+                            "pat_sex": this.state.sex,
+                            "pat_medical_history": this.state.bio,
+                            "email": this.state.email,
+                            "password": this.props.userInfo.password,
+                            "pat_id": this.props.userInfo.pat_id
+                        })
+                    };
+
+                    fetch("http://52.247.220.137:80/client", requestOptions)
+                        .then(response => console.log(response));
+
+                }
+                //Handles multiple namings
+                else if (this.props.userMode == "physician" || this.props.userMode == "doctor") {
+
+                    console.log("Testing_physician PUT");
+
+                    const requestOptions = {
+                        method: 'PUT',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({
+                            "npi": this.props.userInfo.npi,
+                            "username": this.props.userInfo.username,
+                            "phy_name": this.state.name,
+                            "phy_bio": this.state.bio,
+                            "phy_addr": this.props.userInfo.phy_addr,
+                            "phy_qual": this.state.speciality,
+                            "reviewCnt": 0,
+                            "email": this.props.userInfo.email,
+                            "password": this.props.userInfo.password,
+                            "phy_id": this.props.userInfo.phy_id,
+                            "hospital_id": this.props.userInfo.hospital_id
+                        })
+                    };
+
+                    fetch("http://52.247.220.137:80/physician", requestOptions)
+                        .then(response => console.log(response));
+
+
+                }
+
+
+                console.log("Look for state");
+                console.log(this);
+                alert("Changes have been submitted. Note for testing purposes, changes made to Password has been blocked at this time.");
+            } else {
+                alert("Confirmation password does not match. Test Mode: Try " + this.props.userInfo.password);
+            }
+
         }
-
-
     }
 
     SelectSexHandle(selectedSex)
@@ -256,15 +265,16 @@ export class DrEdit extends React.Component
     render() {
 
         return (
-            <div>
+            <div className={"FixedBackgroundImgEdit"}>
+                <h2 style={{zIndex: "50", width:"100%", position: "fixed", marginBottom:"10%",
+                    color: "white", textAlign: 'center',
+                    background: `rgba(0,0,0,0.9)`}}><u>Edit Personal Info</u></h2>
+                <div style={{height:"40px"}}/>
                 {
                     !this.state.isLoading &&
-                <Container>
+                <Container style={{background: `rgba(255,255,255,0.8)`}}>
 
-                    <Form onSubmit={this.handleSubmit}>
-                        <Form.Label>
-                            Edit Personal Info
-                        </Form.Label>
+                    <Form onSubmit={this.handleSubmit} style={{fontSize:"30px", fontWeight:"bold"}}>
                         <br/>
                         <Form.Label>
                             Email:
@@ -294,7 +304,7 @@ export class DrEdit extends React.Component
 
                         <Form.Label>
                             Repeat Password:
-                            <Form.Label as={"input"}
+                            <Form.Control as={"input"}
                                         name="repassword"
                                         type="password"
                                         onChange={this.handleInputChange}

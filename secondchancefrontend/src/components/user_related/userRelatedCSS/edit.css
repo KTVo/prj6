@@ -1,0 +1,77 @@
+@media(min-width: 0px) {
+    .FixedBackgroundImgEdit{
+        background-image: url("./edit_4.jpg");
+
+        /* 1K res */
+        height: 900px;
+        width: 1550px;
+
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+
+    }
+
+
+
+}
+
+@media(min-width: 1920px) {
+    .FixedBackgroundImgEdit{
+        background-image: url("./edit_4.jpg");
+
+        /* 1K res */
+        height: 900px;
+        width: 1920px;
+
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    }
+
+}
+
+@media(min-width: 2000px) {
+    .FixedBackgroundImgEdit{
+        background-image: url("./edit_4.jpg");
+
+        /* Full height */
+        height: 1225px;
+        width: 2560px;
+
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    }
+
+
+}
+
+@media(min-width: 3000px) {
+    .FixedBackgroundImgEdit{
+        background-image: url("./edit_4.jpg");
+
+        /* Full height */
+        height: 1225px;
+        width: 3840px;
+
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    }
+
+
+
+}

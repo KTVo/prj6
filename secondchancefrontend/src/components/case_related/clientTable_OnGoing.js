@@ -1,6 +1,6 @@
 import React from 'react';
 import {SlidePageTransitionAnimation} from '../animations/ani_reload_mgmt_table';
-
+import './caseManagement/caseManagement.css';
 export class ClientTable_OnGoing extends React.Component
 {
 
@@ -63,6 +63,7 @@ export class ClientTable_OnGoing extends React.Component
         console.log(this.props.userInfo.pat_id);
         return (
             <div>
+                <div className={"CaseMgmtFixedBackgroundImg"} />
                 <SlidePageTransitionAnimation incomingData={this.data} />
             </div>
         );

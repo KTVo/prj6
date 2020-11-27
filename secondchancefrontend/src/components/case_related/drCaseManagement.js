@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './caseManagement/caseManagement.css';
 
 import {GenerateSortableTable} from '../generateSortableTable';
 
@@ -77,6 +77,7 @@ export class DrCaseManagement extends React.Component
     render() {
         return (
             <div>
+                <div className={"CaseMgmtFixedBackgroundImg"} />
                 <GenerateSortableTable incomingData = {this.data} phy_id={this.props.userInfo.phy_id}/>
             </div>
         );

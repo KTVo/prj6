@@ -19,7 +19,11 @@ export class ClientCaseManagement extends React.Component
 
       return(
           <div>
-              <h2 style={{textAlign: 'center'}}><u>Patient Case Management</u></h2>
+              <div className={"CaseMgmtFixedBackgroundImg"} />
+              <h2 style={{zIndex: "50", width:"100%", position: "fixed", marginBottom:"10%",
+                  color: "white", textAlign: 'center',
+                  background: `rgba(0,0,0,0.9)`}}><u>Patient Case Management</u></h2>
+              <div style={{height:"40px"}}/>
               <ClientTable_OnGoing userInfo = {this.props.userInfo}/>
 
           </div>
