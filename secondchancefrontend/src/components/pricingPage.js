@@ -1,7 +1,7 @@
 import React from "react";
 import {SlidePageTransitionAnimation} from './animations/ani_slideIn';
 import './pricingPage.css';
-
+import majorCreditCardImg from "./payment/payment_pics/major_credit_cards_pic.png";
 export function Pricing() {
 
     function ShowBackgroundPricingImg()
@@ -18,6 +18,9 @@ export function Pricing() {
     {
         return(<div className={"PricingInfoLayer"}>
             <div className={"PriceText"} style={{fontFamily:"Didot"}}>Only $150 per Diagnosis! </div>
+            <div style={{height:"40%"}} />
+            <img style={{marginLeft:"40%", height: "25%", width: "20%", objectFit: "fill"}} src={majorCreditCardImg}/>
+
 
         </div>);
     }

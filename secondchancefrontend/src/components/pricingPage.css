@@ -42,6 +42,19 @@
         background-repeat: no-repeat;
     }
 
+
+    .MajorCreditCardsPic
+    {
+        background-image: url("./payment/payment_pics/major_credit_cards_pic.png");
+
+        z-index: 99;
+        marginLeft: 70%;
+        background-attachment: fixed;
+        background-position: top right;
+        background-repeat: no-repeat;
+        background-position: center center
+    }
+
     .PricingInfoLayer
     {
         width: 1920px;
@@ -99,6 +112,14 @@
 
 
     }
+    .PriceText
+    {
+        color: white;
+        margin-left: 35%;
+        font-size:75px;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+    }
     .approvalSeal
     {
         background-image: url("./images/guarantee_price_page.png");
@@ -118,6 +139,7 @@
         background: rgba(0,0,0, 0.9);
         z-index: 9999 !important;
         margin: auto;
+
     }
 
     .PricingFixedBackgroundImg
@@ -163,6 +185,14 @@
 
 
 
+    }
+    .PriceText
+    {
+        color: white;
+        margin-left: 35%;
+        font-size:75px;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
     }
     .approvalSeal
     {
