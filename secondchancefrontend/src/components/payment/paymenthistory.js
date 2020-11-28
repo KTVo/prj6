@@ -71,7 +71,7 @@ function subtotal(items) {
 const rows = [
     //here is where one of the inputs will be pulled into the table
     // under description is what kind of service theyre getting
-    createRow('DescriptionId', 150.00),
+    createRow('Description ID', 150.00),
 ];
 //these functions do math to add up the total.
 //Not sure if you'll need them since its going to be backend data
@@ -92,7 +92,7 @@ export function Paymenthistory() {
                 <TableHead>
                     <TableRow>
                         <TableCell align="center" colSpan={3}>
-                            <h1>
+                            <h1 style={{marginLeft: "25%"}}>
                                 Payment History
                             </h1>
                         </TableCell>
@@ -101,9 +101,9 @@ export function Paymenthistory() {
 
                     <TableRow>
                         <TableCell>Description:</TableCell>
-                        <TableCell align="right">Price:</TableCell>
+                        <TableCell align="right">Price (USD):</TableCell>
                         <TableCell align="right"> </TableCell>
-                        <TableCell align="right">Sum:</TableCell>
+                        <TableCell align="right">Sum (USD):</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -132,7 +132,7 @@ export function Paymenthistory() {
                         <TableCell align="right">{ccyFormat(invoiceTotal)}</TableCell>
                     </TableRow>
                     <TableRow>
-                        <TableCell align="left">Doctor: the doctor id </TableCell>
+                        <TableCell align="left">Secondary Physician: the doctor id </TableCell>
                     </TableRow>
                         <TableCell align="left">Card Number: **** **** **** 1234</TableCell>
                     <TableRow>
