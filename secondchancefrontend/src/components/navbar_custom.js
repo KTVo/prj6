@@ -10,7 +10,8 @@ import {Contact} from '../components/contact';
 import {DrEdit} from "./user_related/drEdit";
 import '../css/navbar_design.css';
 import {Homepage} from "./homepage";
-import {Pricing} from './pricingPage';
+import {Pricing} from './pricingPage'
+import {Paymenthistory} from './payment/paymenthistory';
 
 import {Patient_CaseCreation} from './case_related/patient_CaseCreation';
 import{Dr_CaseCreation} from './case_related/dr_CaseCreation';
@@ -96,6 +97,9 @@ export default class NavbarClass extends React.Component
 
                             <Link to={"/clientCaseMgmt"}>Client Case Management</Link>
 
+                            <Link to="/paymenthistory">Payment History</Link>
+
+
 
                         </nav>
                         <Switch>
@@ -105,7 +109,9 @@ export default class NavbarClass extends React.Component
                             <Route exact path={'/pricing'} component={() => <Pricing/>}></Route>
                             <Route exact path={'/clientCaseMgmt'} component={() => <ClientCaseManagement userInfo = {this.state.userData}/>}></Route>
                             <Route exact path={'/caseCreate'} component={() => <Patient_CaseCreation userInfo = {this.state.userData}/>}></Route>
+                            <Route exact path={'/paymenthistory'} component={() => <Paymenthistory/>}></Route>
                             <Redirect to={'/'} />
+
                         </Switch>
                     </div>
                 </Router>
