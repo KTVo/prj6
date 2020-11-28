@@ -17,36 +17,36 @@ const useStyles = makeStyles({
     },
 });
 // ~~~~~goal is to use this to pull backend data to front end to be displayed~~~~
-// export function PaymentInfo(props)
-// {
-//
-//     //Calls to endpoint for payment info
-//     console.log("Testing all payment history information");
-//     const requestOptions = {
-//         method: 'POST',
-//         headers: {'Content-Type': 'application/json'},
-//         body: JSON.parse({"some kind of payment id":1})
-//     };
-//
-//     fetch("http://52.247.220.137:80/get_all_physician_records",requestOptions)
-//         .then(response => response.json())
-//         .then(
-//             (result) =>
-//             {
-//                 class PaymentInfo {
-//                     PaymentInfo.description = DescriptionId;
-//                     PaymentInfo.doctorID = DoctorId;
-//                     PaymentInfo.price = PriceId;
-//                 }
-//
-//
-//
-//
-//
-//             }
-//         );
-//
-// }
+export function PaymentInfo(props)
+{
+
+    //Calls to endpoint for payment info
+    console.log("Testing all payment history information");
+    const requestOptions = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.parse({"some kind of payment id":1})
+    };
+
+    fetch("http://52.247.220.137:80/get_all_physician_records",requestOptions)
+        .then(response => response.json())
+        .then(
+            (result) =>
+            {
+                class PaymentInfo {
+                    PaymentInfo.description = DescriptionId;
+                    PaymentInfo.doctorID = DoctorId;
+                    PaymentInfo.price = PriceId;
+                }
+
+
+
+
+
+            }
+        );
+
+}
 
 
 // fixes numbers to only 2 decimal places
