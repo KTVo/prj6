@@ -1,1 +1,1 @@
-* @minerest
+require 'minerest'
