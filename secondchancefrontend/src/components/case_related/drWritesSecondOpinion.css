@@ -1,0 +1,16 @@
+.SecondOpinionSubHeaderFont{
+    padding: 5px;
+    background: rgba(0,0,0, 0);
+    text-decoration: underline;
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.SecondOpinionInfoFont{
+    background: rgba(255,255,255, 1);
+    color: black;
+    font-weight: normal;
+    font-size: 20px;
+    z-index: 99;
+}

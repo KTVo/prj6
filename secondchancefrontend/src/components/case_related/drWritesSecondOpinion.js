@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, Form, Container, Row, Col, Modal} from 'react-bootstrap';
 import {MDBInput} from 'mdbreact';
 import '../../css/modalLarge.css';
+import './drWritesSecondOpinion.css';
 
 
 export class DrWritesSecondOpinion extends React.Component
@@ -93,7 +94,7 @@ export class DrWritesSecondOpinion extends React.Component
     showDrEditView = () =>
     {
         return(
-            <Container style={{width:"50%", margin:"auto"}}>
+            <Container style={{width:"75%", margin:"auto"}}>
                 <Form className={'loginForm'} onSubmit={this.handleSubmit}>
                     {this.SelectTitle()}
                     <br />
@@ -101,15 +102,58 @@ export class DrWritesSecondOpinion extends React.Component
                     <Container style={{width: "50%", margin:"auto"}}>
                         <Form.Label>
                             <Row>
-                                <Col  style={{width: "50%", margin:"auto", border: "1px", padding:"25px", borderStyle: "solid", borderColor: "black"}}>
-                                    <h3 style={{padding: "2px"}}>Fill in Second Diagnosis</h3>
-                                    <Row style={{padding:"5px"}}>Patient Name: {this.state.parsedJSON.pat_name}</Row>
-                                    <Row style={{padding:"5px"}}>Patient Sex: {this.state.parsedJSON.pat_sex}</Row>
-                                    <Row style={{padding:"5px"}}>Patient Age: {this.state.parsedJSON.pat_age}</Row>
-                                    <Row style={{padding:"5px"}}>Patient Email: {this.state.parsedJSON.email}</Row>
-                                    <Row style={{padding:"5px"}}>Record ID: {this.state.parsedJSON.record_id}</Row>
+                                <Col  style={{width: "50%", margin:"auto", border: "1px", padding:"25px",
+                                    borderStyle: "solid", borderColor: "black"}}>
+                                    <h3 style={{padding: "2px", background: `rgba(0,0,0, 1)`, color:"white",
+                                        fontWeight: "bold", fontSize:"30px"}}>Fill in the Second
+                                        <div style={{marginLeft: "20%"}}>Diagnosis</div></h3>
+                                    <Row>
+                                        <div className={"SecondOpinionSubHeaderFont"}>
+                                            Patient Name:
+                                        </div>
+                                        <div className={"SecondOpinionInfoFont"}>
+                                            {this.state.parsedJSON.pat_name}
+                                        </div>
+                                    </Row>
+                                    <Row>
+                                        <div className={"SecondOpinionSubHeaderFont"}>
+                                            Patient Sex:
+                                        </div>
+                                        <div className={"SecondOpinionInfoFont"}>
+                                            {this.state.parsedJSON.pat_sex}
+                                        </div>
+                                    </Row>
+                                    <Row>
+                                        <div className={"SecondOpinionSubHeaderFont"}>
+                                            Patient Age:
+                                        </div>
+                                        <div className={"SecondOpinionInfoFont"}>
+                                            {this.state.parsedJSON.pat_age}
+                                        </div>
+                                    </Row>
+                                    <Row>
+                                        <div className={"SecondOpinionSubHeaderFont"}>
+                                            Patient Email:
+                                        </div>
+
+                                        <div className={"SecondOpinionInfoFont"}>
+                                            {this.state.parsedJSON.email}
+                                        </div>
+                                    </Row>
+                                    <Row>
+                                        <div className={"SecondOpinionSubHeaderFont"}>
+                                            Record ID:
+                                        </div>
+
+                                        <div className={"SecondOpinionInfoFont"}>
+                                            {this.state.parsedJSON.record_id}
+                                        </div>
+                                    </Row>
                                     <br />
-                                    Patient Medical History:
+                                    <div className={"SecondOpinionSubHeaderFont"}>
+                                        Patient Medical History:
+                                    </div>
+
                                     <Container>
                                         <Row style={{border: "2px", padding:"25px", borderStyle: "solid", borderColor: "black"}}>
                                             {this.state.parsedJSON.pat_medical_history}</Row>

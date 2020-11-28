@@ -233,7 +233,7 @@ export function FullViewCase(caseDetails)
                     Select Secondary Physician
 
                 </Modal.Header>
-                <Modal.Body className={"CaseFullViewMainBackgroundImg"} style={{'max-height': 'calc(100vh - 210px)', 'overflow-y': 'auto'}}>
+                <Modal.Body style={{'max-height': 'calc(100vh - 210px)', 'overflow-y': 'auto'}}>
                     <Container >
                         <Button style={{marginLeft: "1000px"}}onClick={()=>{toggleShow(!show)}}>
                             Close
