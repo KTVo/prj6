@@ -199,7 +199,8 @@ credit_card = Table("credit_card", metadata,
                     Column("month", String(400)),
                     Column("year", String(400)),
                     Column("csc", String(400)),
-                    Column("company", String(400)))
+                    Column("company", String(400)),
+                    Column("pat_id", ForeignKey("patient.pat_id")))
 
 
 Payment = Table('payment', metadata,
@@ -208,7 +209,8 @@ Payment = Table('payment', metadata,
                 Column('record_assessment_id', Integer, ForeignKey('record_assessment.record_assessment_id')),
                 Column('total', Float),
                 Column('is_paid', Boolean),
-                Column("credit_card_id", Integer, ForeignKey("credit_card.credit_card_id"))
+                Column("credit_card_id", Integer, ForeignKey("credit_card.credit_card_id")),
+                Column("physician_id", Integer, ForeignKey("physician.phy_id"))
                 )
 
 
