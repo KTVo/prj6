@@ -23,8 +23,7 @@ export class DrWritesSecondOpinion extends React.Component
     }
 
     componentDidMount() {
-        //Convert these to props later
-        let doctorID = 1;
+
         let allCaseInfo = [];
         const requestOptions = {
             method: 'POST',
@@ -105,8 +104,9 @@ export class DrWritesSecondOpinion extends React.Component
                                 <Col  style={{width: "50%", margin:"auto", border: "1px", padding:"25px",
                                     borderStyle: "solid", borderColor: "black"}}>
                                     <h3 style={{padding: "2px", background: `rgba(0,0,0, 1)`, color:"white",
-                                        fontWeight: "bold", fontSize:"30px"}}>Fill in the Second
-                                        <div style={{marginLeft: "20%"}}>Diagnosis</div></h3>
+                                        fontWeight: "bold", fontSize:"30px", width:"100%"}}>
+                                        <div style={{marginLeft: "10%"}}>Fill in the Second</div>
+                                        <div style={{marginLeft: "25%"}}>Diagnosis</div></h3>
                                     <Row>
                                         <div className={"SecondOpinionSubHeaderFont"}>
                                             Patient Name:
@@ -214,7 +214,7 @@ export class DrWritesSecondOpinion extends React.Component
             <div>
 
                 <Modal show ={this.state.show}  dialogClassName="modal-xl" role="document"
-                    >
+                >
                     <Modal.Header>Case Assessment</Modal.Header>
                     <Modal.Body>
 
