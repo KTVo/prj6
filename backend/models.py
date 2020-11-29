@@ -195,7 +195,7 @@ records = Table('record', metadata,
 
 credit_card = Table("credit_card", metadata,
                     Column("credit_card_id", Integer, primary_key=True, autoincrement=True),
-                    Column("number", Integer),
+                    Column("number", String(4000)),
                     Column("month", String(400)),
                     Column("year", String(400)),
                     Column("csc", String(400)),
