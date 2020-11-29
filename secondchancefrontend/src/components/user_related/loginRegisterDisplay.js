@@ -115,7 +115,7 @@ export class LoginRegisterDisplay extends React.Component {
         else {
             if (data.password != data.repassword) {
                 alert("Password and Re-Password does NOT match. You entered Password: " +
-                    data.password + ", Re-Passwrd: " + data.repassword);
+                    data.password + ", Re-Password: " + data.repassword);
             } else if (this.props.userMode == 'Physician' || this.props.userMode == 'Doctor') {
                 const requestOptions = {
                     method: 'POST',

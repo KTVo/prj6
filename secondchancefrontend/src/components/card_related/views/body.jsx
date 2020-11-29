@@ -83,7 +83,7 @@ export default class Body extends Component {
                     <Modal.Header>
                         Select Secondary Physician
                         <Button onClick={()=>{this.handleModal()}}>
-                            Close
+                            Cancel
                         </Button>
                     </Modal.Header>
                     <Modal.Body>

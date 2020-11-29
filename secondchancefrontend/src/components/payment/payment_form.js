@@ -30,8 +30,38 @@ export class Payment_Form extends React.Component {
         this.taxRate = 0.08;
         this.total = this.subtotal + this.subtotal*this.taxRate;
     }
-    componentDidMount() {
+    async componentDidMount() {
+        //Getting record_id from props from generateSortableTable.js
+        let caseDetail = this.props.caseDetail;
+
+        console.log(caseDetail);
+
         //Insert API into here
+        // /paymententry
+        //fields
+        //pat_id, number, month, year, csv, company, record_assessment_id, total, phy_id
+        // fetch("http://52.247.220.137/paymententry",
+        //     {
+        //         method: 'PUT',
+        //         headers: {'Content-Type': 'application/json'},
+        //         body: {"record_assessment_id": caseDetail.record_assessment_id, month: this.state.exp_date.substring(2),
+        //             year:20 + this.state.exp_date.substring(this.state.exp_date.length-2),
+        //             number: this.state.credit_card_num, csc: this.state.cv_code, company: 'N/A', total: '150.00',
+        //             phy_id: caseDetail.phy_id}
+        //     });
+
+        // let results = await fetch("http://52.247.220.137/get_payment_patid",
+        //     {
+        //         method: 'POST',
+        //         headers: {'Content-Type': 'application/json'},
+        //         body: JSON.stringify({pat_id: "1"})
+        //     }
+        //     )
+        // console.log("2020");
+        // results = await results.json();
+        // console.log(results);
+
+
 
     }
 
@@ -44,10 +74,29 @@ export class Payment_Form extends React.Component {
 
         console.log(this.state);
 
+
+
+    }
+
+    handleSubmitPayment()
+    {
+        console.log("aaaaasss");
+        fetch("http://52.247.220.137/paymententry",
+            {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({record_assessment_id: "1", month: "03",
+                    year:20 + "69",
+                    number: "881565648", csc: "125", company: "N/A", total: "150.00",
+                    phy_id: "1", pat_id: "1"})
+            })
+            .then(response => response.json())
+            .then(response=> console.log(response));
     }
 
     showModalHandle()
     {
+
         this.setState(
             {
                 isShown: !this.state.isShown
@@ -137,7 +186,7 @@ export class Payment_Form extends React.Component {
                                             </Row>
 
 
-                                            <Button name="submit" style={{display:"inline"}} onClick={this.handleInputChange}>Submit</Button>
+                                            <Button name="submit" style={{display:"inline"}} onClick={()=>this.handleSubmitPayment()}>Submit</Button>
                                         </Container>
 
 

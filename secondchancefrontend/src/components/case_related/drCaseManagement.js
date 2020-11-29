@@ -63,7 +63,12 @@ export class DrCaseManagement extends React.Component
             dataField: 'payButton',
             text: 'Payment',
             sort: false
-        }];
+        },{
+            dataField: 'viewFullCaseButton',
+            text: 'FullCase',
+            sort: false
+        }
+        ];
 
         this.data.requestOptions = {
             method: 'POST',

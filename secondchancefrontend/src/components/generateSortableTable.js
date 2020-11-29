@@ -1,7 +1,9 @@
 import React from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
+import {Payment_Form} from './payment/payment_form';
 import {Button, Container, Modal} from 'react-bootstrap';
+import {FullViewCase} from "./case_related/fullViewCase";
 import {DrWritesSecondOpinion} from './case_related/drWritesSecondOpinion';
 import 'bootstrap/dist/css/bootstrap.css';
 const {SearchBar} = Search;
@@ -16,13 +18,19 @@ export class GenerateSortableTable extends React.Component
             error: null,
             showModal: false,
             record_assessment_id: null,
-            showAssessmentPageModal: false
+            showAssessmentPageModal: false,
+            showFullCasePageModal: false,
+            caseDetailForFullView: null
         };
 
         this.recordID = null;
         this.ShowAssessmentPageModalHandle = this.ShowAssessmentPageModalHandle.bind(this);
     }
 
+    componentDidMount()
+    {
+        console.log("password_is_plain_text");
+    }
 
     handleModal(status, record_assessment_id)
     {
@@ -105,6 +113,44 @@ export class GenerateSortableTable extends React.Component
     componentDidMount() {
         this.LoadTables();
     }
+//<FullViewCase caseDetails = {details} showFull = {showFullCase}/>
+    ShowFullCaseHandle(details)
+    {
+        console.log("heessss");
+        this.setState(
+            {
+                showFullCasePageModal: !this.state.showFullCasePageModal,
+                caseDetailForFullView: details
+            }
+        )
+    }
+    GetFullCaseView(details){
+        console.log(details);
+        return(<div>
+
+            <Modal show = {this.state.showFullCasePageModal}
+                   size = {'xl'}
+            >
+
+                <Modal.Header>
+                    <h1>Full Case View</h1>
+                    <Button style={{left: 0}}onClick={()=>{this.setState({showFullCasePageModal: !this.state.showFullCasePageModal})}}>
+                        Close
+                    </Button>
+                </Modal.Header>
+                <Modal.Body style={{'max-height': 'calc(100vh - 210px)', 'overflow-y': 'auto'}}>
+                    <Container >
+                        <FullViewCase caseDetails={this.state.caseDetailForFullView} />
+                    </Container>
+                </Modal.Body>
+                <Modal.Footer>
+
+                </Modal.Footer>
+            </Modal>
+
+        </div>);
+        console.log("bye");
+    }
 
     LoadTables()
     {
@@ -112,9 +158,13 @@ export class GenerateSortableTable extends React.Component
             .then(res => res.json())
             .then(
                 (result) => {
-
                     let l = result.length;
                     for (let i = 0; i < l; i++) {
+                        result[i].viewFullCaseButton = <Button onClick={
+
+                            ()=>{this.ShowFullCaseHandle(result[i], true)}
+                        }>View Case</Button>
+
                         if (result[i].status == "pending" && this.props.is_patient) {
                             result[i].cancelButton = <Button onClick={() => {
 
@@ -142,17 +192,9 @@ export class GenerateSortableTable extends React.Component
                         }
                         else if(result[i].status == "Awaiting Payment" && this.props.is_patient)
                         {
-                            result[i].payButton = <Button onClick={() => {
-                                fetch("http://52.247.220.137/pay",
-                                    {
-                                        method: 'PUT',
-                                        headers: {'Content-Type': 'application/json'},
-                                        body: JSON.stringify({"record_assessment_id": result[i].record_assessment_id})
-                                    }).then(() => alert("Payment Accepted!"))
-                                    .then(() => {
-                                        this.LoadTables();
-                                    });
-                            }}>Pay</Button>
+                            result[i].payButton = <Button onClick={() =>
+                               <Payment_Form caseDetail={result[i]}/>
+                            }>Pay</Button>
 
                         }
                         else if(result[i].status == "Diagnosing" && !this.props.is_patient) {
@@ -167,6 +209,7 @@ export class GenerateSortableTable extends React.Component
                             }
                             }>Create Assessment</Button>
                         }
+
                     }
                     this.setState({
                         parsedJSONObj: result
@@ -194,6 +237,7 @@ export class GenerateSortableTable extends React.Component
 
         return (
             <div>
+                {this.state.showFullCasePageModal && this.GetFullCaseView()}
 
                 {this.ConfirmCancelButtonHandle(this.state.record_assessment_id)}
                 <Container style={{background: `rgba(255, 255, 255, 0.9)`}}>

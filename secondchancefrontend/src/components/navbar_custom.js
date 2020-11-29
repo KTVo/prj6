@@ -148,8 +148,6 @@ export default class NavbarClass extends React.Component
 
                                 <Link to="/edit">Edit</Link>
 
-                                <Link to={"/caseCreate"}>Case Submission</Link>
-
                                 <Link to={"/doctorCaseMgmt"}>Doctor Case Management</Link>
 
                                 <Button onClick={()=>window.location.reload()}>Logout</Button>
@@ -160,7 +158,6 @@ export default class NavbarClass extends React.Component
                             <Route exact path={'/'} component={() => <Homepage userInfo = {this.state.userData}/>}></Route>
                             <Route exact path='/contact' component={() => <Contact userInfo = {this.state.userData}/>}></Route>
                             <Route exact path={'/edit'} component={() => <DrEdit userMode = {"doctor"} userInfo = {this.state.userData}/>}></Route>
-                            <Route exact path={'/caseCreate'} component={() => <CaseCreation userInfo = {this.state.userData}/>}></Route>
                             <Route exact path={'/doctorCaseMgmt'} component={() => <DrCaseManagement modeID = {this.state.modeID} userInfo = {this.state.userData}/>}></Route>
                             <Redirect to={'/'} />
 
