@@ -65,7 +65,7 @@ export class DrCaseManagement extends React.Component
             sort: false
         },{
             dataField: 'viewFullCaseButton',
-            text: 'FullCase',
+            text: 'View Case',
             sort: false
         }
         ];

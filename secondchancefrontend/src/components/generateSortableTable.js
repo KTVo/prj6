@@ -29,7 +29,7 @@ export class GenerateSortableTable extends React.Component
 
     componentDidMount()
     {
-        console.log("password_is_plain_text");
+
     }
 
     handleModal(status, record_assessment_id)
@@ -113,10 +113,9 @@ export class GenerateSortableTable extends React.Component
     componentDidMount() {
         this.LoadTables();
     }
-//<FullViewCase caseDetails = {details} showFull = {showFullCase}/>
+
     ShowFullCaseHandle(details)
     {
-        console.log("heessss");
         this.setState(
             {
                 showFullCasePageModal: !this.state.showFullCasePageModal,

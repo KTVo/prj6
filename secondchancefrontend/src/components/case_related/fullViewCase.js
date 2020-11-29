@@ -11,7 +11,9 @@ export class FullViewCase extends React.Component
         super(props);
         this.state =
             {
-                show: true
+                show: true,
+                showPaymentModal: false,
+                caseDetail: null
             }
         this.completeValue = "assessed";
         this.awaitPayValue = "awaiting payment";
@@ -24,6 +26,43 @@ export class FullViewCase extends React.Component
 
     }
 
+    ShowPaymentModalHandler(caseInfo)
+    {
+        this.setState(
+            {
+                showPaymentModal: !this.state.showPaymentModal,
+                caseDetail: caseInfo
+            }
+        )
+    }
+
+    GetPaymentModal()
+    {
+        return(
+            <div>
+                <Modal show = {this.state.showPaymentModal}
+                       size = {'xl'}
+                >
+
+                    <Modal.Header>
+                        <h1>Full Case View</h1>
+                        <Button style={{left: 0}}onClick={()=>{this.setState({showPaymentModal: !this.state.showPaymentModal})}}>
+                            Close
+                        </Button>
+                    </Modal.Header>
+                    <Modal.Body style={{'max-height': 'calc(100vh - 210px)', 'overflow-y': 'auto'}}>
+                        <Container >
+                            <FullViewCase caseDetails={this.state.caseDetail} />
+                        </Container>
+                    </Modal.Body>
+                    <Modal.Footer>
+
+                    </Modal.Footer>
+                </Modal>
+            </div>
+        )
+    }
+
     PageTitleBlock()
     {
         console.log(this.props.caseDetails.assessment);
@@ -33,13 +72,17 @@ export class FullViewCase extends React.Component
                 <Row>
                     <Container className={"CaseTitleBlock"}>
                         <h1 style={{color:"white"}}>Case ID: {this.props.caseDetails.record_assessment_id}</h1>
-                        <h1 style={{color:"white", textAlign:"center", float:"left" }}>Status:
+                        <h1 style={{color:"white"}}>Status:
                             {
 
                                 (this.props.caseDetails.assessment == this.completeValue) &&
-                                    <div style={{textAlign:"right", float:"right", display: "inline"}}>
-                                        <h2 style={{display: "inline", color:"#4BFF23",fontWeight:"bold"}}> Completed</h2>
-                                        <Button style={{marginLeft:"2%"}}>View Payment</Button>
+                                    <div>
+                                        <h2 style={{textAlign:"left", float:"left",color:"#4BFF23",fontWeight:"bold"}}> Completed</h2>
+                                        <div style={{textAlign:"right", float:"right", display: "inline"}}>
+                                            <Button
+                                                onClick={()=>this.ShowPaymentModalHandler(this.props.caseDetails)}>View Payment</Button>
+                                        </div>
+
                                     </div>
 
                             }
@@ -137,15 +180,15 @@ export class FullViewCase extends React.Component
     {
         return(
             <Container className={"IndividualBlock"}>
-                <Row>
-                    <Row style={{marginLeft: "10px"}}>
-                        <h3 style={{color:"white", fontFamily: "Times New Roman"}}><u>Secondary Diagnosis:</u></h3>
-                    </Row>
-                    <Row style={{marginLeft: "50px", color:"white", fontFamily: "Times New Roman"}}>
-                        <div style={{height:"85px"}} />
-                        <h5>{this.props.caseDetails.comment}</h5>
-                    </Row>
+
+                <Row style={{marginLeft: "10px"}}>
+                    <h3 style={{color:"white", fontFamily: "Times New Roman"}}><u>Secondary Diagnosis:</u></h3>
                 </Row>
+                <Row style={{marginLeft: "50px", color:"white", fontFamily: "Times New Roman"}}>
+                    <div style={{height:"85px"}} />
+                    <h5>{this.props.caseDetails.comment}</h5>
+                </Row>
+
             </Container>
         );
     }
@@ -171,7 +214,7 @@ render() {
         console.log("hello");
     return(
         <div>
-
+            {this.GetPaymentModal()}
             {this.PageTitleBlock()}
             <div style={{height:"30px"}}/>
             {this.PatientInfoBlock()}

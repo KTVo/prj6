@@ -45,7 +45,11 @@ export class ClientTable_OnGoing extends React.Component
             dataField: 'cancelButton',
             text: 'Cancel',
             sort: false
-            }];
+        },{
+            dataField: 'viewFullCaseButton',
+            text: 'View Case',
+            sort: false
+        }];
 
         this.data.requestOptions = {
             method: 'POST',
