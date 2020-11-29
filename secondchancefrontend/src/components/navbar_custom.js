@@ -58,10 +58,6 @@ export default class NavbarClass extends React.Component
 
                                 <Link to="/pricing">Pricing</Link>
 
-                                <Link to={"/payment"}>Payment</Link>
-
-                                <Link to={"/gotofullCaseView"}>Full Case View</Link>
-
                                 <Link to="/loginSelect">Login</Link>
 
                             </Nav>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import HammerArea from "../../hammer";
 import "../assets/body.scss";
-import {Button, Modal} from "react-bootstrap";
+import {Button, Modal, Col, Row, ButtonGroup} from "react-bootstrap";
 import Header from "./header";
 
 export default class Body extends Component {
@@ -16,16 +16,43 @@ export default class Body extends Component {
       is_moving: false,
       show_status: 0,
       scroll: "",
-        show: false
+        show: false,
+        helpUserIsShown: false
 
     };
     this.data ={}
     this.data.cntIndexCard = 0;
     this.data.numElements = dataList.length;
     this.data.hadChosen = false;
+
   }
 
 
+    helpUserInfo()
+    {
+
+
+        return(
+            <Modal show = {this.state.helpUserIsShown}
+                   size = {'xl'}
+            >
+                <Modal.Header>
+                    <h1>How to Select a Physician:</h1>
+                    <Button onClick={()=>{this.setState({helpUserIsShown: !this.state.helpUserIsShown})}}>
+                        Close
+                    </Button>
+                </Modal.Header>
+                <Modal.Body>
+                    <h3 style={{marginBottom: "10px"}}>Tip 1: Click & Drag the image to the LEFT to swap for a different doctor.</h3>
+                    <h3>Tip 2: Click & Drag the image to the RIGHT to select that doctor to diagnose your case.</h3>
+                </Modal.Body>
+                <Modal.Footer>
+
+                </Modal.Footer>
+            </Modal>
+        )
+
+    }
 
     handleModal()
     {
@@ -72,6 +99,7 @@ export default class Body extends Component {
 
         return(
             <div>
+                {this.helpUserInfo()}
                 <Button onClick={()=>{this.handleModal()}}>
                     Select Physician
                 </Button>
@@ -81,13 +109,16 @@ export default class Body extends Component {
                        size = {'xl'}
                 >
                     <Modal.Header>
-                        Select Secondary Physician
-                        <Button onClick={()=>{this.handleModal()}}>
-                            Cancel
-                        </Button>
+                        <h1>Select Secondary Physician</h1>
+                        <ButtonGroup>
+                            <Button onClick={()=>this.setState({helpUserIsShown: !this.state.helpUserIsShown})}>Need Help?</Button>
+                            <Button onClick={()=>{this.handleModal()}}>
+                                Cancel
+                            </Button>
+                        </ButtonGroup>
+
                     </Modal.Header>
                     <Modal.Body>
-
                         <Header />
                         {this.ShowContentsOfBody()}
                     </Modal.Body>
