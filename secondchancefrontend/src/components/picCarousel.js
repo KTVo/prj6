@@ -78,7 +78,8 @@ export class PicCarousel extends React.Component
         return(
             <div>
 
-                <Button onClick={()=>{this.handleModal()}}>Show Pictures</Button>
+                <Button className={"ShowMedicalImgButton"} style={{marginLeft: "25%", color:"white",
+                    fontFamily: "Times New Roman"}} onClick={()=>{this.handleModal()}}>Show Medical Images</Button>
 
                 <Modal show = {this.state.show}
                        size = {'xl'}

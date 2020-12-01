@@ -1,5 +1,7 @@
 import React from 'react';
 import {Container, Row, Col, Button, Modal} from 'react-bootstrap';
+import {PicCarousel} from '../picCarousel';
+import {Paymenthistory} from '../payment/paymenthistory';
 import patientImg from '../../pictures/patient_avatar/pat_avatar_1.jpg';
 import primaryImg from '../../pictures/patient_avatar/male_tux.PNG';
 
@@ -53,7 +55,7 @@ export class FullViewCase extends React.Component
                     </Modal.Header>
                     <Modal.Body style={{'max-height': 'calc(100vh - 210px)', 'overflow-y': 'auto'}}>
                         <Container >
-                            <FullViewCase caseDetails={this.state.caseDetail} />
+                            <Paymenthistory caseDetails={this.state.caseDetail} />
                         </Container>
                     </Modal.Body>
                     <Modal.Footer>
@@ -79,14 +81,11 @@ export class FullViewCase extends React.Component
                                 (this.props.caseDetails.assessment == this.completeValue) &&
                                     <div>
                                         <h2 style={{textAlign:"left", float:"left",color:"#4BFF23",fontWeight:"bold"}}> Completed</h2>
-                                        <div style={{textAlign:"right", float:"right", display: "inline"}}>
-                                            <Button
-                                                onClick={()=>this.ShowPaymentModalHandler(this.props.caseDetails)}>View Payment</Button>
-                                        </div>
 
                                     </div>
 
                             }
+
                             {
 
                                 (this.props.caseDetails.assessment) && <h2 style={{display: "inline", color:"#FFFF00",
@@ -162,7 +161,17 @@ export class FullViewCase extends React.Component
     PictureButton()
     {
         return(
-            <Button className={"ShowMedicalImgButton"} style={{color:"white", fontFamily: "Times New Roman"}}>Show Medical Images</Button>
+            <Row>
+                <Col>
+                    <Button className={"ShowMedicalImgButton"} style={{marginLeft: "25%", color:"white",
+                        fontFamily: "Times New Roman"}}
+                            onClick={()=>this.ShowPaymentModalHandler(this.props.caseDetails)}>View Payment</Button>
+                </Col>
+                <Col>
+                    <PicCarousel />
+                </Col>
+            </Row>
+
         )
     }
 

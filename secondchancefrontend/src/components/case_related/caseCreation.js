@@ -103,7 +103,7 @@ export class CaseCreation extends React.Component
         }
         else
         {
-            return (<MultiBrowsePic/>)
+            return (<PicCarousel />)
         }
 
     }

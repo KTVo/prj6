@@ -16,38 +16,25 @@ const useStyles = makeStyles({
         minWidth: 700,
     },
 });
-// ~~~~~goal is to use this to pull backend data to front end to be displayed~~~~
-// export function PaymentInfo(props)
-// {
-//
-//     //Calls to endpoint for payment info
-//     console.log("Testing all payment history information");
-//     const requestOptions = {
-//         method: 'POST',
-//         headers: {'Content-Type': 'application/json'},
-//         body: JSON.parse({"some kind of payment id":1})
-//     };
-//
-//     fetch("http://52.247.220.137:80/get_all_physician_records",requestOptions)
-//         .then(response => response.json())
-//         .then(
-//             (result) =>
-//             {
-//                 class PaymentInfo {
-//                     PaymentInfo.description = DescriptionId;
-//                     PaymentInfo.doctorID = DoctorId;
-//                     PaymentInfo.price = PriceId;
-//                 }
-//
-//
-//
-//
-//
-//             }
-//         );
-//
-// }
 
+
+function GetCreditCardNumber(record_ass_id)
+{
+    console.log("rec_ass_id = " + record_ass_id);
+    let lastDigits = " ****";
+
+    const requestOptions ={
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify( {"record_assessment_id": record_ass_id} )
+    };
+
+    fetch("http://52.247.220.137/get_payment", requestOptions)
+        .then(response => response.json())
+        .then(response => console.log(response));
+
+    return lastDigits;
+}
 
 // fixes numbers to only 2 decimal places
 function ccyFormat(num) {
@@ -79,9 +66,11 @@ const invoiceSubtotal = subtotal(rows);
 const invoiceTaxes = TAX_RATE * invoiceSubtotal;
 const invoiceTotal = invoiceTaxes + invoiceSubtotal;
 
-export function Paymenthistory() {
+export function Paymenthistory(caseDetails) {
     const classes = useStyles();
 
+    console.log("caseDetails for payment right hurr")
+    console.log(caseDetails);
 
     return (
     // this is were the table starts
@@ -132,11 +121,16 @@ export function Paymenthistory() {
                         <TableCell align="right">{ccyFormat(invoiceTotal)}</TableCell>
                     </TableRow>
                     <TableRow>
-                        <TableCell align="left">Secondary Physician: the doctor id </TableCell>
+                        <TableCell align="left">Secondary Physician: {caseDetails.caseDetails.phy_name} </TableCell>
                     </TableRow>
-                        <TableCell align="left">Card Number: **** **** **** 1234</TableCell>
                     <TableRow>
-                        <TableCell align="left">Status: PAID </TableCell>
+                        <TableCell align="left">Patient: {caseDetails.caseDetails.pat_name} </TableCell>
+                    </TableRow>
+                        <TableCell align="left">Card Number: **** **** ****
+                            {GetCreditCardNumber(caseDetails.caseDetails.record_assessment_id)}
+                        </TableCell>
+                    <TableRow>
+                        <TableCell align="left">Status: {caseDetails.caseDetails.assessment.toUpperCase()} </TableCell>
                     </TableRow>
                 </TableBody>
 
