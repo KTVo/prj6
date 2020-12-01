@@ -40,7 +40,7 @@ class CloudDB:
         self.base = Base
         self.url = creds["dialect"] + '://' + creds["user"] + ':' + \
                    creds["paswd"] + '@' + creds["server"] + ":" + creds["port"] + '/' + creds["db"]
-        self.engine = create_engine(self.url, echo=True, pool_recycle=3600, pool_size=20, max_overflow=0)
+        self.engine = create_engine(self.url, echo=False, pool_recycle=3600, pool_size=20, max_overflow=0)
         self.metadata.bind = self.engine
 
     def get_session(self):

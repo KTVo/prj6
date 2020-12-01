@@ -36,10 +36,8 @@ def api_record_assessment_add():
     sess = models.db.get_session()
     r = sess.query(models.Record_Assessments).filter(record_id == record_id, physician_id == physician_id)\
             .order_by(models.Record_Assessments.c.record_assessment_id.desc()).first()
-    for entry in r:
-        d = entry._asdict()
-
-    return jsonify(d)
+    print(r)
+    return jsonify(r[0])
 
 
 @record_assessment_blueprint.route('/client_records', methods=["GET", 'POST'])
