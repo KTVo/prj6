@@ -36,10 +36,10 @@ export class Payment_Form extends React.Component {
 
         console.log(caseDetail);
 
-        //Insert API into here
-        // /paymententry
-        //fields
-        //pat_id, number, month, year, csv, company, record_assessment_id, total, phy_id
+        // Insert API into here
+        // paymententry
+        // fields
+        // pat_id, number, month, year, csv, company, record_assessment_id, total, phy_id
         // fetch("http://52.247.220.137/paymententry",
         //     {
         //         method: 'PUT',
@@ -80,18 +80,20 @@ export class Payment_Form extends React.Component {
 
     handleSubmitPayment()
     {
+        let caseDetail = this.props.caseDetail;
+
         console.log("aaaaasss");
+
         fetch("http://52.247.220.137/paymententry",
             {
-                method: 'POST',
+                method: 'PUT',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({record_assessment_id: "1", month: "03",
-                    year:20 + "69",
-                    number: "881565648", csc: "125", company: "N/A", total: "150.00",
-                    phy_id: "1", pat_id: "1"})
-            })
-            .then(response => response.json())
-            .then(response=> console.log(response));
+                body: {"record_assessment_id": caseDetail.record_assessment_id, month: this.state.exp_date.substring(2),
+                    year:20 + this.state.exp_date.substring(this.state.exp_date.length-2),
+                    number: this.state.credit_card_num, csc: this.state.cv_code, company: 'N/A', total: '150.00',
+                    phy_id: caseDetail.phy_id}
+            });
+
     }
 
     showModalHandle()

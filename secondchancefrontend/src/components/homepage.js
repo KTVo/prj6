@@ -169,7 +169,7 @@ export class Homepage extends React.Component
     render()
     {
         return(
-            <div stle={{backgroundColor: "black"}}>
+            <div style={{width: "100%"}}>
                 <Container_IntroTitle />
                 <div className={"FixedBackgroundImg"}></div>
                 <Container_OurStory />

@@ -134,7 +134,8 @@ export default class Body extends Component {
 
 
   isLike = (ans) => {
-      this.data.cntIndexCard = this.data.cntIndexCard + 1;
+      console.log(this.state.user_data[this.data.cntIndexCard]);
+      this.data.cntIndexCard = this.data.cntIndexCard;
       console.log("indxNum " + this.data.cntIndexCard);
 
       if(ans === true)
@@ -146,14 +147,14 @@ export default class Body extends Component {
               this.data.cntIndexCard = 1;
           }
 
-          else if(this.data.cntIndexCard < 0)
-          {
-              this.data.cntIndexCard = this.data.cntIndexCard-1;
-          }
-          else if(this.data.hadChosen === false)
-          {
-              this.data.cntIndexCard = this.data.cntIndexCard - 1;
-          }
+          // else if(this.data.cntIndexCard < 0)
+          // {
+          //     this.data.cntIndexCard = this.data.cntIndexCard-1;
+          // }
+          // else if(this.data.hadChosen === false)
+          // {
+          //     this.data.cntIndexCard = this.data.cntIndexCard - 1;
+          // }
 
           this.data.hadChosen = true;
 
@@ -164,8 +165,12 @@ export default class Body extends Component {
 
           //console.log(people1);
           //console.log(people1[this.data.cntIndexCard]);
-            let selectDr = JSON.stringify(this.state.user_data[this.data.cntIndexCard]);
-            console.log(selectDr);
+          console.log(this.state.user_data[this.data.cntIndexCard]);
+          console.log(this.data.cntIndexCard);
+          console.log(this.state.user_data);
+          console.log(this.state.userData);
+          let selectDr = JSON.stringify(this.state.user_data[this.data.cntIndexCard]);
+          console.log(selectDr);
           sessionStorage.setItem('selectedDoctorIndx', selectDr);
           this.handleModal();   //Closes the doctor selection modal
 
@@ -207,6 +212,6 @@ export default class Body extends Component {
         <div>
             {this.RunModalPhysician()}
         </div>
-  );
+    );
   }
-  }
+}

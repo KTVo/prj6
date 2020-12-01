@@ -1,7 +1,7 @@
 import React from 'react';
 import {PicCarousel} from '../picCarousel';
 import {MultiBrowsePic} from '../multiBrowsePic';
-
+import {Payment_Form} from "../payment/payment_form"
 import {Row, Col, Button, Form, Container} from 'react-bootstrap';
 
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
@@ -264,7 +264,9 @@ export class CaseCreation extends React.Component
     }
     handleSubmit = (event) => {
         event.preventDefault();
-
+        // if (this.is_paid){
+        //     return(<Payment_Form caseDetail={}/>)
+        // }
         let selectedDr = JSON.parse(sessionStorage.getItem('selectedDoctorIndx'));
 
         console.log("SELECTED DOCTOR");
@@ -312,9 +314,9 @@ export class CaseCreation extends React.Component
         console.log("from dr Case Submission modeID = " + this.props.userInfo.modeID);
         console.log("from dr Case Submission = " + this.props.userInfo.userID);
         return(
-            <div>
+            <div className={"keep_it_100"}>
 
-                <div style={{position: "fixed"}}>
+                <div className={"keep_it_100"} style={{position: "fixed"}}>
                     <h2 style={{zIndex: "50", width:"100%", position: "fixed", marginBottom:"10%",
                         color: "white", textAlign: 'center',
                         background: `rgba(0,0,0,0.9)`}}><u>Case Creation</u></h2>

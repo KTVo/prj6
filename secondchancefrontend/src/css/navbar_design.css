@@ -15,7 +15,7 @@ body {
 @media(min-width: 0px) {
     .SizeNav
     {
-        width: 1550px;
+        width: 100%;
     }
     nav {
         overflow: hidden;
@@ -26,15 +26,15 @@ body {
     }
 
     .MoveLinksRight{
-        width: 720px;
+        width: 1080px;
     }
 
     .MoveDoctorLinksRight{
-        width: 720px;
+        width: 1000px;
     }
 
     .MovePatientLinksRight{
-        width: 720px;
+        width: 800px;
     }
 }
 

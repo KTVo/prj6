@@ -15,7 +15,8 @@ export class FullViewCase extends React.Component
                 showPaymentModal: false,
                 caseDetail: null
             }
-        this.completeValue = "assessed";
+        // Status: Pending, Diagnosing, Cancelled, Complete
+        this.completeValue = "Complete";
         this.awaitPayValue = "awaiting payment";
         this.pendingValue = "pending";
         this.cancelValue = "canceled";
@@ -88,22 +89,11 @@ export class FullViewCase extends React.Component
                             }
                             {
 
-                                (this.props.caseDetails.assessment == this.awaitPayValue) && <h2 style={{display: "inline", color:"#FFFF00",
-                                    fontWeight:"bold"}}> Awaiting Payment from Patient</h2>
+                                (this.props.caseDetails.assessment) && <h2 style={{display: "inline", color:"#FFFF00",
+                                    fontWeight:"bold"}}> {this.props.caseDetails.assessment.toUpperCase()}</h2>
 
                             }
-                            {
 
-                                (this.props.caseDetails.assessment == this.pendingValue) && <h2 style={{display: "inline", color:"#FFFF00",
-                                    fontWeight:"bold"}}> Awaiting Acceptance from Secondary Physician</h2>
-
-                            }
-                            {
-
-                                (this.props.caseDetails.assessment == this.cancelValue) && <h2 style={{display: "inline", color:"#FF0027",
-                                    fontWeight:"bold"}}> Cancelled</h2>
-
-                            }
                         </h1>
                     </Container>
                 </Row>
@@ -182,7 +172,7 @@ export class FullViewCase extends React.Component
             <Container className={"IndividualBlock"}>
 
                 <Row style={{marginLeft: "10px"}}>
-                    <h3 style={{color:"white", fontFamily: "Times New Roman"}}><u>Secondary Diagnosis:</u></h3>
+                    <h3 style={{color:"white", fontFamily: "Times New Roman"}}><u>Primary Diagnosis:</u></h3>
                 </Row>
                 <Row style={{marginLeft: "50px", color:"white", fontFamily: "Times New Roman"}}>
                     <div style={{height:"85px"}} />
@@ -198,7 +188,7 @@ export class FullViewCase extends React.Component
         return(
             <Container className={"IndividualBlock"} style={{color:"white", fontFamily: "Times New Roman"}}>
                 <Row>
-                    <h3 style={{color:"white", fontFamily: "Times New Roman"}}><u>Primary Diagnosis / Original Diagnosis:</u></h3>
+                    <h3 style={{color:"white", fontFamily: "Times New Roman"}}><u>Patient Bio:</u></h3>
                 </Row>
                 <div style={{height:"10px"}} />
                 <Row  style={{marginLeft: "50px", color:"white", fontFamily: "Times New Roman"}}>

@@ -267,7 +267,7 @@ export class DrEdit extends React.Component
 
         return (
             <div>
-                <div className={"FixedBackgroundImgEdit"} />
+                <div className={"FixedBackgroundImgEdit"} >
                 <h2 style={{zIndex: "50", width:"100%", position: "fixed", marginBottom:"10%",
                     color: "white", textAlign: 'center',
                     background: `rgba(0,0,0,0.9)`}}><u>Edit Personal Info</u></h2>
@@ -402,6 +402,7 @@ export class DrEdit extends React.Component
                 </Container>
 
                 }
+                </div>
             </div>
         );
     }

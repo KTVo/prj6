@@ -1,10 +1,16 @@
+.keep_it_100 {
+    width: 100%;
+    height: 100%;
+}
+
+
 @media(min-width: 0px) {
     .FixedBackgroundImgCaseCreation{
         background-image: url("../caseCreation/BackgroundCaseCreation.jpg");
 
         /* 1K res */
-        height: 900px;
-        width: 1550px;
+        height: 100%;
+        width: 100%;
 
         /* Create the parallax scrolling effect */
         background-attachment: fixed;
@@ -24,8 +30,8 @@
         background-image: url("../caseCreation/BackgroundCaseCreation.jpg");
 
         /* 1K res */
-        height: 900px;
-        width: 1920px;
+        height: 100%;
+        width: 100%;
 
         /* Create the parallax scrolling effect */
         background-attachment: fixed;
@@ -42,8 +48,8 @@
         background-image: url("../caseCreation/BackgroundCaseCreation.jpg");
 
         /* Full height */
-        height: 1225px;
-        width: 2560px;
+        height: 100%;
+        width: 100%;
 
         /* Create the parallax scrolling effect */
         background-attachment: fixed;
@@ -61,8 +67,8 @@
         background-image: url("../caseCreation/BackgroundCaseCreation.jpg");
 
         /* Full height */
-        height: 1225px;
-        width: 3840px;
+        height: 100%;
+        width: 100%s;
 
         /* Create the parallax scrolling effect */
         background-attachment: fixed;

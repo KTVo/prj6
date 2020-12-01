@@ -53,7 +53,7 @@ export default class NavbarClass extends React.Component
                                 <img responsive src={navbarLogo} style={{height:"50px", width:"50px",marginBottom:"5px",borderTop:"-10px", paddingBottom:"15px"}}/>SecondChance
                                 </span>
                                 <div className={"MoveLinksRight"}></div>
-                                <Link style={{hover:{backgroundColor: "orange"}}} to="/">Home</Link>
+                                <Link to="/">Home</Link>
 
                                 <Link to="/contact">Contact Us</Link>
 
