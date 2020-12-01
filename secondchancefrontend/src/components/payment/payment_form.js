@@ -18,7 +18,7 @@ export class Payment_Form extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isShown: false,
+            isShown: true,
             name_on_card: '',
             credit_card_num: '',
             exp_date: '',
@@ -119,9 +119,6 @@ export class Payment_Form extends React.Component {
         return(
             <div>
 
-                <Button onClick={()=>{this.showModalHandle()}}>
-                    Payment
-                </Button>
 
                 <Modal show = {this.state.isShown}
                        size = {'xl'}
@@ -151,7 +148,7 @@ export class Payment_Form extends React.Component {
                                                         number={this.state.credit_card_num}
                                                     />
                                                     <Col>
-                                                        <MDBInput as={"input"}s
+                                                        <MDBInput as={"input"}
                                                                   label={"Name on Card"}
                                                                   name="name_on_card"
                                                                   icon={"fas fa-user"}
@@ -226,7 +223,7 @@ export class Payment_Form extends React.Component {
                     </Modal.Footer>
                 </Modal>
 
-                <MultiBrowsePic />
+
 
             </div>
         )

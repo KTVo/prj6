@@ -22,8 +22,7 @@ import {FullViewCase} from '../components/case_related/fullViewCase';
 import navbarLogo from './images/navbar_logo.png';
 
 //Generates the navigation bar at the top of every page
-export default class NavbarClass extends React.Component
-{
+export default class NavbarClass extends React.Component {
 
     constructor(props) {
         super(props);
@@ -37,6 +36,7 @@ export default class NavbarClass extends React.Component
         this.handleUserLoginFromNavBar = this.handleUserLoginFromNavBar.bind(this);
 
     }
+
 
 
     NewUserNavBar()
@@ -114,7 +114,6 @@ export default class NavbarClass extends React.Component
                             <Route exact path={'/edit'} component ={() => <DrEdit userMode = {"patient"} userInfo = {this.state.userData}/>}></Route>
                             <Route exact path={'/clientCaseMgmt'} component={() => <ClientCaseManagement userInfo = {this.state.userData}/>}></Route>
                             <Route exact path={'/caseCreate'} component={() => <CaseCreation userInfo = {this.state.userData}/>}></Route>
-                            <Route exact path={'/paymenthistory'} component={() => <Paymenthistory/>}></Route>
                             <Redirect to={'/'} />
                         </Switch>
                     </div>

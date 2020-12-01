@@ -21,7 +21,9 @@ export class GenerateSortableTable extends React.Component
             record_assessment_id: null,
             showAssessmentPageModal: false,
             showFullCasePageModal: false,
-            caseDetailForFullView: null
+            caseDetailForFullView: null,
+            isPaymentFormRendering: null,
+            paymentFormDetail: null
         };
 
         this.recordID = null;
@@ -124,6 +126,7 @@ export class GenerateSortableTable extends React.Component
             }
         )
     }
+
     GetFullCaseView(details){
         console.log(details);
         return(<div>
@@ -172,6 +175,13 @@ export class GenerateSortableTable extends React.Component
 
                             }}>Cancel</Button>
 
+                            result[i].payButton = <Button onClick={() => this.setState({
+                                isPaymentFormRendering: !this.state.isPaymentFormRendering,
+                                paymentFormDetail: result[i]
+                            })
+
+
+                            }>Pay</Button>
                         }
                         else if (result[i].status == "pending" && !this.props.is_patient){
                             result[i].cancelButton = <Button onClick={() => {
@@ -189,11 +199,23 @@ export class GenerateSortableTable extends React.Component
                                         this.LoadTables();
                                     });
                             }}>Accept</Button>
+
+                            result[i].payButton = <Button onClick={() => this.setState({
+                                isPaymentFormRendering: !this.state.isPaymentFormRendering,
+                                paymentFormDetail: result[i]
+                            })
+
+
+                            }>Pay</Button>
                         }
                         else if(result[i].status == "Awaiting Payment" && this.props.is_patient)
                         {
-                            result[i].payButton = <Button onClick={() =>
-                               <Payment_Form caseDetail={result[i]}/>
+                            result[i].payButton = <Button onClick={() => this.setState({
+                                    isPaymentFormRendering: !this.state.isPaymentFormRendering,
+                                    paymentFormDetail: result[i]
+                                })
+
+
                             }>Pay</Button>
 
                         }
@@ -237,6 +259,7 @@ export class GenerateSortableTable extends React.Component
 
         return (
             <div>
+                {this.state.isPaymentFormRendering && <Payment_Form caseDetail={this.state.paymentFormDetail}/>}
                 {this.state.showFullCasePageModal && this.GetFullCaseView()}
 
                 {this.ConfirmCancelButtonHandle(this.state.record_assessment_id)}

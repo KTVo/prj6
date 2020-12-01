@@ -32,12 +32,13 @@ export class DrEdit extends React.Component
                     {label: "Johns Hopkins Hospital", value: "Johns Hopkins Hospital"},
                     {label: "Mayo Clinic", value: "Mayo Clinic"},
                     {label: "UCLA Medical Center", value: "UCLA Medical Center"}
-                    ],
+                ],
                 currentHospital: 'Johns Hopkins Hospital',
                 passwordAuthorization: '',
                 showOldBio: false,
                 assignJSON: [],
-                isLoading: false
+                isLoading: false,
+                isUploaded: false
             };
 
 
@@ -101,6 +102,8 @@ export class DrEdit extends React.Component
         //Insert endpoint for gathering user info here in Phase II for updated information
     }
 
+
+
     iter_over_items(){
         let inputs = document.getElementById("myForm").elements;
 
@@ -138,8 +141,8 @@ export class DrEdit extends React.Component
                 <br/>
 
                 <Form.Control as={"select"} name = "selectedHospitalName"
-                        defaultValue={this.state.hospitalNameArr[indxCurrentHospital].value}
-                        onChange={this.handleInputChange}>
+                              defaultValue={this.state.hospitalNameArr[indxCurrentHospital].value}
+                              onChange={this.handleInputChange}>
                     {this.state.hospitalNameArr.map(function(hospitalName, index){
                         return <option key={index} value={hospitalName.value}>{hospitalName.value}</option>
                     })}
@@ -185,7 +188,7 @@ export class DrEdit extends React.Component
             console.log("I am in handleSubmit(event) for from here is " + this.props.userMode)
 
             if (this.state.passwordAuthorization == this.props.userInfo.password) {
-
+                let reloadedData = null;
                 if (this.props.userMode == "patient") {
 
                     //Run endpoint for submitting changes to backend
@@ -210,7 +213,15 @@ export class DrEdit extends React.Component
                     };
 
                     fetch("http://52.247.220.137:80/client", requestOptions)
-                        .then(response => console.log(response));
+                        .then(response => response.json())
+                        .then(response => {
+                            console.log(response);
+
+                        })
+
+
+
+
 
                 }
                 //Handles multiple namings
@@ -245,7 +256,7 @@ export class DrEdit extends React.Component
 
                 console.log("Look for state");
                 console.log(this);
-                alert("Changes have been submitted. Note for testing purposes, changes made to Password has been blocked at this time.");
+                alert("Changes have been submitted.");
             } else {
                 alert("Confirmation password does not match. Test Mode: Try " + this.props.userInfo.password);
             }
@@ -263,95 +274,93 @@ export class DrEdit extends React.Component
         console.log(this.state.sex);
     }
 
-
-
-    render() {
-
-        return (
+    EditPageBody = () =>
+    {
+        return(
             <div>
-                <div className={"FixedBackgroundImgEdit"} >
+                <div style={{zIndex:"-1"}} className={"FixedBackgroundImgEdit"} />
                 <h2 style={{zIndex: "50", width:"100%", position: "fixed", marginBottom:"10%",
                     color: "white", textAlign: 'center',
                     background: `rgba(0,0,0,0.9)`}}><u>Edit Personal Info</u></h2>
                 {
                     !this.state.isLoading &&
-                <Container style={{background: `rgba(0,0,0,0.8)`, paddingTop:"0%", paddingBottom:"5%",
-                    paddingLeft:"5%", paddingRight:"5%"}}>
+                    <Container style={{background: `rgba(0,0,0,0.8)`, paddingTop:"0%", paddingBottom:"5%",
+                        paddingLeft:"5%", paddingRight:"5%"}}>
 
-                    <Form onSubmit={this.handleSubmit} style={{fontSize:"30px", fontWeight:"bold"}}>
-                        <br/>
-                        <Form.Label style={{color: "white"}}>
-                            Email:
-                            <Form.Control as={"input"}
-                                          name="email"
-                                          type="text"
-                                          onChange={this.handleInputChange}
-                                          placeholder={this.state.email}
-
-
-                            />
-                        </Form.Label>
-
-                        <br/>
-
-                        <Form.Label style={{color: "white"}}>
-                            Change Password:
-                            <Form.Control as={"input"}
-                                          name="password"
-                                          type="password"
-                                          onChange={this.handleInputChange}
-                                          placeholder={'******'}
-                            />
-                        </Form.Label>
-
-                        <br/>
-
-                        <Form.Label style={{color: "white"}}>
-                            Repeat Password:
-                            <Form.Control as={"input"}
-                                        name="repassword"
-                                        type="password"
-                                        onChange={this.handleInputChange}
-                                        placeholder={'******'}
-                            />
-                        </Form.Label>
-
-                        <br/>
-                        <Form.Label style={{color: "white"}}>
-                            Full Name:
-                            <Form.Control as={"input"}
-                                          name="name"
-                                          type="text"
-                                          placeholder={this.state.name}
-                                          onChange={this.handleInputChange}
-
-                            />
-                        </Form.Label>
-
-                        <br />
-
-                        <Form.Label style={{color: "white"}}>
-                            Age:
-                            <Form.Control as={"input"}
-                                          name="age"
-                                          type="number"
-                                          placeholder={this.state.age}
-                                          onChange={this.handleInputChange}
-
-                            />
-                        </Form.Label>
+                        <Form onSubmit={this.handleSubmit} style={{fontSize:"30px", fontWeight:"bold"}}>
+                            <br/>
+                            <Form.Label style={{color: "white"}}>
+                                Email:
+                                <Form.Control as={"input"}
+                                              name="email"
+                                              type="text"
+                                              onChange={this.handleInputChange}
+                                              placeholder={this.state.email}
 
 
-                        <br/>
+                                />
+                            </Form.Label>
+
+                            <br/>
+
+                            <Form.Label style={{color: "white"}}>
+                                Change Password:
+                                <Form.Control as={"input"}
+                                              name="password"
+                                              type="password"
+                                              onChange={this.handleInputChange}
+                                              placeholder={'******'}
+                                />
+                            </Form.Label>
+
+                            <br/>
+
+                            <Form.Label style={{color: "white"}}>
+                                Repeat Password:
+                                <Form.Control as={"input"}
+                                              name="repassword"
+                                              type="password"
+                                              onChange={this.handleInputChange}
+                                              placeholder={'******'}
+                                />
+                            </Form.Label>
+
+                            <br/>
+                            <Form.Label style={{color: "white"}}>
+                                Full Name:
+                                <Form.Control as={"input"}
+                                              name="name"
+                                              type="text"
+                                              placeholder={this.state.name}
+                                              onChange={this.handleInputChange}
+
+                                />
+                            </Form.Label>
+
+                            <br />
+
+                            <Form.Label style={{color: "white"}}>
+                                Age:
+                                <Form.Control as={"input"}
+                                              name="age"
+                                              type="number"
+                                              placeholder={this.state.age}
+                                              onChange={this.handleInputChange}
+
+                                />
+                            </Form.Label>
 
 
-                        {this.setDefaultHospital()}
+                            <br/>
+
+
+                            {this.setDefaultHospital()}
 
 
 
 
-                        <div>
-                            {
+                            <div>
+                                {
                                     <DropdownButton
                                         as={ButtonGroup}
                                         name={"selectSex"}
@@ -361,51 +370,64 @@ export class DrEdit extends React.Component
                                         <Dropdown.Item onClick={()=>this.SelectSexHandle("f")}>Female</Dropdown.Item>
                                     </DropdownButton>
                                 }
-                        </div>
+                            </div>
 
 
-                        { ( (this.props.userMode == 'physician') || (this.props.userMode == 'doctor') &&
-                            <Form.Label  style={{color: "white"}}>
-                                Specialty:
-                                <Form.Control as={"input"}
-                                              name="speciality"
-                                              type="text"
-                                              placeholder={this.state.speciality}
-                                              onChange={this.handleInputChange}
+                            { ( (this.props.userMode == 'physician') || (this.props.userMode == 'doctor') &&
+                                <Form.Label  style={{color: "white"}}>
+                                    Specialty:
+                                    <Form.Control as={"input"}
+                                                  name="speciality"
+                                                  type="text"
+                                                  placeholder={this.state.speciality}
+                                                  onChange={this.handleInputChange}
 
-                                />
+                                    />
+                                </Form.Label>
+                            )}
+
+                            <br/>
+                            <Form.Label style={{color: "white"}}>Bio:</Form.Label>
+                            <Form.Control as="textarea" name="bio" value={this.state.bio} ref="newText"
+                                          style={{rows: "10", cols: "10"}} onChange={this.handleInputChange}></Form.Control>
+
+
+                            <br/>
+                            <Form.Label>
+                                <MDBInput as={"input"}
+                                          name="passwordAuthorization"
+                                          label={"Enter Password to submit changes:"}
+                                          type="password"
+                                          placeholder={this.state.passwordAuthorization}
+                                          onChange={this.handleInputChange}
+                                          style={{
+                                              width: "100%", padding: "12px 40px",
+                                              margin: "auto"
+                                          }}
+
+                                          required/>
                             </Form.Label>
-                        )}
-
-                        <br/>
-                        <Form.Label style={{color: "white"}}>Bio:</Form.Label>
-                        <Form.Control as="textarea" name="bio" value={this.state.bio} ref="newText"
-                                      style={{rows: "10", cols: "10"}} onChange={this.handleInputChange}></Form.Control>
-
-
-                        <br/>
-                        <Form.Label>
-                            <MDBInput as={"input"}
-                                      name="passwordAuthorization"
-                                      label={"Enter Password to submit changes:"}
-                                      type="password"
-                                      placeholder={this.state.passwordAuthorization}
-                                      onChange={this.handleInputChange}
-                                      style={{
-                                          width: "100%", padding: "12px 40px",
-                                          margin: "auto"
-                                      }}
-
-                                      required/>
-                        </Form.Label>
-                        <br/>
-                        <Button type="submit" value={this.state.value}>Submit</Button>
-                    </Form>
-                </Container>
+                            <br/>
+                            <Button type="submit" value={this.state.value}>Submit</Button>
+                        </Form>
+                    </Container>
 
                 }
-                </div>
+
             </div>
+        )
+    }
+
+
+    render() {
+
+        return (
+
+            <div>
+                {this.state.isUploaded && this.EditPageBody()}
+                {!this.state.isUploaded && this.EditPageBody()}
+            </div>
+
         );
     }
 }

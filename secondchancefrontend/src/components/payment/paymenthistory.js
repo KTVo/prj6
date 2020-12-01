@@ -20,6 +20,8 @@ const useStyles = makeStyles({
 //Generates a window with the receipt of any one case
 function GetCreditCardNumber(record_ass_id)
 {
+    let backEndData = null;
+
     console.log("rec_ass_id = " + record_ass_id);
     let lastDigits = " ****";
 
@@ -31,7 +33,8 @@ function GetCreditCardNumber(record_ass_id)
 
     fetch("http://52.247.220.137/get_payment", requestOptions)
         .then(response => response.json())
-        .then(response => console.log(response));
+        .then(response => {console.log(response)});
+
 
     return lastDigits;
 }

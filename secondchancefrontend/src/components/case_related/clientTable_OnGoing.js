@@ -48,6 +48,10 @@ export class ClientTable_OnGoing extends React.Component
             text: 'Cancel',
             sort: false
         },{
+            dataField: 'payButton',
+            text: 'Payment',
+            sort: false
+        }, {
             dataField: 'viewFullCaseButton',
             text: 'View Case',
             sort: false
