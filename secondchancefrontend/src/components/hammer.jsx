@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Hammer from 'react-hammerjs';
 import cardContainer from './card_related/card';
 
+//Detects if the card was pulled to the right or left
 export default class HammerArea extends Component {
   constructor(props){
     super(props);

@@ -2,6 +2,7 @@ import React from 'react';
 
 import {ClientTable_OnGoing} from './clientTable_OnGoing';
 
+//Renders the UI for client case management table
 export class ClientCaseManagement extends React.Component
 {
     constructor(props) {

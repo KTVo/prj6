@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Form, Container} from 'react-bootstrap';
 import '../../css/login.css';
 
-
+//Renders the login page
 export class Login extends React.Component
 {
     constructor(props) {

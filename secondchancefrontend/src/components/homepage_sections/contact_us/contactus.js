@@ -5,10 +5,13 @@ import facebook_icon from './social_media_icons/facebook.PNG';
 import twitter_icon from './social_media_icons/twitter.PNG';
 import linkin_icon from './social_media_icons/linkin.PNG';
 
+//A message alert of when you click on a social media icon within this component
 function FakeMessage()
 {
     return(alert("This is a FAKE company Silly!"));
 }
+
+//Generates a block of information of our fake company SecondChance for the homepage
 export function ContactUs_HomePage()
 {
     const widthHeightIcon = "55px";

@@ -3,6 +3,7 @@ import './caseManagement/caseManagement.css';
 
 import {GenerateSortableTable} from '../generateSortableTable';
 
+//Generates a case management table where physicians can view cases involving them
 export class DrCaseManagement extends React.Component
 {
 

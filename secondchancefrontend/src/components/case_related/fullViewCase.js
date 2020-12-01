@@ -7,6 +7,7 @@ import primaryImg from '../../pictures/patient_avatar/male_tux.PNG';
 
 import './fullView/fullViewCase.css';
 
+//Displays a window with more details pertaining to a case
 export class FullViewCase extends React.Component
 {
     constructor(props) {
@@ -239,23 +240,3 @@ render() {
 
 }
 
-/*
-  {this.PageTitleBlock()}
-                        <div style={{height:"30px"}}/>
-                        {this.PatientInfoBlock()}
-
-
-                        <div style={{height:"30px"}}/>
-
-                        {this.PrimaryProviderBlock()}
-
-                        <div style={{height:"30px"}}/>
-
-                        {this.PictureButton()}
-
-                        <div style={{height:"30px"}}/>
-                        {this.SecondaryDiagnosisBlock()}
-
-                        <div style={{height:"30px"}}/>
-                        {this.PrimaryDiagnosisBlock()}
- */

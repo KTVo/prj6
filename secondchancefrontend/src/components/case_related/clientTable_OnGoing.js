@@ -1,6 +1,8 @@
 import React from 'react';
 import {SlidePageTransitionAnimation} from '../animations/ani_reload_mgmt_table';
 import './caseManagement/caseManagement.css';
+
+//Generates a case management table for a clients so they can interact with the cases belonging to them
 export class ClientTable_OnGoing extends React.Component
 {
 

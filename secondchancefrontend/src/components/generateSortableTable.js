@@ -8,6 +8,7 @@ import {DrWritesSecondOpinion} from './case_related/drWritesSecondOpinion';
 import 'bootstrap/dist/css/bootstrap.css';
 const {SearchBar} = Search;
 
+//Generates the layout for each type of case management table for user
 export class GenerateSortableTable extends React.Component
 {
     constructor(props) {

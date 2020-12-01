@@ -5,6 +5,7 @@ import {Login} from './login';
 
 import './userRelatedCSS/loginRegisterDisplay.css';
 
+//Selects which type of login or register page to display
 export class LoginRegisterDisplay extends React.Component {
     state = {selectedFile: null}
 

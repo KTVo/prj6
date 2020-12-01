@@ -13,7 +13,7 @@ import major_credit_card_pics from './payment_pics/major_credit_cards_pic.png';
 
 
 
-
+//Generates a payment form for the user to enter in their payment information via credit card
 export class Payment_Form extends React.Component {
     constructor(props) {
         super(props);

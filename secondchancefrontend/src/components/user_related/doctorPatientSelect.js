@@ -8,7 +8,8 @@ import {LoginRegisterDisplay} from "./loginRegisterDisplay";
 import './userRelatedCSS/loginRegisterDisplay.css';
 
 
-
+//Generates a fancy UI for users to select if they're a doctor or patient upon login
+//This UI has been enhanced of easy-to-read labels to guide the user on what to do
 export class DoctorPatientSelect extends React.Component
 {
     constructor(props) {

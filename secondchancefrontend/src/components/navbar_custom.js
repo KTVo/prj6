@@ -21,6 +21,7 @@ import {FullViewCase} from '../components/case_related/fullViewCase';
 
 import navbarLogo from './images/navbar_logo.png';
 
+//Generates the navigation bar at the top of every page
 export default class NavbarClass extends React.Component
 {
 

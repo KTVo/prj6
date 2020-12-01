@@ -31,7 +31,7 @@ import pat_pic_17 from '../pictures/patient_avatar/pat_avatar_6.png';
         https://cdn.technadu.com/wp-content/uploads/2018/07/VPN-Encryption-Featured-1536x864.jpg
  */
 
-
+//Reviews from current and former users of SecondChance to be displayed on the homepage
 export class Testimonial_Slider extends React.Component
 {
     constructor(props) {

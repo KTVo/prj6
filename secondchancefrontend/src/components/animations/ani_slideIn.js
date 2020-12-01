@@ -2,7 +2,9 @@ import React, { useState, useCallback } from 'react'
 import { useTransition, animated } from 'react-spring'
 import '../../css/animatedBackground.scss';
 
-
+//Have an object slide in from a side of the screen
+//incomingFuction -> parameters for the functional components that will be animated
+//angle -> the side of which the functional component will slide in
 export function SlidePageTransitionAnimation(incomingFunction, angle) {
 
     const [index, set] = useState(0)

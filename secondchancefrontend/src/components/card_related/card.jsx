@@ -2,6 +2,7 @@ import React from "react";
 import "./assets/card.scss";
 import '../../css/makeImgUndraggable.css';
 
+//Fills out the front of the card to essential physician information
 const FrontCard = (props) => {
 
   return (
@@ -22,6 +23,7 @@ const FrontCard = (props) => {
   );
 };
 
+//fills the back of the card with extra information of a physician
 const BackCard = (props) => {
 
   return (

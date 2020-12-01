@@ -2,6 +2,8 @@ import React from 'react';
 import Body from './views/body';
 import '../../css/animatedBackground.scss';
 
+//Obtains doctor's information from the our database that will be inserted into digital cards on screen
+//User has the opinion to drag and pull the cards or click buttons to select the physician they want
 export class Caller_SwipeCardAnimation extends React.Component
 {
     constructor(props) {

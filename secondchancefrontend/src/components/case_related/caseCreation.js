@@ -11,7 +11,7 @@ import 'mdbreact/dist/css/mdb.css';
 import 'mdbreact/dist/css/style.css';
 import './caseCreation/fixedBackground_caseCreationPage.css';
 
-
+//Renders a page where patients can request secondary physicians to examine their case
 export class CaseCreation extends React.Component
 {
     constructor(props) {

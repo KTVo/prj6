@@ -5,6 +5,7 @@ import {Container, Row, Col} from 'react-bootstrap';
 import {Testimonial_Slider} from "./testimonial_slider";
 import './homepage_sections/homepage_css/fixedBackgroundImg.css';
 
+//Generates the layout for the homepage
 const Container_IntroTitle = () => (
     <Parallax
         blur={{ min: -15, max: 15 }}

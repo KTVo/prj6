@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     },
 });
 
-
+//Generates a window with the receipt of any one case
 function GetCreditCardNumber(record_ass_id)
 {
     console.log("rec_ass_id = " + record_ass_id);

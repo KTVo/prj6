@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Row, Col, Container} from 'react-bootstrap';
 
 
-
+//Used for unit testing and was stripped during Phase 2
 export class TestEndpoint extends React.Component
 {
     /**********************************

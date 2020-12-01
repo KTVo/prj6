@@ -4,6 +4,7 @@ import {Container, Row, Col, Form, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap-grid.css';
 import 'react-bootstrap/dist/react-bootstrap';
 
+//Generates a form for doctor users and patient users to fill in their information for registration
 function DropDownMenu(data){
 
     return(

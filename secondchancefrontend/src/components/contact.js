@@ -5,10 +5,11 @@ import {SlidePageTransitionAnimation} from './animations/ani_slideIn';
 import 'bootstrap/dist/css/bootstrap.css'
 import './user_related/userRelatedCSS/contactus.css';
 
+//A contact technical support page where you can email the techsupport
 export function Contact()
 {
 
-    const physician_email = 'foolycooly288622@yahoo.com';
+    const techsupport_email = 'secondchance_secondchance@engineer.com';
 
 
     function ContactUsForm(){
@@ -18,7 +19,7 @@ export function Contact()
                 <h1  style={{textAlign: 'center'}}>Contact Us for Tech Support</h1>
                 <Container className="col-md-9 mb-md-0 mb-5"  style={{width:"500px", margin:"auto"}}>
 
-                    <Form action = { `mailto:${physician_email}`} method={ "post"}
+                    <Form action = { `mailto:${techsupport_email}`} method={ "post"}
                           encType={ "text/plain" } style ={{border:"0px"}}>
                         <div style={{height:"30px"}} />
 

@@ -3,6 +3,8 @@ import { Carousel, Button,Modal} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 //Pelvis pic https://post.healthline.com/wp-content/uploads/2020/08/pelvis-x-ray_thumb-1-732x549.jpg
+
+//carousel slide for all medical images
 export class PicCarousel extends React.Component
 {
     constructor(props) {

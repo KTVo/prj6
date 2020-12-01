@@ -3,7 +3,8 @@ import { useTransition, animated } from 'react-spring'
 import '../../css/animatedBackground.scss';
 import {GenerateSortableTable} from '../generateSortableTable';
 
-
+//Animates a chosen case management table when pages loads
+//parameter is the case management that will be animated
 export function SlidePageTransitionAnimation(tableSettings) {
 
     const [index, set] = useState(0)

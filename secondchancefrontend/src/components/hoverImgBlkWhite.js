@@ -2,7 +2,7 @@ import React from "react";
 import { MDBMask, MDBView, MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import 'mdbreact/dist/css/mdb.css';
 
-
+//creates a transparent blue hover box over certain images
 export function HoverImgBlkWhite(props){
 
 

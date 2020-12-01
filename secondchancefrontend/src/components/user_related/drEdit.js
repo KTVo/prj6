@@ -4,6 +4,8 @@ import '../../css/hoverForText.css';
 import {MDBInput} from 'mdbreact';
 import 'bootstrap/dist/css/bootstrap.css';
 import './userRelatedCSS/edit.css';
+
+//Generates an edit profile page for a user to change their private information
 export class DrEdit extends React.Component
 {
     constructor(props) {

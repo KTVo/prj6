@@ -4,7 +4,7 @@ import {MDBInput} from 'mdbreact';
 import '../../css/modalLarge.css';
 import './drWritesSecondOpinion.css';
 
-
+//Generates UI for secondary physicians to insert their medical opinion for a case
 export class DrWritesSecondOpinion extends React.Component
 {
     constructor(props) {

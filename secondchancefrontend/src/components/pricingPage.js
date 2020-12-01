@@ -2,6 +2,8 @@ import React from "react";
 import {SlidePageTransitionAnimation} from './animations/ani_slideIn';
 import './pricingPage.css';
 import majorCreditCardImg from "./payment/payment_pics/major_credit_cards_pic.png";
+
+//generates price page to inform users/potential users of our prices
 export function Pricing() {
 
     function ShowBackgroundPricingImg()
