@@ -95,7 +95,7 @@ def api_client_id(id):
         data["username"] = entry.username
         data["pat_id"] = entry.pat_id
         data["pat_age"] = entry.pat_age
-        data["spat_ex"] = entry.pat_sex
+        data["pat_sex"] = entry.pat_sex
         data["pat_medical_history"] = entry.pat_medical_history
         data["pat_name"] = entry.pat_name
         data["email"] = entry.email

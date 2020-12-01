@@ -11,7 +11,8 @@ import {Contact} from '../components/contact';
 import {DrEdit} from "./user_related/drEdit";
 import '../css/navbar_design.css';
 import {Homepage} from "./homepage";
-import {Pricing} from './pricingPage';
+import {Pricing} from './pricingPage'
+import {Paymenthistory} from './payment/paymenthistory';
 
 import{CaseCreation} from './case_related/caseCreation';
 import {DoctorPatientSelect} from './user_related/doctorPatientSelect'
@@ -112,6 +113,7 @@ export default class NavbarClass extends React.Component
                             <Route exact path={'/edit'} component ={() => <DrEdit userMode = {"patient"} userInfo = {this.state.userData}/>}></Route>
                             <Route exact path={'/clientCaseMgmt'} component={() => <ClientCaseManagement userInfo = {this.state.userData}/>}></Route>
                             <Route exact path={'/caseCreate'} component={() => <CaseCreation userInfo = {this.state.userData}/>}></Route>
+                            <Route exact path={'/paymenthistory'} component={() => <Paymenthistory/>}></Route>
                             <Redirect to={'/'} />
                         </Switch>
                     </div>

@@ -1,22 +1,35 @@
 {
   "files": {
-    "main.css": "/static/css/main.43700049.chunk.css",
-    "main.js": "/static/js/main.ae378ae7.chunk.js",
-    "main.js.map": "/static/js/main.ae378ae7.chunk.js.map",
+    "main.css": "/static/css/main.b5a65531.chunk.css",
+    "main.js": "/static/js/main.17c1d5d1.chunk.js",
+    "main.js.map": "/static/js/main.17c1d5d1.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.8906df9c.js",
     "runtime-main.js.map": "/static/js/runtime-main.8906df9c.js.map",
-    "static/js/2.dce56d70.chunk.js": "/static/js/2.dce56d70.chunk.js",
-    "static/js/2.dce56d70.chunk.js.map": "/static/js/2.dce56d70.chunk.js.map",
+    "static/css/2.b7981f3c.chunk.css": "/static/css/2.b7981f3c.chunk.css",
+    "static/js/2.c704af8d.chunk.js": "/static/js/2.c704af8d.chunk.js",
+    "static/js/2.c704af8d.chunk.js.map": "/static/js/2.c704af8d.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.d42ed16973dd2f847075f5881f9d6de7.js": "/precache-manifest.d42ed16973dd2f847075f5881f9d6de7.js",
+    "precache-manifest.474d15bd7f9d75affc94e3ee363fec4e.js": "/precache-manifest.474d15bd7f9d75affc94e3ee363fec4e.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.43700049.chunk.css.map": "/static/css/main.43700049.chunk.css.map",
-    "static/js/2.dce56d70.chunk.js.LICENSE.txt": "/static/js/2.dce56d70.chunk.js.LICENSE.txt"
+    "static/css/2.b7981f3c.chunk.css.map": "/static/css/2.b7981f3c.chunk.css.map",
+    "static/css/main.b5a65531.chunk.css.map": "/static/css/main.b5a65531.chunk.css.map",
+    "static/js/2.c704af8d.chunk.js.LICENSE.txt": "/static/js/2.c704af8d.chunk.js.LICENSE.txt",
+    "static/media/mdb.css": "/static/media/arrow_right.8ef6a08c.svg",
+    "static/media/docwithclipboard.jpg": "/static/media/docwithclipboard.ba55f78c.jpg",
+    "static/media/all.min.css": "/static/media/fa-solid-900.8e1ed89b.woff2",
+    "static/media/facebook.PNG": "/static/media/facebook.d1075aa1.PNG",
+    "static/media/left_doctor.png": "/static/media/left_doctor.70544c40.png",
+    "static/media/linkin.PNG": "/static/media/linkin.14c41c78.PNG",
+    "static/media/major_credit_cards_pic.png": "/static/media/major_credit_cards_pic.c94befce.png",
+    "static/media/patient_Me.jpg": "/static/media/patient_Me.799c0eb4.jpg",
+    "static/media/right_patient.png": "/static/media/right_patient.43a233be.png",
+    "static/media/twitter.PNG": "/static/media/twitter.a14d80a1.PNG"
   },
   "entrypoints": [
     "static/js/runtime-main.8906df9c.js",
-    "static/js/2.dce56d70.chunk.js",
-    "static/css/main.43700049.chunk.css",
-    "static/js/main.ae378ae7.chunk.js"
+    "static/css/2.b7981f3c.chunk.css",
+    "static/js/2.c704af8d.chunk.js",
+    "static/css/main.b5a65531.chunk.css",
+    "static/js/main.17c1d5d1.chunk.js"
   ]
 }

@@ -408,5 +408,124 @@ def route_get_all_hospitals():
     return jsonify(to_ret)
 
 
+@app.route("/payment", methods=["POST", "GET"])
+def payment():
+    return render_template("payment.html")
+
+@app.route("/paymententry", methods=["POST"])
+@cross_origin()
+def paymententry():
+    print("lol")
+    post_data = request.get_json()
+    print("lol2.0")
+    try:
+        stmt_credit = models.credit_card.insert().values(pat_id=post_data["pat_id"], number=post_data["number"],
+                                                  month=post_data["month"], year=post_data["year"],
+                                                  csc=post_data["csc"], company=post_data["company"])
+
+        con = models.db.engine.connect()
+        con.execute(stmt_credit)
+        con.close()
+        print("123123")
+        sess = models.db.get_session()
+        cc_id = sess.query(models.credit_card.c.credit_card_id)\
+            .filter(models.credit_card.c.pat_id == post_data["pat_id"]).first()
+
+        stmt_payment = models.Payment \
+            .insert().values(pat_id=post_data["pat_id"], record_assessment_id=post_data["record_assessment_id"],
+                             total=post_data["total"], is_paid=True, credit_card_id=cc_id.credit_card_id,
+                             physician_id=post_data["phy_id"])
+        print("321321")
+        con = models.db.engine.connect()
+        con.execute(stmt_payment)
+        con.close()
+        print("PAYMENT ACCEPTED")
+        return "Payment accepted"
+    except Exception as e:
+        print(e)
+    return "Payment not accepted, invalid entries or payment method. NEED pat_id, number, month, year, csc, company"
+
+
+@app.route("/get_payment", methods=["POST", "GET"])
+@cross_origin()
+def get_payment():
+    try:
+        post_data = request.get_json()
+        recassess = post_data["record_assessment_id"]
+    except Exception as e:
+        return {"ERROR": e, "PARAMS": "NEED record_assessment_id"}
+    my_session = models.db.get_session()
+    paid = []
+    not_paid = []
+
+    for entry in my_session.query(models.Payment).filter(models.Payment.c.record_assessment_id == recassess):
+        data = dict()
+        data["record_id"] = entry.record_id
+        data["payment_id"] = entry.payment_id
+        data["pat_id"] = entry.pat_id
+        data["total"] = entry.total
+        data["is_paid"] = entry.is_paid
+        if data["is_paid"] == 0:
+            not_paid.append(data)
+        else:
+            paid.append(data)
+
+    return jsonify(paid, not_paid)
+
+
+@app.route("/get_payment_patid",  methods=["POST", "GET"])
+@cross_origin()
+def get_payment_patid():
+    paid = []
+    not_paid = []
+    try:
+        post_data = request.get_json()
+        pat_id = post_data["pat_id"]
+    except Exception as e:
+        return {"error": e, "params": "NEED pat_id"}
+
+    sess = models.db.get_session()
+    entries = sess.query(models.Payment, models.Physician, models.Record_Assessments.c.assessment, models.credit_card)\
+        .filter(models.Payment.c.pat_id == pat_id,
+                models.Physician.c.phy_id == models.Payment.c.physician_id,
+                models.Payment.c.record_assessment_id == models.Record_Assessments.c.record_assessment_id,
+                models.Payment.c.credit_card_id == models.credit_card.c.credit_card_id).all()
+
+    for entry in entries:
+        i = entry._asdict()
+        if entry.is_paid:
+            paid.append(i)
+        else:
+            not_paid.append(i)
+    return jsonify(paid, not_paid)
+
+
+@app.route("/paidhistorydoctor", methods=["POST", "GET"])
+@cross_origin()
+def paidstatusdoctor():
+
+    paid = []
+    not_paid = []
+    try:
+        post_data = request.get_json()
+        phy_id = post_data["phy_id"]
+    except:
+        return {"params": "NEED phy_id"}
+    sess = models.db.get_session()
+    entries = sess.query(models.Payment, models.Patient, models.Record_Assessments.c.assessment) \
+        .filter(models.Payment.c.physician_id == phy_id,
+                models.Patient.c.pat_id == models.Payment.c.pat_id,
+                models.Payment.c.record_assessment_id == models.Record_Assessments.c.record_assessment_id).all()
+
+    for entry in entries:
+        i = entry._asdict()
+        if entry.is_paid:
+            paid.append(i)
+        else:
+            not_paid.append(i)
+    return jsonify(paid, not_paid)
+    return jsonify(paid, not_paid)
+
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=80, debug=False)

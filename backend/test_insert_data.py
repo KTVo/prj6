@@ -86,9 +86,9 @@ def insert_all():
                       assessment=None, completion_dt=date(2020, 2, 1), create_dt=date(2020, 1, 1), status="pending")
 
     # PAYMENT ENTRIES
-    insert_into_table(tablename="payment", pat_id=1, record_id=1, total=1, is_paid=1)
-    insert_into_table(tablename="payment", pat_id=2, record_id=2, total=2, is_paid=1)
-    insert_into_table(tablename="payment", pat_id=3, record_id=3, total=3, is_paid=0)
+    insert_into_table(tablename="payment", pat_id=1, record_assessment_id=1, total=1, is_paid=1)
+    insert_into_table(tablename="payment", pat_id=2, record_assessment_id=2, total=2, is_paid=1)
+    insert_into_table(tablename="payment", pat_id=3, record_assessment_id=3, total=3, is_paid=0)
 
     # HOSPITAL ENTRIES
     insert_from_npi_gov()
