@@ -16,8 +16,8 @@ export function SlidePageTransitionAnimation(tableSettings) {
     })
 
     let pages = [
-        ({ style }) => <animated.div style={{ ...style}}><GenerateSortableTable incomingData={tableSettings.incomingData} /></animated.div>,
-        ({ style }) => <animated.div style={{ ...style}}><GenerateSortableTable incomingData={tableSettings.incomingData} /></animated.div>,
+        ({ style }) => <animated.div style={{ ...style}}><GenerateSortableTable userInfo = {tableSettings.userInfo} incomingData={tableSettings.incomingData} /></animated.div>,
+        ({ style }) => <animated.div style={{ ...style}}><GenerateSortableTable  userInfo = {tableSettings.userInfo} incomingData={tableSettings.incomingData} /></animated.div>,
 
     ]
 

@@ -74,7 +74,7 @@ export class ClientTable_OnGoing extends React.Component
         return (
             <div>
                 <div className={"CaseMgmtFixedBackgroundImg"} />
-                <SlidePageTransitionAnimation incomingData={this.data} />
+                <SlidePageTransitionAnimation userInfo = {this.props.userInfo} incomingData={this.data} />
             </div>
         );
     }

@@ -301,29 +301,6 @@ export class DrEdit extends React.Component
                                 />
                             </Form.Label>
 
-                            <br/>
-
-                            <Form.Label style={{color: "white"}}>
-                                Change Password:
-                                <Form.Control as={"input"}
-                                              name="password"
-                                              type="password"
-                                              onChange={this.handleInputChange}
-                                              placeholder={'******'}
-                                />
-                            </Form.Label>
-
-                            <br/>
-
-                            <Form.Label style={{color: "white"}}>
-                                Repeat Password:
-                                <Form.Control as={"input"}
-                                              name="repassword"
-                                              type="password"
-                                              onChange={this.handleInputChange}
-                                              placeholder={'******'}
-                                />
-                            </Form.Label>
 
                             <br/>
                             <Form.Label style={{color: "white"}}>

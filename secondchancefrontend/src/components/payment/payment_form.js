@@ -82,16 +82,14 @@ export class Payment_Form extends React.Component {
     {
         let caseDetail = this.props.caseDetail;
 
-        console.log("aaaaasss");
-
         fetch("http://52.247.220.137/paymententry",
             {
-                method: 'PUT',
+                method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: {"record_assessment_id": caseDetail.record_assessment_id, month: this.state.exp_date.substring(2),
+                body: JSON.stringify({"record_assessment_id": caseDetail.record_assessment_id, month: this.state.exp_date.substring(2),
                     year:20 + this.state.exp_date.substring(this.state.exp_date.length-2),
                     number: this.state.credit_card_num, csc: this.state.cv_code, company: 'N/A', total: '150.00',
-                    phy_id: caseDetail.phy_id}
+                    phy_id: caseDetail.phy_id, pat_id: caseDetail.pat_id})
             });
 
     }

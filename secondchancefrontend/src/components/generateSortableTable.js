@@ -114,6 +114,7 @@ export class GenerateSortableTable extends React.Component
     }
 
     componentDidMount() {
+
         this.LoadTables();
     }
 
@@ -168,7 +169,7 @@ export class GenerateSortableTable extends React.Component
                             ()=>{this.ShowFullCaseHandle(result[i], true)}
                         }>View Case</Button>
 
-                        if (result[i].status == "pending" && this.props.is_patient) {
+                        if (result[i].status == "pending" && !this.props.userInfo.phy_id) {
                             result[i].cancelButton = <Button onClick={() => {
 
                                 this.handleModal(true, result[i].record_assessment_id)
@@ -183,7 +184,7 @@ export class GenerateSortableTable extends React.Component
 
                             }>Pay</Button>
                         }
-                        else if (result[i].status == "pending" && !this.props.is_patient){
+                        else if (result[i].status == "pending" && this.props.userInfo.phy_id){
                             result[i].cancelButton = <Button onClick={() => {
                                 this.handleModal(true, result[i].record_assessment_id)
 
@@ -200,15 +201,8 @@ export class GenerateSortableTable extends React.Component
                                     });
                             }}>Accept</Button>
 
-                            result[i].payButton = <Button onClick={() => this.setState({
-                                isPaymentFormRendering: !this.state.isPaymentFormRendering,
-                                paymentFormDetail: result[i]
-                            })
-
-
-                            }>Pay</Button>
                         }
-                        else if(result[i].status == "Awaiting Payment" && this.props.is_patient)
+                        else if(result[i].status == "Awaiting Payment" && !this.props.userInfo.phy_id)
                         {
                             result[i].payButton = <Button onClick={() => this.setState({
                                     isPaymentFormRendering: !this.state.isPaymentFormRendering,
@@ -219,7 +213,7 @@ export class GenerateSortableTable extends React.Component
                             }>Pay</Button>
 
                         }
-                        else if(result[i].status == "Diagnosing" && !this.props.is_patient) {
+                        else if(result[i].status == "Diagnosing" && this.props.userInfo.phy_id) {
 
                             result[i].createAssessmentButton = <Button onClick={() => {
                                 this.recordID = result[i].record_assessment_id;
@@ -266,7 +260,7 @@ export class GenerateSortableTable extends React.Component
                 <Container style={{background: `rgba(255, 255, 255, 0.9)`}}>
                     { this.state.showAssessmentPageModal &&
                         <DrWritesSecondOpinion recordID={this.recordID}
-                                               phy_id={this.props.phy_id}
+                                               phy_id={this.props.userInfo.phy_id}
                                                showAssessmentPageModal={this.state.showAssessmentPageModal}
                                                ShowAssessmentPageModalHandle = {this.ShowAssessmentPageModalHandle}
                                                reload_tables={() => this.LoadTables()}

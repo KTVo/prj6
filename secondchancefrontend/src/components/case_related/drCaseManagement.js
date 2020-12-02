@@ -60,10 +60,6 @@ export class DrCaseManagement extends React.Component
             dataField: 'createAssessmentButton',
             text: 'Assessment',
             sort: false
-        }, {
-            dataField: 'payButton',
-            text: 'Payment',
-            sort: false
         },{
             dataField: 'viewFullCaseButton',
             text: 'View Case',
@@ -84,7 +80,7 @@ export class DrCaseManagement extends React.Component
         return (
             <div>
                 <div className={"CaseMgmtFixedBackgroundImg"} />
-                <GenerateSortableTable incomingData = {this.data} phy_id={this.props.userInfo.phy_id}/>
+                <GenerateSortableTable incomingData = {this.data} userInfo={this.props.userInfo}/>
             </div>
         );
     }
