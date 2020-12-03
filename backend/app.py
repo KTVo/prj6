@@ -416,9 +416,9 @@ def payment():
 @cross_origin()
 def paymententry():
     print("lol")
-    post_data = request.get_json()
-    print("lol2.0")
     try:
+        post_data = request.get_json()
+        print("lol2.0")
         stmt_credit = models.credit_card.insert().values(pat_id=post_data["pat_id"], number=post_data["number"],
                                                   month=post_data["month"], year=post_data["year"],
                                                   csc=post_data["csc"], company=post_data["company"])
@@ -442,6 +442,7 @@ def paymententry():
         print("PAYMENT ACCEPTED")
         return "Payment accepted"
     except Exception as e:
+        print(request.get_json())
         print(e)
     return "Payment not accepted, invalid entries or payment method. NEED pat_id, number, month, year, csc, company"
 
@@ -460,11 +461,12 @@ def get_payment():
 
     for entry in my_session.query(models.Payment).filter(models.Payment.c.record_assessment_id == recassess):
         data = dict()
-        data["record_id"] = entry.record_id
+        data["record_id"] = entry.record_assessment_id
         data["payment_id"] = entry.payment_id
         data["pat_id"] = entry.pat_id
         data["total"] = entry.total
         data["is_paid"] = entry.is_paid
+        print(entry._asdict())
         if data["is_paid"] == 0:
             not_paid.append(data)
         else:
