@@ -438,13 +438,13 @@ def paymententry():
 
         con = models.db.engine.connect()
         con.execute(stmt_payment)
-        con.close()
 
-        stmt = models.Record_Assessments.filter(models.Record_Assessments.c.record_assessment_id == post_data["record_assessment_id"]).update(). \
-            values(status="paid")
+        stmt = models.Record_Assessments.update().where(models.Record_Assessments.c.record_assessment_id == post_data["record_assessment_id"]) \
+            .values(status="paid")
         con = models.db.engine.connect()
         con.execute(stmt)
         con.close()
+
 
         print("PAYMENT ACCEPTED")
         return "Payment accepted"
@@ -538,4 +538,4 @@ def paidstatusdoctor():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=80, debug=False)
+    app.run(host="0.0.0.0", port=5000, debug=False)
