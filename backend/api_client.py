@@ -80,6 +80,11 @@ def api_client_edit():
     con = models.db.engine.connect()
     con.execute(stmt)
     con.close()
+    sess = models.db.get_session()
+    u = sess.query(models.Patient).filter(models.Patient.c.pat_id == pat_id).all()
+    sess.close()
+    for i in u:
+        return jsonify(i._asdict())
     return "Client updated."
 
 
@@ -134,7 +139,6 @@ def api_patient_login():
         return "not json"
     post_data = request.get_json()
     session = models.db.get_session()
-    print(post_data)
     username = post_data["username"]
     password = post_data["password"]
     r = session.query(models.Patient).filter(models.Patient.c.username == username,

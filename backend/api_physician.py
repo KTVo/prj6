@@ -77,6 +77,13 @@ def api_physician_edit():
     con = models.db.engine.connect()
     con.execute(stmt)
     con.close()
+
+    sess = models.db.get_session()
+    u = sess.query(models.Physician).filter(models.Physician.c.phy_id == phy_id).all()
+    sess.close()
+    for i in u:
+        return jsonify(i._asdict())
+
     return "Physician updated."
 
 
