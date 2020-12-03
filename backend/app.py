@@ -435,10 +435,17 @@ def paymententry():
             .insert().values(pat_id=post_data["pat_id"], record_assessment_id=post_data["record_assessment_id"],
                              total=post_data["total"], is_paid=True, credit_card_id=cc_id.credit_card_id,
                              physician_id=post_data["phy_id"])
-        print("321321")
+
         con = models.db.engine.connect()
         con.execute(stmt_payment)
         con.close()
+
+        stmt = models.Record_Assessments.filter(models.Record_Assessments.c.record_assessment_id == post_data["record_assessment_id"]).update(). \
+            values(status="paid")
+        con = models.db.engine.connect()
+        con.execute(stmt)
+        con.close()
+
         print("PAYMENT ACCEPTED")
         return "Payment accepted"
     except Exception as e:

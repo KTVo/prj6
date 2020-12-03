@@ -90,8 +90,10 @@ export class Payment_Form extends React.Component {
                     year:20 + this.state.exp_date.substring(this.state.exp_date.length-2),
                     number: this.state.credit_card_num, csc: this.state.cv_code, company: 'N/A', total: '150.00',
                     phy_id: caseDetail.phy_id, pat_id: caseDetail.pat_id})
-            });
-
+            }).then(() => {
+                alert("Thank you! Your payment was accepted");
+                this.showModalHandle()
+            })
     }
 
     showModalHandle()

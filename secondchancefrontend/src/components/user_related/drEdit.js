@@ -177,9 +177,42 @@ export class DrEdit extends React.Component
             })
     }
 
+    validate_data() {
+        let username = this.props.userInfo.username
+        let pat_name = this.state.name
+        let pat_age = this.state.age
+        let pat_sex = this.state.sex
+        let pat_medical_history = this.state.bio
+        let email = this.state.email
+        let password = this.props.userInfo.password
+
+        let re_name = /^[a-zA-Z]+$/;
+        let re_fname = /^[a-zA-Z]+[\s][a-zA-Z]+$/;
+        let re_alpha_num = /^[a-zA-Z0-9]+$/;
+        if (!pat_name.match(re_fname)){
+            console.log("Name")
+            console.log(pat_name);
+            return false;
+        }
+        if (isNaN(pat_age)){
+            console.log("age")
+            return false;
+        }
+        if (pat_sex != 'm' && pat_sex != 'f'){
+            console.log(pat_sex);
+            console.log("sex")
+            return false;
+        }
+
+        return true;
+    }
 
     handleSubmit = (event) => {
         event.preventDefault();
+        if (!this.validate_data()){
+            alert("Your fields are not valid! Please recheck your fields and try again");
+            return;
+        }
         if(this.state.age < 0)
         {
             alert("Age cannot be " + this.state.age);
