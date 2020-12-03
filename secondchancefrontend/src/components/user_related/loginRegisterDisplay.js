@@ -105,10 +105,50 @@ export class LoginRegisterDisplay extends React.Component {
         return calculatedAge;
     }
 
+
+    validate_data(data) {
+
+        let months = ["January", "February", "March", "April", "June", "July", "August", "October", "November", "December"];
+        if (! (months.includes(data.selectedBirthMonth))){
+            console.log(data.selectedBirthMonth);
+            console.log("months");
+            return false;
+        }
+        let re_name = /^[a-zA-Z]+$/;
+        if(!data.lastName.match(re_name)){
+            console.log("lastName");
+            return false;
+        }
+        if(!data.firstName.match(re_name)){
+            console.log("firstName");
+            return false;
+        }
+
+        let re_alpha_num = /^[a-zA-Z0-9]+$/;
+
+        if(!data.email.match(re_alpha_num)){
+            console.log("email");
+            return false;
+        }
+        if(data.specialty){
+            if (!data.specialty.match(re_name)) {
+                console.log("specialty");
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     handleSubmit = () => {
         const data = this.iter_over_items();
         const calculatedAge = this.GetAge(data);
-
+        let is_valid = this.validate_data(data);
+        if (!is_valid){
+            alert("Form Fields are not valid. Please check your fields");
+            return;
+        }
+        console.log(data);
         if(this.isOverflowedDayOfMonth == true)
         {
             alert(this.catOfMonthYear + " does not have " + this.checkSelectedDayOfMonth + " days.");
@@ -131,8 +171,17 @@ export class LoginRegisterDisplay extends React.Component {
                 console.log(requestOptions);
 
                 fetch("http://52.247.220.137:80/physician", requestOptions)
-                    .then(response => console.log(response.text()))
-
+                        .then(response => { response.text()})
+                        .then(response => {
+                            if (response == "email exists") {
+                                alert("The email already exists");
+                                //window.location.reload(false);
+                            }
+                            else {
+                                alert("Thanks, you registered!");
+                                window.location.reload(false);
+                            }
+                        })
 
             } else {
                 const requestOptions = {
@@ -153,6 +202,10 @@ export class LoginRegisterDisplay extends React.Component {
                             if (response == "email exists") {
                                 alert("The email already exists");
                                 //window.location.reload(false);
+                            }
+                            else {
+                                alert("Thanks, you registered!");
+                                window.location.reload(false);
                             }
                         }
                     );
