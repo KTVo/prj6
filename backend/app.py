@@ -5,7 +5,7 @@ from flask import Flask, request, jsonify, render_template, send_from_directory,
 import models
 from flask_cors import CORS, cross_origin
 import os
-from datetime import date
+from datetime import datetime as date
 
 template_dir = os.path.abspath('./static/build/')
 print(template_dir)
@@ -214,7 +214,7 @@ def route_update_pending_record_assessment():
     try:
         record_assessment_id = post_data["record_assessment_id"]
         assessment = post_data["assessment"]
-        completion_date = date.today()
+        completion_date = date.now()
         status = post_data["status"]
 
     except Exception as e:
@@ -538,4 +538,4 @@ def paidstatusdoctor():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000, debug=False)
+    app.run(host="0.0.0.0", port=80, debug=False)

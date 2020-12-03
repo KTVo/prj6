@@ -21,7 +21,7 @@ Project Description:
 
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine, MetaData
-from sqlalchemy import Table, Column, Integer, String, ForeignKey, Date, Float, Boolean
+from sqlalchemy import Table, Column, Integer, String, ForeignKey, DateTime, Float, Boolean
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy import inspect
 from get_creds import get_creds
@@ -168,8 +168,8 @@ Record_Assessments = Table('record_assessment', metadata,
                           Column('physician_id', Integer, ForeignKey('physician.phy_id')),
                           Column('pat_id', Integer, ForeignKey('patient.pat_id')),
                           Column('assessment', String(1200)),
-                          Column('completion_dt', Date),
-                          Column("create_dt", Date),
+                          Column('completion_dt', DateTime),
+                          Column("create_dt", DateTime),
                           Column('status', String(15)),
                           )
 # For the patient.

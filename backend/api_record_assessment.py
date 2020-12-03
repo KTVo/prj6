@@ -24,7 +24,7 @@ def api_record_assessment_add():
     physician_id = post_data["physician_id"]
     pat_id = post_data["pat_id"]
     status = "pending"
-    create_dt = datetime.date.today()
+    create_dt = datetime.datetime.now()
 
     stmt = models.Record_Assessments.insert().\
         values(record_id=record_id, physician_id=physician_id, pat_id=pat_id, status=status,
