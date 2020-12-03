@@ -476,7 +476,7 @@ def get_payment():
             not_paid.append(data)
         else:
             paid.append(data)
-
+    my_session.close()
     return jsonify(paid, not_paid)
 
 
@@ -504,6 +504,7 @@ def get_payment_patid():
             paid.append(i)
         else:
             not_paid.append(i)
+    sess.close()
     return jsonify(paid, not_paid)
 
 
@@ -530,7 +531,7 @@ def paidstatusdoctor():
             paid.append(i)
         else:
             not_paid.append(i)
-    return jsonify(paid, not_paid)
+    sess.close()
     return jsonify(paid, not_paid)
 
 
