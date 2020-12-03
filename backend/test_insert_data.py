@@ -47,9 +47,9 @@ def insert_all():
     :return: None
     '''
 
-    insert_into_table(tablename="hospital", hospital_name="Hospital1", address="23 October street", city="Los Angeles", zip_code="90210")
-    insert_into_table(tablename="hospital", hospital_name="Hospital2", address="22 April street", city="San Bernardino", zip_code="92321")
-    insert_into_table(tablename="hospital", hospital_name="Hospital3", address="12 June ave", city="San Fransisco", zip_code="99820")
+    insert_into_table(tablename="hospital", hospital_name="John Hopkins", address="23 October street", city="Los Angeles", zip_code="90210")
+    insert_into_table(tablename="hospital", hospital_name="UCLA Medical Center", address="22 April street", city="San Bernardino", zip_code="92321")
+    insert_into_table(tablename="hospital", hospital_name="St Jude", address="12 June ave", city="San Fransisco", zip_code="99820")
 
 
     insert_into_table(tablename="patient", pat_medical_history="I have fallen and I cant get up",
