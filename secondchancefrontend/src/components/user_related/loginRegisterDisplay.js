@@ -175,11 +175,11 @@ export class LoginRegisterDisplay extends React.Component {
                         .then(response => {
                             if (response == "email exists") {
                                 alert("The email already exists");
-                                //window.location.reload(false);
+                                // window.location.href("/");
                             }
                             else {
                                 alert("Thanks, you registered!");
-                                window.location.reload(false);
+                                window.location.href = "/";
                             }
                         })
 
@@ -205,7 +205,7 @@ export class LoginRegisterDisplay extends React.Component {
                             }
                             else {
                                 alert("Thanks, you registered!");
-                                window.location.reload(false);
+                                window.location.href = "/";
                             }
                         }
                     );
