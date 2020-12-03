@@ -203,7 +203,7 @@ export class DrWritesSecondOpinion extends React.Component
 
         fetch("http://52.247.220.137:80/update_pending_records", requestOptions)
             .then(response=>response.text()).then(text => console.log(text))
-            .then(() => this.props.reload_tables());
+            .then(() => {alert("Congrats, record updated!"); this.props.reload_tables(); this.props.ShowAssessmentPageModalHandle()});
 
 
     }

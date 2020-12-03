@@ -133,7 +133,7 @@ export function Paymenthistory(caseDetails) {
                             {GetCreditCardNumber(caseDetails.caseDetails.record_assessment_id)}
                         </TableCell>
                     <TableRow>
-                        <TableCell align="left">Status: {caseDetails.caseDetails.assessment.toUpperCase()} </TableCell>
+                        <TableCell align="left">Assessment: {caseDetails.caseDetails.assessment.toUpperCase()} </TableCell>
                     </TableRow>
                 </TableBody>
 
